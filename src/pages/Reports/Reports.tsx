@@ -8,7 +8,7 @@ type FormData = {
   reporterName: string;
   selector: [];
   description: string;
-  responsable: string;
+  asignee: string;
   action: string;
 };
 
@@ -32,6 +32,36 @@ export default function Reports() {
         {...register('pc')}
         placeholder="PC"
         className="border p-2 w-full"
+      />
+      <p>Fecha:</p>
+      <input
+        {...register('date')}
+        placeholder="Fecha"
+        className=""
+      />
+      <p>Nombre de quien reporta:</p>
+      <input
+        {...register('reporterName')}
+        placeholder="Nombre"
+        className=""
+      />
+      <p>Descripción de la falla:</p>
+      <input
+        {...register('description')}
+        placeholder="Descripción"
+        className=""
+      />
+      <p>Quien atiende:</p>
+      <input
+        {...register('asignee')}
+        placeholder="Nombre"
+        className=""
+      />
+      <p>Acción tomada:</p>
+      <input
+        {...register('action')}
+        placeholder="Acción"
+        className=""
       />
       <hr />
       <button type="submit" className="">

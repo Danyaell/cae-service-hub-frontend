@@ -1,0 +1,32 @@
+button {
+    background-color: unset;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 0px;
+  font-size: 16px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #4e62b8;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+}
+
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+li {
+    list-style-type: none;
+    width: 100%;
+}
