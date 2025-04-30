@@ -1,4 +1,8 @@
-# React + TypeScript + Vite
+# CAE Service Hub
+
+"Este proyecto es parte del trabajo solicitado en el Servicio Social por parte del CAE. La aplicaión consta de un service hub donde alumnos y profesores pueden levantar reportes de daños a equipo de cómputo y malfuncionamiento. También se pueden levantar solicitudes para la instalación de software en el equipo.
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
