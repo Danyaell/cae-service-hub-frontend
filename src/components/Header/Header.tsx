@@ -6,7 +6,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.logoContainer}>
         <img src="../../../public/logos-unam-fes-aragon.png" className={styles.logo}/>
-        <h1 className="text-2xl font-bold">Sistema de Reportes</h1>
+        <h1 className="text-2xl font-bold">Sistema del CAE</h1>
       </div>
       <Navbar/>
     </header>
