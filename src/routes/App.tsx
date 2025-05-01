@@ -1,4 +1,4 @@
-import Navbar from "../components/Navbar";
+import Header from "../components/Header/Header";
 import Home from "../pages/Home/Home";
 import Reports from "../pages/Reports/Reports";
 import Requests from "../pages/Requests/Requests";
@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <>
-      <Navbar />
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reports" element={<Reports />} />

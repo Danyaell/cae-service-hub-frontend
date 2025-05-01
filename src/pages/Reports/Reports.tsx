@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
   sala: string;
@@ -15,8 +15,11 @@ type FormData = {
 export default function Reports() {
   const { register, handleSubmit } = useForm<FormData>();
 
+  const navigate = useNavigate();
+
   const onSubmit = (data: FormData) => {
     console.log('Datos enviados:', data);
+    navigate('/result');
   };
 
   return (
@@ -63,23 +66,9 @@ export default function Reports() {
         placeholder="Acción"
         className=""
       />
-      <hr />
       <button type="submit" className="">
-        <Link to="/result">Continuar</Link>
+        Continuar
       </button>
     </form>
   );
-
-  /* return (
-    <>
-      <h1>Reporte de falla de máquina</h1>
-      <div>
-        <p>Sala:</p>
-        <input type="text" placeholder="Sala" />
-        <p>PC:</p>
-        <input type="text" placeholder="PC" />
-      </div>
-      
-    </>
-  ); */
 }
