@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
   sala: string;
   pc: string;
   date: string;
   reporterName: string;
-  selector: [];
   description: string;
   asignee: string;
   action: string;
@@ -14,72 +13,63 @@ type FormData = {
 
 export default function Reports() {
   const { register, handleSubmit } = useForm<FormData>();
+  const navigate = useNavigate();
 
   const onSubmit = (data: FormData) => {
-    console.log('Datos enviados:', data);
+    console.log("Datos enviados:", data);
+    navigate("/result");
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="">
-      <p>Sala:</p>
-      <input
-        {...register('sala')}
-        placeholder="Fecha"
-        className="border p-2 w-full"
-      />
-      <p>PC:</p>
-      <input
-        {...register('pc')}
-        placeholder="PC"
-        className="border p-2 w-full"
-      />
+      <h1>REPORTE DE FALLA DE MÁQUINA</h1>
+
       <p>Fecha:</p>
       <input
-        {...register('date')}
+        {...register("date")}
         placeholder="Fecha"
         className=""
       />
       <p>Nombre de quien reporta:</p>
       <input
-        {...register('reporterName')}
+        {...register("reporterName")}
         placeholder="Nombre"
         className=""
       />
+      <p>Sala:</p>
+      <input
+        {...register("sala")}
+        placeholder="Fecha"
+        className="border p-2 w-full"
+      />
+      <p>PC:</p>
+      <input
+        {...register("pc")}
+        placeholder="PC"
+        className="border p-2 w-full"
+      />
       <p>Descripción de la falla:</p>
       <input
-        {...register('description')}
+        {...register("description")}
         placeholder="Descripción"
         className=""
       />
       <p>Quien atiende:</p>
       <input
-        {...register('asignee')}
+        {...register("asignee")}
         placeholder="Nombre"
         className=""
       />
       <p>Acción tomada:</p>
       <input
-        {...register('action')}
+        {...register("action")}
         placeholder="Acción"
         className=""
       />
-      <hr />
+
       <button type="submit" className="">
-        <Link to="/result">Continuar</Link>
+        Continuar
       </button>
     </form>
   );
-
-  /* return (
-    <>
-      <h1>Reporte de falla de máquina</h1>
-      <div>
-        <p>Sala:</p>
-        <input type="text" placeholder="Sala" />
-        <p>PC:</p>
-        <input type="text" placeholder="PC" />
-      </div>
-      
-    </>
-  ); */
 }

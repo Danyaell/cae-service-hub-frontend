@@ -4,7 +4,7 @@ import styles from "./Navbar.module.css";
 export default function Navbar() {
   return (
     <nav>
-      <ul className={styles.navigation}>
+      <ul className={styles.nav}>
         <li>
           <Link to="/">
             <button>Home</button>
