@@ -1,21 +1,21 @@
 .header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 .logoContainer {
-    display: flex;
-    align-items: center;
-    justify-content: ;
-    width: 100%;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .logo {
-    width: auto;
-    height: 100px;
-    margin-right: 20px;
+  width: auto;
+  height: 100px;
+  margin-right: 20px;
 }
