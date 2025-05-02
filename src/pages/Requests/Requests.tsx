@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import CustomDatePicker from "../../components/CustomDatePicker/CustomDatePicker";
 
 type FormData = {
   date: string;
@@ -23,10 +24,7 @@ export default function Requests() {
     <form onSubmit={handleSubmit(onSubmit)} className="">
       <h1>SOLICITUD DE INSTALACIÓN DE SOFTWARE</h1>
       <p>Fecha:</p>
-      <input
-        {...register("date")}
-        placeholder="Fecha"
-      />
+      <CustomDatePicker/>
       <p>Nombre de quien solicita:</p>
       <input
         {...register("requesterName")}
@@ -52,11 +50,10 @@ export default function Requests() {
         className="border p-2 w-full"
       />
       <p>Fecha de compromiso:</p>
-      <input
-        {...register("commitmentDate")}
-        placeholder="Fecha"
-        className="border p-2 w-full"
-      />
+      <CustomDatePicker/>
+
+      <br />
+      <br />
 
       <button type="submit" className="">
         Continuar

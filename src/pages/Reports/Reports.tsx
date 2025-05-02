@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import CustomDatePicker from "../../components/CustomDatePicker/CustomDatePicker";
 
 type FormData = {
   sala: string;
@@ -25,11 +26,12 @@ export default function Reports() {
       <h1>REPORTE DE FALLA DE MÁQUINA</h1>
 
       <p>Fecha:</p>
-      <input
+      {/* <input
         {...register("date")}
         placeholder="Fecha"
         className=""
-      />
+      /> */}
+      <CustomDatePicker/>
       <p>Nombre de quien reporta:</p>
       <input
         {...register("reporterName")}
