@@ -29,7 +29,10 @@ export default function Requests() {
         control={control}
         name="date"
         render={({ field }) => (
-          <CustomDatePicker selectedDate={field.value} onChange={field.onChange}/>
+          <CustomDatePicker
+            selectedDate={field.value}
+            onChange={field.onChange}
+          />
         )}
       />
       <p>Nombre de quien solicita:</p>
@@ -61,7 +64,10 @@ export default function Requests() {
         control={control}
         name="commitmentDate"
         render={({ field }) => (
-          <CustomDatePicker selectedDate={field.value} onChange={field.onChange}/>
+          <CustomDatePicker
+            selectedDate={field.value}
+            onChange={field.onChange}
+          />
         )}
       />
 

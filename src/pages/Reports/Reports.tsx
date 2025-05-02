@@ -30,15 +30,14 @@ export default function Reports() {
         control={control}
         name="date"
         render={({ field }) => (
-          <CustomDatePicker selectedDate={field.value} onChange={field.onChange}/>
+          <CustomDatePicker
+            selectedDate={field.value}
+            onChange={field.onChange}
+          />
         )}
       />
       <p>Nombre de quien reporta:</p>
-      <input
-        {...register("reporterName")}
-        placeholder="Nombre"
-        className=""
-      />
+      <input {...register("reporterName")} placeholder="Nombre" className="" />
       <p>Sala:</p>
       <input
         {...register("sala")}
@@ -58,17 +57,9 @@ export default function Reports() {
         className=""
       />
       <p>Quien atiende:</p>
-      <input
-        {...register("asignee")}
-        placeholder="Nombre"
-        className=""
-      />
+      <input {...register("asignee")} placeholder="Nombre" className="" />
       <p>Acción tomada:</p>
-      <input
-        {...register("action")}
-        placeholder="Acción"
-        className=""
-      />
+      <input {...register("action")} placeholder="Acción" className="" />
 
       <button type="submit" className="">
         Continuar

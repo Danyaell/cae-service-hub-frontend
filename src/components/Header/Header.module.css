@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 0 20px 80px;
 }
 
 .logoContainer {
@@ -18,6 +18,12 @@
   position: absolute;
   left: 100px;
   width: auto;
-  height: 100px;
+  height: 60px;
   margin-right: 20px;
+}
+
+.logoUnam,
+.logoFes {
+  width: auto;
+  height: 100%;
 }
