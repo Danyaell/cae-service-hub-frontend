@@ -1,11 +1,11 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import CustomDatePicker from "../../components/CustomDatePicker/CustomDatePicker";
+import { CustomDatePicker } from "../../components/CustomDatePicker/CustomDatePicker";
 
 type FormData = {
   sala: string;
   pc: string;
-  date: string;
+  date: Date | null;
   reporterName: string;
   description: string;
   asignee: string;
@@ -13,7 +13,7 @@ type FormData = {
 };
 
 export default function Reports() {
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, control } = useForm<FormData>();
   const navigate = useNavigate();
 
   const onSubmit = (data: FormData) => {
@@ -26,12 +26,13 @@ export default function Reports() {
       <h1>REPORTE DE FALLA DE MÁQUINA</h1>
 
       <p>Fecha:</p>
-      {/* <input
-        {...register("date")}
-        placeholder="Fecha"
-        className=""
-      /> */}
-      <CustomDatePicker/>
+      <Controller
+        control={control}
+        name="date"
+        render={({ field }) => (
+          <CustomDatePicker selectedDate={field.value} onChange={field.onChange}/>
+        )}
+      />
       <p>Nombre de quien reporta:</p>
       <input
         {...register("reporterName")}

@@ -1,16 +1,20 @@
-import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./CustomDatePicker.module.css";
 
-export default function CustomDatePicker() {
-    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+type Props = {
+    selectedDate?: Date | null;
+    onChange?: (date: Date | null) => void;
+};
+
+export const CustomDatePicker = ({ selectedDate, onChange }: Props) => {
+    console.log("DatePicker props:", { selectedDate, onChange });
 
     return (
         <DatePicker
             selected={selectedDate}
+            onChange={onChange}
             className={styles.customDatePicker}
-            onChange={(date) => setSelectedDate(date)}
             dateFormat="dd/MM/yyyy"
             placeholderText="Selecciona una fecha"
             isClearable
