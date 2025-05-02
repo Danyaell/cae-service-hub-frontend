@@ -12,44 +12,47 @@
 .react-datepicker-wrapper,
 .react-datepicker__input-container,
 .react-datepicker__input-container input {
-    background-color: #242424;
-    display: block;
-    width: 100%;
+  background-color: #242424;
+  display: block;
+  width: 100%;
 }
 
-:global(div.react-datepicker-wrapper div.react-datepicker__input-container button.react-datepicker__close-icon::after) {
-    background: linear-gradient(180deg, #00b7ff 5%, #001faa 95%) !important;
+:global(
+    div.react-datepicker-wrapper
+      div.react-datepicker__input-container
+      button.react-datepicker__close-icon::after
+  ) {
+  background: linear-gradient(180deg, #00b7ff 5%, #001faa 95%) !important;
 }
-
 
 .customDatepickerPopper div div div {
-    color: rgb(91, 102, 114);
-    font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+  color: rgb(91, 102, 114);
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
     sans-serif;
 }
 
 .customDatepickerPopper div div div div div h2 {
-    color: rgb(91, 102, 114);
+  color: rgb(91, 102, 114);
 }
 
 :global(.react-datepicker__day:hover) {
-    border-radius: 50% !important;
+  border-radius: 50% !important;
 }
 
 :global(.react-datepicker__day--today) {
-    background: linear-gradient(180deg, #00b7ff2f 5%, #001faa2d 95%) !important;
-    border-radius: 50% !important;
+  background: linear-gradient(180deg, #00b7ff2f 5%, #001faa2d 95%) !important;
+  border-radius: 50% !important;
 }
 
 :global(.react-datepicker__day--today:hover) {
-    background: linear-gradient(180deg, #3f6e8160 5%, #4154a167 95%) !important;
-    color: white !important;
-    border-radius: 50% !important;
+  background: linear-gradient(180deg, #3f6e8160 5%, #4154a167 95%) !important;
+  color: white !important;
+  border-radius: 50% !important;
 }
 
 :global(.react-datepicker__day--selected) {
-    background: linear-gradient(180deg, #00b7ff 5%, #001faa 95%) !important;
-    color: rgb(255, 255, 255) !important;
-    border-radius: 50%;
-    cursor: pointer;
+  background: linear-gradient(180deg, #00b7ff 5%, #001faa 95%) !important;
+  color: rgb(255, 255, 255) !important;
+  border-radius: 50%;
+  cursor: pointer;
 }

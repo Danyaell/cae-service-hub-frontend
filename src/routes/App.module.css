@@ -1,0 +1,12 @@
+.container {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -80px;
+    overflow: visible;
+    z-index: -1;
+    width: 100%;
+    height: 350px;
+    background-color: #3c8dbc;
+    transform: skewY(-3deg);
+}
