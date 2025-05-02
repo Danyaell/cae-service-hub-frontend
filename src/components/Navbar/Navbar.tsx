@@ -7,17 +7,17 @@ export default function Navbar() {
       <ul className={styles.nav}>
         <li>
           <Link to="/">
-            <button>Home</button>
+            <button className={styles.navButton}>Home</button>
           </Link>
         </li>
         <li>
           <Link to="/reports">
-            <button>Reportes</button>
+            <button className={styles.navButton}>Reportes</button>
           </Link>
         </li>
         <li>
           <Link to="/requests">
-            <button>Solicitudes</button>
+            <button className={styles.navButton}>Solicitudes</button>
           </Link>
         </li>
       </ul>

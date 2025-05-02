@@ -1,17 +1,18 @@
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { CustomDatePicker } from "../../components/CustomDatePicker/CustomDatePicker";
 
 type FormData = {
-  date: string;
+  date: Date | null;
   requesterName: string;
   sala: string;
   serviceRequested: string;
   attendant: string;
-  commitmentDate: string;
+  commitmentDate: Date | null;
 };
 
 export default function Requests() {
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, control } = useForm<FormData>();
   const navigate = useNavigate();
 
   const onSubmit = (data: FormData) => {
@@ -22,10 +23,14 @@ export default function Requests() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="">
       <h1>SOLICITUD DE INSTALACIÓN DE SOFTWARE</h1>
+
       <p>Fecha:</p>
-      <input
-        {...register("date")}
-        placeholder="Fecha"
+      <Controller
+        control={control}
+        name="date"
+        render={({ field }) => (
+          <CustomDatePicker selectedDate={field.value} onChange={field.onChange}/>
+        )}
       />
       <p>Nombre de quien solicita:</p>
       <input
@@ -52,11 +57,16 @@ export default function Requests() {
         className="border p-2 w-full"
       />
       <p>Fecha de compromiso:</p>
-      <input
-        {...register("commitmentDate")}
-        placeholder="Fecha"
-        className="border p-2 w-full"
+      <Controller
+        control={control}
+        name="commitmentDate"
+        render={({ field }) => (
+          <CustomDatePicker selectedDate={field.value} onChange={field.onChange}/>
+        )}
       />
+
+      <br />
+      <br />
 
       <button type="submit" className="">
         Continuar

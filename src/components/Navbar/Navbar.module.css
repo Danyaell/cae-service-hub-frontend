@@ -1,4 +1,4 @@
-button {
+.navButton {
   background-color: unset;
   color: #fff;
   border: none;
@@ -9,7 +9,7 @@ button {
   width: 100%;
 }
 
-button:hover {
+.navButton:hover {
   background-color: #4e62b8;
 }
 

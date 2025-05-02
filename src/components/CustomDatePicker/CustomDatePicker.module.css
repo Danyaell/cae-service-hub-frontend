@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+.customDatePicker {
+  display: flex;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.react-datepicker-wrapper,
+.react-datepicker__input-container,
+.react-datepicker__input-container input {
+    background-color: #242424;
+    display: block;
+    width: 100%;
+}
+
+:global(div.react-datepicker-wrapper div.react-datepicker__input-container button.react-datepicker__close-icon::after) {
+    background: linear-gradient(180deg, #00b7ff 5%, #001faa 95%) !important;
+}
+
+
+.customDatepickerPopper div div div {
+    color: rgb(91, 102, 114);
+    font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+}
+
+.customDatepickerPopper div div div div div h2 {
+    color: rgb(91, 102, 114);
+}
+
+:global(.react-datepicker__day:hover) {
+    border-radius: 50% !important;
+}
+
+:global(.react-datepicker__day--today) {
+    background: linear-gradient(180deg, #00b7ff2f 5%, #001faa2d 95%) !important;
+    border-radius: 50% !important;
+}
+
+:global(.react-datepicker__day--today:hover) {
+    background: linear-gradient(180deg, #3f6e8160 5%, #4154a167 95%) !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+:global(.react-datepicker__day--selected) {
+    background: linear-gradient(180deg, #00b7ff 5%, #001faa 95%) !important;
+    color: rgb(255, 255, 255) !important;
+    border-radius: 50%;
+    cursor: pointer;
+}
