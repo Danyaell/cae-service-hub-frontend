@@ -1,6 +1,11 @@
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { CustomDatePicker } from "../../components/CustomDatePicker/CustomDatePicker";
+import styles from "./Requests.module.css";
+import { FaCalendar } from "react-icons/fa";
+import { BsPersonFill } from "react-icons/bs";
+import { SiGoogleclassroom } from "react-icons/si";
+import { MdOutlineHomeRepairService } from "react-icons/md";
 
 type FormData = {
   date: Date | null;
@@ -11,9 +16,34 @@ type FormData = {
   commitmentDate: Date | null;
 };
 
+const rooms = [
+  { id: null, name: "Sala" },
+  { id: 1, name: 203 },
+  { id: 2, name: 204 },
+];
+
 export default function Requests() {
   const { register, handleSubmit, control } = useForm<FormData>();
   const navigate = useNavigate();
+
+  const selectPlaceholder = (room: {
+    id: number | null;
+    name: string | number;
+  }) => {
+    if (room.id === null) {
+      return (
+        <option key={room.id} value={room.name} disabled selected hidden>
+          {room.name}
+        </option>
+      );
+    } else {
+      return (
+        <option className={styles.roomOptions} key={room.id} value={room.name}>
+          {room.name}
+        </option>
+      );
+    }
+  };
 
   const onSubmit = (data: FormData) => {
     console.log("Datos enviados:", data);
@@ -21,60 +51,87 @@ export default function Requests() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="">
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <h1>SOLICITUD DE INSTALACIÓN DE SOFTWARE</h1>
+      <p>Para solicitar la instalación de software, llena el formulario:</p>
 
-      <p>Fecha:</p>
-      <Controller
-        control={control}
-        name="date"
-        render={({ field }) => (
-          <CustomDatePicker
-            selectedDate={field.value}
-            onChange={field.onChange}
+      <div className={styles.twoInputsContainer}>
+        <div className={styles.inputSmallContainer}>
+          <div className={styles.iconContainer}>
+            <FaCalendar />
+          </div>
+          <div className={styles.dateContainer}>
+            <Controller
+              control={control}
+              name="date"
+              render={({ field }) => (
+                <CustomDatePicker
+                  selectedDate={field.value}
+                  onChange={field.onChange}
+                />
+              )}
+            />
+          </div>
+        </div>
+        <div className={styles.inputSmallContainer}>
+          <div className={styles.iconContainer}>
+            <SiGoogleclassroom />
+          </div>
+          <select {...register("sala")} className={styles.formSmallInput}>
+            {rooms.map((room) => selectPlaceholder(room))}
+          </select>
+        </div>
+      </div>
+      <div className={styles.inputContainer}>
+        <div className={styles.iconContainer}>
+          <BsPersonFill />
+        </div>
+        <input
+          {...register("requesterName")}
+          placeholder="Nombre de quien solicita"
+          className={styles.formInput}
+        />
+      </div>
+      <div className={styles.inputContainer}>
+        <div className={styles.iconContainer}>
+          <MdOutlineHomeRepairService />
+        </div>
+        <input
+          {...register("serviceRequested")}
+          type="text"
+          placeholder="Servicio que solicita"
+          className={styles.formInput}
+        />
+      </div>
+      {/* <div className={styles.inputContainer}>
+        <div className={styles.iconContainer}>
+          <BsPersonFill />
+        </div>
+        <input
+          {...register("attendant")}
+          placeholder="Nombre de quien atiende"
+          className={styles.formInput}
+        />
+      </div>
+      <div className={styles.inputContainer}>
+        <div className={styles.iconContainer}>
+          <FaCalendar />
+        </div>
+        <div className={styles.dateContainer}>
+          <Controller
+            control={control}
+            name="commitmentDate"
+            render={({ field }) => (
+              <CustomDatePicker
+                selectedDate={field.value}
+                onChange={field.onChange}
+              />
+            )}
           />
-        )}
-      />
-      <p>Nombre de quien solicita:</p>
-      <input
-        {...register("requesterName")}
-        placeholder="Nombre"
-        className="border p-2 w-full"
-      />
-      <p>Sala:</p>
-      <input
-        {...register("sala")}
-        placeholder="Sala"
-        className="border p-2 w-full"
-      />
-      <p>Servicio solicitado:</p>
-      <input
-        {...register("serviceRequested")}
-        placeholder="Servicio"
-        className="border p-2 w-full"
-      />
-      <p>Quien atiende:</p>
-      <input
-        {...register("attendant")}
-        placeholder="Nombre"
-        className="border p-2 w-full"
-      />
-      <p>Fecha de compromiso:</p>
-      <Controller
-        control={control}
-        name="commitmentDate"
-        render={({ field }) => (
-          <CustomDatePicker
-            selectedDate={field.value}
-            onChange={field.onChange}
-          />
-        )}
-      />
+        </div>
+      </div> */}
 
-      <br />
-      <br />
-
-      <button type="submit" className="">
+      <button type="submit" className={styles.formButton}>
         Continuar
       </button>
     </form>

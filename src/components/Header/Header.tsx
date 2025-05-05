@@ -6,7 +6,7 @@ export default function Header() {
     <header className={styles.header}>
       <Navbar />
       <div>
-        <h1 className="">SISTEMA DEL CAE</h1>
+        <h1 className={styles.title}>SISTEMA DEL CAE</h1>
       </div>
     </header>
   );
