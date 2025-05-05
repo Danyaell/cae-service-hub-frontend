@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div>
-      <h1>Welcome to the Home Page</h1>
+      <h1>INICIO</h1>
       <p>This is the main content of the home page.</p>
 
       <p>Soy profesor</p>
