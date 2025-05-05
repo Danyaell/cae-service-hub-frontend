@@ -8,8 +8,6 @@ type Props = {
 };
 
 export const CustomDatePicker = ({ selectedDate, onChange }: Props) => {
-  console.log("DatePicker props:", { selectedDate, onChange });
-
   return (
     <DatePicker
       selected={selectedDate}

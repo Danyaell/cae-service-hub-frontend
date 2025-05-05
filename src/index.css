@@ -19,7 +19,8 @@ body {
 
 #root {
   max-width: 100%;
-  margin: 0 auto 100px;
-  padding: 0 2rem;
+  min-height: auto;
+  margin: 0 auto 0px;
+  padding: 0;
   text-align: center;
 }

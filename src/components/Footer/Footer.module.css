@@ -1,0 +1,122 @@
+footer {
+    padding: 100px;
+    margin: auto;
+    bottom: 0;
+    max-width: 900px;
+    color: #6E7579;
+}
+
+.buttonGoTop {
+    display: flex;
+    padding: 12px;
+    margin: auto;
+    background-color: #f86942;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.329);
+    font-size: 2em;
+}
+
+.linksContainer {
+    display: flex;
+    margin-top: 70px;
+    justify-content: start;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.footerTitle {
+    margin: auto;
+    font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1.5em;
+    line-height: 20px;
+    font-weight: 300;
+    text-align: left;
+    color: #ccc;
+}
+
+.generalLinks {
+    padding: 0 0 0 0;
+    margin: 0 20px 0 0;
+    width: 50%;
+    justify-items: start;
+    font-size: .7em;
+    line-height: 20px;
+    font-weight: normal;
+    text-align: left;
+}
+
+.linkList {
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.linkItem {
+    padding: 0;
+    font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    line-height: normal;
+    font-weight: normal;
+    text-align: left;
+    color: #6E7579;
+    text-decoration: none;
+}
+
+.socialLinks {
+    padding: 0;
+    margin: 0;
+    width: 50%;
+    justify-items: start;
+    font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: .7em;
+    line-height: 20px;
+    font-weight: normal;
+    text-align: left;
+}
+
+.socialLinks p {
+    margin: 20px 0px;
+}
+
+.socialLinkList {
+    display: flex;
+    padding: 0;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.socialLinkList ul {
+    display: flex;
+    padding: 0;
+    margin: auto;
+}
+
+.socialLinkList ul Link {
+    display: flex;
+    margin: auto;
+    background-color: transparent;
+    color: #000;
+}
+
+.socialIcon {
+    margin: 1px;
+    padding: 3px;
+    width: auto;
+    height: auto;
+    font-size: 3em;
+    font-weight: normal;
+    color: black;
+    border: solid 1px #ebebeb;
+    border-radius: 50%;
+}
+
+.footerCopyright {
+    font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: .7em;
+    line-height: 20px;
+    font-weight: normal;
+    text-align: left;
+}
