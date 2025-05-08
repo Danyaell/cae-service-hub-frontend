@@ -7,13 +7,32 @@
   border-radius: 0px;
   font-size: 16px;
   width: 100%;
-  transition: all 0.2s ease;
+  transition: all 0.1s ease;
 }
 
 .navButton:hover {
   color: #fff;
   text-shadow: 2px 2px 5px #0000009c;
-  transition: all .8s ease;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.navButtonHelp {
+  background-color: #f86942;
+  color: #ffffffb6;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  transition: all 0.1s ease;
+}
+
+.navButtonHelp:hover {
+  color: #fff;
+  text-shadow: 2px 2px 5px #0000009c;
+  transition: all .3s ease;
   cursor: pointer;
 }
 

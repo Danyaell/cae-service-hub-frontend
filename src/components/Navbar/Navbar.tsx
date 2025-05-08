@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
+  const location = useLocation();
+
   return (
     <div className={styles.logoContainer}>
       <div className={styles.logo}>
@@ -15,14 +17,23 @@ export default function Navbar() {
               <button className={styles.navButton}>INICIO</button>
             </Link>
           </li>
+          {location.pathname !== "/" && (
+            <>
+              <li>
+                <Link to="/reports">
+                  <button className={styles.navButton}>REPORTES</button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/requests">
+                  <button className={styles.navButton}>SOLICITUDES</button>
+                </Link>
+              </li>
+            </>
+          )}
           <li>
-            <Link to="/reports">
-              <button className={styles.navButton}>REPORTES</button>
-            </Link>
-          </li>
-          <li>
-            <Link to="/requests">
-              <button className={styles.navButton}>SOLICITUDES</button>
+            <Link to="/help">
+              <button className={styles.navButtonHelp}>AYUDA</button>
             </Link>
           </li>
         </ul>

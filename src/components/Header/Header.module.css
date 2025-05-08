@@ -33,6 +33,12 @@
   font-weight: normal;
   color: #ffffff;
   text-align: center;
-  margin: 100px auto 20px;
+  margin: 100px auto 10px;
+  text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.08);
+}
+
+.subtitle {
+  font-weight: 500;
+  letter-spacing: 5px;
   text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.08);
 }

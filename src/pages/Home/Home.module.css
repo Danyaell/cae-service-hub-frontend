@@ -1,0 +1,18 @@
+.linkButton {
+    margin: 15px;
+    padding: 15px;
+    width: 200px;
+    font-size: 1em;
+    letter-spacing: 2px;
+    background-color: #242424;
+    color: #3c8dbc;
+    border: 3px solid #3c8dbc;
+    border-radius: 5px;
+    transition-duration: .1s;
+}
+.linkButton:hover {
+    background-color: #3c8dbc;
+    color: #ffffff;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
