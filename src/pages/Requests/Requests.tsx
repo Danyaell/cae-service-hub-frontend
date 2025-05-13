@@ -54,7 +54,7 @@ export default function Requests() {
   return (
     <>
       <div className={styles.backButtonContainer}>
-        <button className={styles.backButton} onClick={() => navigate(-1)}>
+        <button className={styles.backButton} onClick={() => navigate("/")}>
           <FaArrowLeftLong />
           <p>Regresar</p>
         </button>

@@ -14,6 +14,7 @@ type FormData = {
   pc: string;
   date: Date | null;
   reporterName: string;
+  role: string;
   description: string;
   asignee: string;
   action: string;
@@ -23,6 +24,13 @@ const rooms = [
   { id: null, name: "Sala" },
   { id: 1, name: 203 },
   { id: 2, name: 204 },
+];
+
+const roles = [
+  { id: null, name: "Rol" },
+  { id: 1, name: "Estudiante" },
+  { id: 2, name: "Docente" },
+  { id: 3, name: "Encargado" },
 ];
 
 export default function Reports() {
@@ -56,7 +64,7 @@ export default function Reports() {
   return (
     <>
       <div className={styles.backButtonContainer}>
-        <button className={styles.backButton} onClick={() => navigate(-1)}>
+        <button className={styles.backButton} onClick={() => navigate("/")}>
           <FaArrowLeftLong />
           <p>Regresar</p>
         </button>
@@ -101,6 +109,14 @@ export default function Reports() {
             placeholder="Nombre de quien reporta"
             className={styles.formInput}
           />
+        </div>
+        <div className={styles.inputContainer}>
+          <div className={styles.iconContainer}>
+            <BsPersonFill />
+          </div>
+          <select {...register("role")} className={styles.formSelectInput}>
+            {roles.map((role) => selectPlaceholder(role))}
+          </select>
         </div>
         <div className={styles.inputContainer}>
           <div className={styles.iconContainer}>

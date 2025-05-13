@@ -104,6 +104,7 @@
 .formSmallInput:has(option[value="Sala"]:checked) {
   color: #ffffff46;
 }
+
 .formSmallInput {
   justify-self: right;
   width: 90%;
@@ -111,6 +112,30 @@
   border: solid 2px #ccc;
   border-left: none 0px;
   border-radius: 0px 5px 5px 0px;
+}
+
+.formSmallInput:focus {
+  outline: none;
+  border: 2px solid rgb(51, 105, 255);
+  box-shadow: 0 0 5px rgb(51, 105, 255);
+}
+
+.formSelectInput:has(option[value="Rol"]:checked) {
+  color: #ffffff46;
+}
+
+.formSelectInput {
+  width: 50%;
+  height: 1.9rem;
+  border: solid 2px #ccc;
+  border-left: none 0px;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.formSelectInput:focus {
+  outline: none;
+  border: 2px solid rgb(51, 105, 255);
+  box-shadow: 0 0 5px rgb(51, 105, 255);
 }
 
 .formInput {

@@ -21,9 +21,9 @@ export default function Footer() {
           <h2 className={styles.footerTitle}>ENLACES</h2>
           <p className={styles.footerText}>
             <li className={styles.linkList}>
-              <ul className={styles.linkItem}><Link to={""}>Opción 1</Link></ul>
-              <ul className={styles.linkItem}><Link to={""}>Opción 1</Link></ul>
-              <ul className={styles.linkItem}><Link to={""}>Opción 1</Link></ul>
+              <ul className={styles.linkItem}><Link to={""} className={styles.link}>Opción 1</Link></ul>
+              <ul className={styles.linkItem}><Link to={""} className={styles.link}>Opción 1</Link></ul>
+              <ul className={styles.linkItem}><Link to={""} className={styles.link}>Opción 1</Link></ul>
             </li>
           </p>
         </div>

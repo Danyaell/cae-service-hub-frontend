@@ -113,6 +113,12 @@
   border-radius: 0px 5px 5px 0px;
 }
 
+.formSmallInput:focus {
+  outline: none;
+  border: 2px solid rgb(51, 105, 255);
+  box-shadow: 0 0 5px rgb(51, 105, 255);
+}
+
 .formInput {
   width: 50%;
   height: 1.5rem;
