@@ -40,6 +40,43 @@
   border-radius: 5px 0px 0px 5px;
 }
 
+.backButtonContainer {
+  display: flex;
+  margin: auto 100px;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+}
+
+.backButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  color: #ffffff;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-weight: 600;
+  border: none;
+  font-size: 16px;
+  width: auto;
+  height: 2rem;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.backButton:focus {
+  color: #3c8dbc;
+}
+
+.backButton p {
+  margin: 0 5px;
+}
+
 .form {
   margin: auto;
   display: flex;
@@ -49,13 +86,22 @@
   gap: 1.5rem;
 }
 
+.formTitle {
+  margin-bottom: 50px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
 .dateContainer {
   gap: 1rem;
   width: 80%;
   height: auto;
 }
 
-.formSmallInput:has(option[value="Sala"]:checked){
+.formSmallInput:has(option[value="Sala"]:checked) {
   color: #ffffff46;
 }
 .formSmallInput {
@@ -65,6 +111,12 @@
   border: solid 2px #ccc;
   border-left: none 0px;
   border-radius: 0px 5px 5px 0px;
+}
+
+.formSmallInput:focus {
+  outline: none;
+  border: 2px solid rgb(51, 105, 255);
+  box-shadow: 0 0 5px rgb(51, 105, 255);
 }
 
 .formInput {

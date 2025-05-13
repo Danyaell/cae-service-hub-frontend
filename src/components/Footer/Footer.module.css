@@ -31,9 +31,9 @@ footer {
     font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 1.5em;
     line-height: 20px;
-    font-weight: 300;
+    font-weight: 500;
     text-align: left;
-    color: #ccc;
+    color: #bdbdbd;
 }
 
 .generalLinks {
@@ -57,12 +57,20 @@ footer {
 .linkItem {
     padding: 0;
     font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
-    font-size: 1em;
+    font-size: 1.2em;
     line-height: normal;
     font-weight: normal;
     text-align: left;
-    color: #6E7579;
+    color: #28B1A4;
     text-decoration: none;
+}
+
+.link {
+    color: #28B1A4;
+    text-decoration: dotted underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: #818181;
 }
 
 .socialLinks {

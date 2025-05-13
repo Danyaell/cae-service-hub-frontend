@@ -6,6 +6,7 @@ import { FaCalendar } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
 import { SiGoogleclassroom } from "react-icons/si";
 import { MdOutlineHomeRepairService } from "react-icons/md";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 type FormData = {
   date: Date | null;
@@ -51,89 +52,71 @@ export default function Requests() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <h1>SOLICITUD DE INSTALACIÓN DE SOFTWARE</h1>
-      <p>Para solicitar la instalación de software, llena el formulario:</p>
+    <>
+      <div className={styles.backButtonContainer}>
+        <button className={styles.backButton} onClick={() => navigate("/")}>
+          <FaArrowLeftLong />
+          <p>Regresar</p>
+        </button>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+        <h1 className={styles.formTitle}>
+          SOLICITUD DE INSTALACIÓN DE SOFTWARE
+        </h1>
+        <p>Para solicitar la instalación de software, llena el formulario:</p>
 
-      <div className={styles.twoInputsContainer}>
-        <div className={styles.inputSmallContainer}>
-          <div className={styles.iconContainer}>
-            <FaCalendar />
-          </div>
-          <div className={styles.dateContainer}>
-            <Controller
-              control={control}
-              name="date"
-              render={({ field }) => (
-                <CustomDatePicker
-                  selectedDate={field.value}
-                  onChange={field.onChange}
-                />
-              )}
-            />
-          </div>
-        </div>
-        <div className={styles.inputSmallContainer}>
-          <div className={styles.iconContainer}>
-            <SiGoogleclassroom />
-          </div>
-          <select {...register("sala")} className={styles.formSmallInput}>
-            {rooms.map((room) => selectPlaceholder(room))}
-          </select>
-        </div>
-      </div>
-      <div className={styles.inputContainer}>
-        <div className={styles.iconContainer}>
-          <BsPersonFill />
-        </div>
-        <input
-          {...register("requesterName")}
-          placeholder="Nombre de quien solicita"
-          className={styles.formInput}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <div className={styles.iconContainer}>
-          <MdOutlineHomeRepairService />
-        </div>
-        <input
-          {...register("serviceRequested")}
-          type="text"
-          placeholder="Servicio que solicita"
-          className={styles.formInput}
-        />
-      </div>
-      {/* <div className={styles.inputContainer}>
-        <div className={styles.iconContainer}>
-          <BsPersonFill />
-        </div>
-        <input
-          {...register("attendant")}
-          placeholder="Nombre de quien atiende"
-          className={styles.formInput}
-        />
-      </div>
-      <div className={styles.inputContainer}>
-        <div className={styles.iconContainer}>
-          <FaCalendar />
-        </div>
-        <div className={styles.dateContainer}>
-          <Controller
-            control={control}
-            name="commitmentDate"
-            render={({ field }) => (
-              <CustomDatePicker
-                selectedDate={field.value}
-                onChange={field.onChange}
+        <div className={styles.twoInputsContainer}>
+          <div className={styles.inputSmallContainer}>
+            <div className={styles.iconContainer}>
+              <FaCalendar />
+            </div>
+            <div className={styles.dateContainer}>
+              <Controller
+                control={control}
+                name="date"
+                render={({ field }) => (
+                  <CustomDatePicker
+                    selectedDate={field.value}
+                    onChange={field.onChange}
+                  />
+                )}
               />
-            )}
+            </div>
+          </div>
+          <div className={styles.inputSmallContainer}>
+            <div className={styles.iconContainer}>
+              <SiGoogleclassroom />
+            </div>
+            <select {...register("sala")} className={styles.formSmallInput}>
+              {rooms.map((room) => selectPlaceholder(room))}
+            </select>
+          </div>
+        </div>
+        <div className={styles.inputContainer}>
+          <div className={styles.iconContainer}>
+            <BsPersonFill />
+          </div>
+          <input
+            {...register("requesterName")}
+            placeholder="Nombre de quien solicita"
+            className={styles.formInput}
           />
         </div>
-      </div> */}
-
-      <button type="submit" className={styles.formButton}>
-        Continuar
-      </button>
-    </form>
+        <div className={styles.inputContainer}>
+          <div className={styles.iconContainer}>
+            <MdOutlineHomeRepairService />
+          </div>
+          <input
+            {...register("serviceRequested")}
+            type="text"
+            placeholder="Servicio que solicita"
+            className={styles.formInput}
+          />
+        </div>
+        <button type="submit" className={styles.formButton}>
+          Continuar
+        </button>
+      </form>
+    </>
   );
 }
