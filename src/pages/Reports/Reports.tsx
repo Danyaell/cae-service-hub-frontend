@@ -10,14 +10,14 @@ import { FaCalendar } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 type FormData = {
-  sala: string;
-  pc: string;
-  date: Date | null;
+  reportDate: Date | null;
   reporterName: string;
   role: string;
+  room: string;
+  pc: string;
   description: string;
-  asignee: string;
-  action: string;
+  attendant: string;
+  actionTaken: string;
 };
 
 const rooms = [
@@ -81,7 +81,7 @@ export default function Reports() {
             <div className={styles.dateContainer}>
               <Controller
                 control={control}
-                name="date"
+                name="reportDate"
                 render={({ field }) => (
                   <CustomDatePicker
                     selectedDate={field.value}
@@ -95,7 +95,7 @@ export default function Reports() {
             <div className={styles.iconContainer}>
               <SiGoogleclassroom />
             </div>
-            <select {...register("sala")} className={styles.formSmallInput}>
+            <select {...register("room")} className={styles.formSmallInput}>
               {rooms.map((room) => selectPlaceholder(room))}
             </select>
           </div>
@@ -144,7 +144,7 @@ export default function Reports() {
             <BsPersonFill />
           </div>
           <input
-            {...register("asignee")}
+            {...register("attendant")}
             placeholder="Nombre de quien atiende"
             className={styles.formInput}
           />
@@ -154,7 +154,7 @@ export default function Reports() {
             <GrAction />
           </div>
           <input
-            {...register("action")}
+            {...register("actionTaken")}
             placeholder="Acción tomada"
             className={styles.formInput}
           />

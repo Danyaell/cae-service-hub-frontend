@@ -9,10 +9,10 @@ import { MdOutlineHomeRepairService } from "react-icons/md";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 type FormData = {
-  date: Date | null;
-  requesterName: string;
-  sala: string;
-  serviceRequested: string;
+  requestDate: Date | null;
+  requestorName: string;
+  room: string;
+  software: string;
   attendant: string;
   commitmentDate: Date | null;
 };
@@ -73,7 +73,7 @@ export default function Requests() {
             <div className={styles.dateContainer}>
               <Controller
                 control={control}
-                name="date"
+                name="requestDate"
                 render={({ field }) => (
                   <CustomDatePicker
                     selectedDate={field.value}
@@ -87,7 +87,7 @@ export default function Requests() {
             <div className={styles.iconContainer}>
               <SiGoogleclassroom />
             </div>
-            <select {...register("sala")} className={styles.formSmallInput}>
+            <select {...register("room")} className={styles.formSmallInput}>
               {rooms.map((room) => selectPlaceholder(room))}
             </select>
           </div>
@@ -97,7 +97,7 @@ export default function Requests() {
             <BsPersonFill />
           </div>
           <input
-            {...register("requesterName")}
+            {...register("requestorName")}
             placeholder="Nombre de quien solicita"
             className={styles.formInput}
           />
@@ -107,7 +107,7 @@ export default function Requests() {
             <MdOutlineHomeRepairService />
           </div>
           <input
-            {...register("serviceRequested")}
+            {...register("software")}
             type="text"
             placeholder="Servicio que solicita"
             className={styles.formInput}
