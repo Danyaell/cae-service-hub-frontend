@@ -7,6 +7,9 @@ import { BsPersonFill } from "react-icons/bs";
 import { SiGoogleclassroom } from "react-icons/si";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { FaArrowLeftLong } from "react-icons/fa6";
+//import { SoftwareRequest } from "../../types/SoftwareRequest";
+import { createSoftwareRequestService } from "../../api/softwareRequests.service";
+import { useEffect } from "react";
 
 type FormData = {
   requestDate: Date | null;
@@ -24,8 +27,14 @@ const rooms = [
 ];
 
 export default function Requests() {
+  //const [request, setRequest] = useState<SoftwareRequest>();
   const { register, handleSubmit, control } = useForm<FormData>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    //getSoftwareRequestByIdService(1).then(setRequest).catch(console.error);
+    //console.log(request);
+  }, []);
 
   const selectPlaceholder = (room: {
     id: number | null;
@@ -33,7 +42,7 @@ export default function Requests() {
   }) => {
     if (room.id === null) {
       return (
-        <option key={room.id} value={room.name} disabled selected hidden>
+        <option key={room.id} value={room.name} disabled hidden>
           {room.name}
         </option>
       );
@@ -47,7 +56,7 @@ export default function Requests() {
   };
 
   const onSubmit = (data: FormData) => {
-    console.log("Datos enviados:", data);
+    createSoftwareRequestService(data);
     navigate("/result");
   };
 
@@ -87,7 +96,7 @@ export default function Requests() {
             <div className={styles.iconContainer}>
               <SiGoogleclassroom />
             </div>
-            <select {...register("room")} className={styles.formSmallInput}>
+            <select {...register("room")} className={styles.formSmallInput} defaultValue={"Sala"}>
               {rooms.map((room) => selectPlaceholder(room))}
             </select>
           </div>

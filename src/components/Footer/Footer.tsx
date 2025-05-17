@@ -19,13 +19,24 @@ export default function Footer() {
       <div className={styles.linksContainer}>
         <div className={styles.generalLinks}>
           <h2 className={styles.footerTitle}>ENLACES</h2>
-          <p className={styles.footerText}>
-            <li className={styles.linkList}>
-              <ul className={styles.linkItem}><Link to={""} className={styles.link}>Opción 1</Link></ul>
-              <ul className={styles.linkItem}><Link to={""} className={styles.link}>Opción 1</Link></ul>
-              <ul className={styles.linkItem}><Link to={""} className={styles.link}>Opción 1</Link></ul>
-            </li>
-          </p>
+          <p className={styles.footerText} />
+          <li className={styles.linkList}>
+            <ul className={styles.linkItem}>
+              <Link to={""} className={styles.link}>
+                Opción 1
+              </Link>
+            </ul>
+            <ul className={styles.linkItem}>
+              <Link to={""} className={styles.link}>
+                Opción 1
+              </Link>
+            </ul>
+            <ul className={styles.linkItem}>
+              <Link to={""} className={styles.link}>
+                Opción 1
+              </Link>
+            </ul>
+          </li>
         </div>
 
         <div className={styles.socialLinks}>
