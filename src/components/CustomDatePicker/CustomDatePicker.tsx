@@ -15,7 +15,6 @@ export const CustomDatePicker = ({ selectedDate, onChange }: Props) => {
       className={styles.customDatePicker}
       dateFormat="dd/MM/yyyy"
       placeholderText="Fecha (dd/MM/yyyy)"
-      isClearable
       showPopperArrow={false}
       popperClassName={styles.customDatepickerPopper}
     />

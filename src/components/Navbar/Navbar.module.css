@@ -1,6 +1,8 @@
 .navButton {
   background-color: unset;
   color: #ffffffb6;
+  text-shadow: 3px 3px 5px #0000009c;
+  text-decoration: none;
   border: none;
   padding: 10px 20px;
   margin: 10px;
@@ -12,14 +14,41 @@
 
 .navButton:hover {
   color: #fff;
-  text-shadow: 2px 2px 5px #0000009c;
+  text-shadow: 4px 4px 4px #0000009c;
   transition: all .3s ease;
   cursor: pointer;
+}
+
+.navButtonActive {
+  color: var(--color-secondary);
+  text-shadow: 4px 4px 4px #000000ad;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 0px;
+  font-size: 16px;
+  width: 100%;
+  transition: all 0.1s ease;
+}
+
+.navButtonActive:hover {
+  color: #ffc234;
+  text-shadow: 4px 4px 4px #000000ad;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 0px;
+  font-size: 16px;
+  width: 100%;
+  transition: all .3s ease;
 }
 
 .navButtonHelp {
   background-color: #f86942;
   color: #ffffffb6;
+  text-decoration: none;
   border: none;
   padding: 10px 20px;
   margin: 10px;
