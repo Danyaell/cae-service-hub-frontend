@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
+:root {
+  --color-primary: #002f6c;
+  --color-blue-dark: #34559D;
+  --color-blue: #2B62AB;
+  --color-blue-light: #3c8dbc;
+  --color-blue-lighter: #75A8EB;
+  --color-secondary: #f2a900;
+  --color-cream: #C09440;
+  --color-gold: #B38A2D;
+  --color-brown: #6B4600;
+  --color-brown-old: #736239;
+  --color-enfasis: #3b2795;
+}
+
 body {
   font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: normal;
@@ -8,8 +22,8 @@ body {
   font-size: 1em;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #ffffff;
   margin: 0;
   display: block;
   place-items: center;
