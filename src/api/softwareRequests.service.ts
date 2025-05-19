@@ -1,4 +1,4 @@
-import { SoftwareRequest, SoftwareRequestForm } from "../types/SoftwareRequest";
+import { SoftwareRequest, SoftwareRequestForm } from "../types/softwareRequest.types";
 import api from "./config/axiosInstance";
 
 export const getAllSoftwareRequestsService = async (): Promise<SoftwareRequest[]> => {

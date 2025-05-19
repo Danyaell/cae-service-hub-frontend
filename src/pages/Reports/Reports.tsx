@@ -8,6 +8,8 @@ import { MdOutlineDescription } from "react-icons/md";
 import { GrAction } from "react-icons/gr";
 import { FaCalendar } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { createReportService } from "../../api/reports.service";
+
 
 type FormData = {
   reportDate: Date | null;
@@ -43,7 +45,7 @@ export default function Reports() {
   }) => {
     if (room.id === null) {
       return (
-        <option key={room.id} value={room.name} disabled selected hidden>
+        <option key={room.id} value={room.name} disabled hidden>
           {room.name}
         </option>
       );
@@ -57,7 +59,7 @@ export default function Reports() {
   };
 
   const onSubmit = (data: FormData) => {
-    console.log("Datos enviados:", data);
+    createReportService(data);
     navigate("/result");
   };
 
@@ -114,7 +116,7 @@ export default function Reports() {
           <div className={styles.iconContainer}>
             <BsPersonFill />
           </div>
-          <select {...register("role")} className={styles.formSelectInput}>
+          <select {...register("role")} className={styles.formSelectInput} defaultValue={"Rol"}>
             {roles.map((role) => selectPlaceholder(role))}
           </select>
         </div>

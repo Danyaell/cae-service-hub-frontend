@@ -1,5 +1,5 @@
 export interface SoftwareRequest {
-        id: 1,
+        id: number,
         request_date: Date,
         requestor_name: string,
         room: "A203" | "A204",

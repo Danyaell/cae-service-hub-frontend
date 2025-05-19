@@ -7,9 +7,7 @@ import { BsPersonFill } from "react-icons/bs";
 import { SiGoogleclassroom } from "react-icons/si";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { FaArrowLeftLong } from "react-icons/fa6";
-//import { SoftwareRequest } from "../../types/SoftwareRequest";
 import { createSoftwareRequestService } from "../../api/softwareRequests.service";
-import { useEffect } from "react";
 
 type FormData = {
   requestDate: Date | null;
@@ -27,14 +25,8 @@ const rooms = [
 ];
 
 export default function Requests() {
-  //const [request, setRequest] = useState<SoftwareRequest>();
   const { register, handleSubmit, control } = useForm<FormData>();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    //getSoftwareRequestByIdService(1).then(setRequest).catch(console.error);
-    //console.log(request);
-  }, []);
 
   const selectPlaceholder = (room: {
     id: number | null;
