@@ -1,6 +1,53 @@
+.contentContainer {
+    margin: 20px auto;
+    padding: 0 5rem;
+    max-width: 1000px;
+}
+
 .title {
     font-size: 2.5em;
-    font-weight: 500;
+    font-weight: 400;
+    text-align: left;
+}
+
+.description {
+    font-size: .9em;
+    text-align: left;
+}
+
+.titleH2 {
+    font-weight: 400;
+    text-align: left;
+}
+
+.servicesGridContainer {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+}
+
+.serviceIcon {
+    width: 4rem;
+    height: auto;
+    margin: 0 auto;
+    color: var(--color-secondary);
+}
+
+.serviceName {
+    font-size: 15px;
+    font-weight: 400;
     text-align: center;
-    margin-top: 20px;
+}
+
+.sorviceDescription {
+    font-size: 14px;
+    color: #757575;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .servicesGridContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

@@ -41,7 +41,7 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/help" className={styles.navButtonHelp}>
+            <NavLink to="/login" className={styles.navButtonHelp}>
               LOGIN
             </NavLink>
           </li>

@@ -10,11 +10,11 @@ import { IoIosArrowUp } from "react-icons/io";
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div>
+      {/* <div>
         <button className={styles.buttonGoTop}>
           <IoIosArrowUp />
         </button>
-      </div>
+      </div> */}
 
       <div className={styles.linksContainer}>
         <div className={styles.generalLinks}>
