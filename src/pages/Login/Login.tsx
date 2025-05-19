@@ -1,24 +1,28 @@
 import { useForm } from "react-hook-form";
 import styles from "./Login.module.css";
+import { useAuthStrore } from "../../store/login.store";
+import { useState } from "react";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
   //const navigate = useNavigate();
-  //const { login } = useLoginStrore();
-  //const [error, setError] = useState(false);
+  const login = useAuthStrore(state => state.login);
 
-  /* const onSubmit = (data: any) => {
+  const [error, setError] = useState(false);
+
+  const onSubmit = (data: {username: string, password: string}) => {
     if (data.username === "admin" && data.password === "admin") {
       login({ id: 1, name: "Admin" });
-      navigate("/home");
+        setError(false);
+      //navigate("/home");
     } else {
       setError(true);
     }
-  }; */
+  };
 
   return (
     <div className={styles.loginContainer}>
-      <form className={styles.loginForm} onSubmit={() => {}}>
+      <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
         <h1>Iniciar Sesión</h1>
         <input
           type="text"
@@ -30,9 +34,9 @@ export default function Login() {
           placeholder="Contraseña"
           {...register("password", { required: true })}
         />
-        {/* {error && (
+        {error && (
           <p className={styles.errorMessage}>Credenciales incorrectas</p>
-        )} */}
+        )}
         <button type="submit">Iniciar Sesión</button>
       </form>
     </div>

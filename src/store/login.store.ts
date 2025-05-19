@@ -12,9 +12,9 @@ interface AuthState {
     logout: () => void;
 }
 
-export const useLoginStrore = create<AuthState>(() => ({
+export const useAuthStrore = create<AuthState>((set) => ({
     isLoggedIn: false,
     user: null,
-    login: (user: User) => set({ isLoggedIn: true, user }),
+    login: (user) => set({ isLoggedIn: true, user }),
     logout: () => set({ isLoggedIn: false, user: null })
 }));
