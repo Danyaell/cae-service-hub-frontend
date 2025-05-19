@@ -1,9 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
-  const location = useLocation();
-
   return (
     <div className={styles.logoContainer}>
       <div className={styles.logo}>
@@ -13,28 +11,39 @@ export default function Navbar() {
       <nav>
         <ul className={styles.nav}>
           <li>
-            <Link to="/">
-              <button className={styles.navButton}>INICIO</button>
-            </Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? styles.navButtonActive : styles.navButton
+              }
+            >
+              INICIO
+            </NavLink>
           </li>
-          {location.pathname !== "/" && (
-            <>
-              <li>
-                <Link to="/reports">
-                  <button className={styles.navButton}>REPORTES</button>
-                </Link>
-              </li>
-              <li>
-                <Link to="/requests">
-                  <button className={styles.navButton}>SOLICITUDES</button>
-                </Link>
-              </li>
-            </>
-          )}
           <li>
-            <Link to="/help">
-              <button className={styles.navButtonHelp}>AYUDA</button>
-            </Link>
+            <NavLink
+              to="/reports"
+              className={({ isActive }) =>
+                isActive ? styles.navButtonActive : styles.navButton
+              }
+            >
+              REPORTES
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/requests"
+              className={({ isActive }) =>
+                isActive ? styles.navButtonActive : styles.navButton
+              }
+            >
+              SOLICITUDES
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/help" className={styles.navButtonHelp}>
+              LOGIN
+            </NavLink>
           </li>
         </ul>
       </nav>
