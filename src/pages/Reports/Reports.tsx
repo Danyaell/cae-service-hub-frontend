@@ -152,13 +152,13 @@ export default function Reports() {
           />
         </div>
         <div className={styles.inputContainer}>
-          <div className={styles.iconContainer}>
+          <div className={styles.iconContainerLongText}>
             <GrAction />
           </div>
-          <input
+          <textarea
             {...register("actionTaken")}
             placeholder="Acción tomada"
-            className={styles.formInput}
+            className={styles.formInputLongText}
           />
         </div>
 

@@ -104,14 +104,13 @@ export default function Requests() {
           />
         </div>
         <div className={styles.inputContainer}>
-          <div className={styles.iconContainer}>
+          <div className={styles.iconContainerLongText}>
             <MdOutlineHomeRepairService />
           </div>
-          <input
+          <textarea
             {...register("software")}
-            type="text"
             placeholder="Servicio que solicita"
-            className={styles.formInput}
+            className={styles.formInputLongText}
           />
         </div>
         <button type="submit" className={styles.formButton}>
