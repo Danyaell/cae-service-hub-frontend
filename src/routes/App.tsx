@@ -6,6 +6,7 @@ import Result from "../pages/Result/Result";
 import { Route, Routes } from "react-router-dom";
 import styles from "./App.module.css";
 import Footer from "../components/Footer/Footer";
+import Login from "../pages/Login/Login";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/reports" element={<Reports />} />
           <Route path="/requests" element={<Requests />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
       <div className={styles.footContainer}>

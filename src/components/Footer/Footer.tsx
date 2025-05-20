@@ -5,27 +5,31 @@ import {
 } from "react-icons/ti";
 import styles from "./Footer.module.css";
 import { Link } from "react-router-dom";
-import { IoIosArrowUp } from "react-icons/io";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div>
-        <button className={styles.buttonGoTop}>
-          <IoIosArrowUp />
-        </button>
-      </div>
-
       <div className={styles.linksContainer}>
         <div className={styles.generalLinks}>
           <h2 className={styles.footerTitle}>ENLACES</h2>
-          <p className={styles.footerText}>
-            <li className={styles.linkList}>
-              <ul className={styles.linkItem}><Link to={""} className={styles.link}>Opción 1</Link></ul>
-              <ul className={styles.linkItem}><Link to={""} className={styles.link}>Opción 1</Link></ul>
-              <ul className={styles.linkItem}><Link to={""} className={styles.link}>Opción 1</Link></ul>
-            </li>
-          </p>
+          <p className={styles.footerText} />
+          <li className={styles.linkList}>
+            <ul className={styles.linkItem}>
+              <Link to={""} className={styles.link}>
+                Opción 1
+              </Link>
+            </ul>
+            <ul className={styles.linkItem}>
+              <Link to={""} className={styles.link}>
+                Opción 1
+              </Link>
+            </ul>
+            <ul className={styles.linkItem}>
+              <Link to={""} className={styles.link}>
+                Opción 1
+              </Link>
+            </ul>
+          </li>
         </div>
 
         <div className={styles.socialLinks}>

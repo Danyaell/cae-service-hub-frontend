@@ -7,6 +7,7 @@ import { BsPersonFill } from "react-icons/bs";
 import { SiGoogleclassroom } from "react-icons/si";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { createSoftwareRequestService } from "../../api/softwareRequests.service";
 
 type FormData = {
   requestDate: Date | null;
@@ -33,7 +34,7 @@ export default function Requests() {
   }) => {
     if (room.id === null) {
       return (
-        <option key={room.id} value={room.name} disabled selected hidden>
+        <option key={room.id} value={room.name} disabled hidden>
           {room.name}
         </option>
       );
@@ -47,7 +48,7 @@ export default function Requests() {
   };
 
   const onSubmit = (data: FormData) => {
-    console.log("Datos enviados:", data);
+    createSoftwareRequestService(data);
     navigate("/result");
   };
 
@@ -87,7 +88,7 @@ export default function Requests() {
             <div className={styles.iconContainer}>
               <SiGoogleclassroom />
             </div>
-            <select {...register("room")} className={styles.formSmallInput}>
+            <select {...register("room")} className={styles.formSmallInput} defaultValue={"Sala"}>
               {rooms.map((room) => selectPlaceholder(room))}
             </select>
           </div>

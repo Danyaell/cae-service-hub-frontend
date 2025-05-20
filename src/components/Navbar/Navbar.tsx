@@ -1,8 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { useAuthStrore } from "../../store/login.store";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Navbar() {
-  const location = useLocation();
+  const user = useAuthStrore(state => state.user);
 
   return (
     <div className={styles.logoContainer}>
@@ -13,28 +15,45 @@ export default function Navbar() {
       <nav>
         <ul className={styles.nav}>
           <li>
-            <Link to="/">
-              <button className={styles.navButton}>INICIO</button>
-            </Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? styles.navButtonActive : styles.navButton
+              }
+            >
+              INICIO
+            </NavLink>
           </li>
-          {location.pathname !== "/" && (
-            <>
-              <li>
-                <Link to="/reports">
-                  <button className={styles.navButton}>REPORTES</button>
-                </Link>
-              </li>
-              <li>
-                <Link to="/requests">
-                  <button className={styles.navButton}>SOLICITUDES</button>
-                </Link>
-              </li>
-            </>
-          )}
           <li>
-            <Link to="/help">
-              <button className={styles.navButtonHelp}>AYUDA</button>
-            </Link>
+            <NavLink
+              to="/reports"
+              className={({ isActive }) =>
+                isActive ? styles.navButtonActive : styles.navButton
+              }
+            >
+              REPORTES
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/requests"
+              className={({ isActive }) =>
+                isActive ? styles.navButtonActive : styles.navButton
+              }
+            >
+              SOLICITUDES
+            </NavLink>
+          </li>
+          <li>
+            {!user && (
+              <NavLink to="/login" className={styles.navButtonLogin}>
+              LOGIN
+            </NavLink>
+            ) || user && (
+              <button className={styles.navUserButton}>
+                <FaUserCircle className={styles.navUserIcon}/>
+              </button>
+            )}
           </li>
         </ul>
       </nav>

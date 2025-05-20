@@ -1,18 +1,53 @@
-.linkButton {
-    margin: 15px;
-    padding: 15px;
-    width: 200px;
-    font-size: 1em;
-    letter-spacing: 2px;
-    background-color: #242424;
-    color: #3c8dbc;
-    border: 3px solid #3c8dbc;
-    border-radius: 5px;
-    transition-duration: .1s;
+.contentContainer {
+    margin: 20px auto;
+    padding: 0 5rem;
+    max-width: 1000px;
 }
-.linkButton:hover {
-    background-color: #3c8dbc;
-    color: #ffffff;
-    cursor: pointer;
-    transition-duration: 0.3s;
+
+.title {
+    font-size: 2.5em;
+    font-weight: 400;
+    text-align: left;
+}
+
+.description {
+    font-size: .9em;
+    text-align: left;
+}
+
+.titleH2 {
+    font-weight: 400;
+    text-align: left;
+}
+
+.servicesGridContainer {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+}
+
+.serviceIcon {
+    width: 4rem;
+    height: auto;
+    margin: 0 auto;
+    color: var(--color-secondary);
+}
+
+.serviceName {
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.sorviceDescription {
+    font-size: 14px;
+    color: #757575;
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .servicesGridContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

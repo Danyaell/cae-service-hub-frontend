@@ -16,7 +16,9 @@
 }
 
 .roomOptions {
-  color: #fff;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  color: #000000;
 }
 
 .inputContainer {
@@ -53,7 +55,7 @@
   justify-content: center;
   align-items: center;
   background: none;
-  color: #ffffff;
+  color: #000;
   font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
     sans-serif;
   font-weight: 600;
@@ -67,10 +69,11 @@
 .backButton:hover {
   border-radius: 5px;
   cursor: pointer;
+  color: var(--color-blue-dark)
 }
 
 .backButton:focus {
-  color: #3c8dbc;
+  color: var(--color-blue-dark)
 }
 
 .backButton p {
@@ -87,12 +90,12 @@
 }
 
 .formTitle {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
     sans-serif;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #ffffff;
+  font-size: 2em;
+  font-weight: 500;
+  color: #000;
 }
 
 .dateContainer {
@@ -102,12 +105,17 @@
 }
 
 .formSmallInput:has(option[value="Sala"]:checked) {
-  color: #ffffff46;
+  color: #555555e0;
 }
 .formSmallInput {
   justify-self: right;
   width: 90%;
   height: 1.9rem;
+  padding-left: 5px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: #fff;
+  color: #000000;
   border: solid 2px #ccc;
   border-left: none 0px;
   border-radius: 0px 5px 5px 0px;
@@ -115,21 +123,25 @@
 
 .formSmallInput:focus {
   outline: none;
-  border: 2px solid rgb(51, 105, 255);
-  box-shadow: 0 0 5px rgb(51, 105, 255);
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 0 5px var(--color-secondary);
 }
 
 .formInput {
   width: 50%;
   height: 1.5rem;
+  padding-left: 10px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: #fff !important;
+  color: #000000 !important;
   border: solid 2px #ccc;
   border-left: none 0px;
   border-radius: 0px 5px 5px 0px;
 }
 
 .formInput::placeholder {
-  padding-left: 10px;
-  color: #ffffff46;
+  color: #555555;
   font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
     sans-serif;
   font-size: 0.8rem;
@@ -138,8 +150,8 @@
 
 .formInput:focus {
   outline: none;
-  border: 2px solid rgb(51, 105, 255);
-  box-shadow: 0 0 5px rgb(51, 105, 255);
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 0 5px var(--color-secondary);
 }
 
 input::-webkit-outer-spin-button,
@@ -149,7 +161,7 @@ input::-webkit-inner-spin-button {
 }
 
 .formButton {
-  background-color: rgb(51, 105, 255);
+  background-color: var(--color-secondary);
   color: #ffffffb6;
   border: none;
   border-radius: 5px;
