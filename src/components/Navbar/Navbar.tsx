@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import { useAuthStrore } from "../../store/login.store";
-import { FaUserCircle } from "react-icons/fa";
+import { UserDropdown } from "../UserDropdown/UserDropdown";
 
 export default function Navbar() {
   const user = useAuthStrore(state => state.user);
@@ -54,9 +54,7 @@ export default function Navbar() {
               LOGIN
             </NavLink>
             ) || user && (
-              <button className={styles.navUserButton}>
-                <FaUserCircle className={styles.navUserIcon}/>
-              </button>
+              <UserDropdown />
             )}
           </li>
         </ul>

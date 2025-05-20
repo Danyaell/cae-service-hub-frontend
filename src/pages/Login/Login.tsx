@@ -19,7 +19,7 @@ export default function Login() {
 
   const onSubmit = (data: {username: string, password: string}) => {
     if (data.username === "admin" && data.password === "admin") {
-      login({ id: 1, name: "Danos", role: "admin" });
+      login({ id: 1, name: "Danyaell", role: "admin" });
       setError(false);
       navigate("/");
     } else {

@@ -21,7 +21,7 @@
 
 .navButtonActive {
   color: var(--color-secondary);
-  text-shadow: 4px 4px 4px #000000ad;
+  text-shadow: 2px 2px 5px #000000ad;
   text-decoration: none;
   border: none;
   padding: 10px 20px;
@@ -60,7 +60,6 @@
 
 .navButtonLogin:hover {
   color: #fff;
-  text-shadow: 2px 2px 5px #0000009c;
   transition: all .3s ease;
   cursor: pointer;
 }
@@ -90,6 +89,7 @@
 nav {
   display: flex;
   justify-content: right;
+  margin-right: 40px;
   width: 100%;
 }
 

@@ -1,0 +1,99 @@
+.navUserButton {
+  display: flex;
+  background: none;
+  border: none;
+  border-radius: 10px; 
+}
+
+.navUserIcon {
+  color: #ffffffb6;
+  font-size: 25px;
+  box-shadow: #0000009c 3px 3px 5px;
+  border: none;
+  border-radius: 50%; 
+  transition: all 0.1s ease;
+}
+
+.navUserIcon:hover {
+  cursor: pointer;
+  box-shadow: #0000009c 4px 4px 4px;
+  color: #fff;
+  transition: all .3s ease;
+}
+
+.navUserIconActive {
+  color: #ffffff;
+  font-size: 25px;
+  box-shadow: #f86942 0px 0px 20px 2px;
+  border-radius: 50%; 
+  transition: all 0.2s ease;
+}
+
+.dropdownContainer {
+    position: absolute;
+    top: 65px;
+    right: 85px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.336);
+}
+
+.dropdownHeader {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: 550;
+    border-bottom: #5555552c 1px solid;
+    border-radius: 10px 10px 0 0;
+}
+
+.dropdownMenu {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 5px;
+    background: none;
+    border-radius: 4px;
+}
+
+.dropdownMenuItem {
+    padding: 10px 5px;
+    width: 100%;
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.1s ease;
+}
+
+.dropdownMenuItem:hover {
+    background-color: #e4e4e4;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.dropdownLink {
+    text-decoration: none;
+    color: #000;
+}
+
+.logoutButton {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    background-color: #f86942;
+    color: #fff;
+    border: none;
+    border-radius: 0 0 15px 15px;
+    transition: all 0.1s ease;
+}
+
+.logoutButton:hover {
+    background-color: #ffdbd1;
+    color: #cc5635;
+    text-shadow: 2px 2px 5px #0000009c;
+    transition: all .3s ease;
+    cursor: pointer;
+}
