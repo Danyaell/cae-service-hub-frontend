@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import { useAuthStrore } from "../../store/login.store";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Navbar() {
+  const user = useAuthStrore(state => state.user);
+
   return (
     <div className={styles.logoContainer}>
       <div className={styles.logo}>
@@ -41,9 +45,15 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/login" className={styles.navButtonHelp}>
+            {!user && (
+              <NavLink to="/login" className={styles.navButtonLogin}>
               LOGIN
             </NavLink>
+            ) || user && (
+              <button className={styles.navUserButton}>
+                <FaUserCircle className={styles.navUserIcon}/>
+              </button>
+            )}
           </li>
         </ul>
       </nav>

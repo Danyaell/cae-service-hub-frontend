@@ -45,7 +45,7 @@
   transition: all .3s ease;
 }
 
-.navButtonHelp {
+.navButtonLogin {
   background-color: #f86942;
   color: #ffffffb6;
   text-decoration: none;
@@ -58,11 +58,33 @@
   transition: all 0.1s ease;
 }
 
-.navButtonHelp:hover {
+.navButtonLogin:hover {
   color: #fff;
   text-shadow: 2px 2px 5px #0000009c;
   transition: all .3s ease;
   cursor: pointer;
+}
+
+.navUserButton {
+  display: flex;
+  background: none;
+  border: none;
+  border-radius: 10px; 
+}
+
+.navUserIcon {
+  color: #ffffffb6;
+  font-size: 25px;
+  box-shadow: #0000009c 3px 3px 5px;
+  border-radius: 50%; 
+  transition: all 0.1s ease;
+}
+
+.navUserIcon:hover {
+  cursor: pointer;
+  box-shadow: #0000009c 4px 4px 4px;
+  color: #fff;
+  transition: all .3s ease;
 }
 
 nav {

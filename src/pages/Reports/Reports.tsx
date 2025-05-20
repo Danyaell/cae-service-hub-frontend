@@ -97,7 +97,7 @@ export default function Reports() {
             <div className={styles.iconContainer}>
               <SiGoogleclassroom />
             </div>
-            <select {...register("room")} className={styles.formSmallInput}>
+            <select {...register("room")} className={styles.formSmallInput} defaultValue={"Sala"}>
               {rooms.map((room) => selectPlaceholder(room))}
             </select>
           </div>
