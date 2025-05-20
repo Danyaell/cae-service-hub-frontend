@@ -30,7 +30,7 @@ export default function Navbar() {
           </li>
           <li>
             <NavLink
-              to="/reports"
+              to={user ? "/reports" : "createReport"}
               className={({ isActive }) =>
                 isActive ? styles.navButtonActive : styles.navButton
               }
@@ -40,7 +40,7 @@ export default function Navbar() {
           </li>
           <li>
             <NavLink
-              to="/requests"
+              to={user ? "/requests" : "createRequest"}
               className={({ isActive }) =>
                 isActive ? styles.navButtonActive : styles.navButton
               }

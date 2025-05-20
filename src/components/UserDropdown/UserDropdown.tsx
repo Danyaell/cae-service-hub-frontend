@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import styles from "./UserDropdown.module.css";
 import { FaUserCircle } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthStrore } from "../../store/login.store";
 
 export const UserDropdown = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const ref = useRef<HTMLDivElement>(null);
   const user = useAuthStrore((state) => state.user);
   const logout = useAuthStrore((state) => state.logout);
@@ -22,10 +23,17 @@ export const UserDropdown = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <div ref={ref}>
       <button onClick={() => setOpen(!open)} className={styles.navUserButton}>
-        <FaUserCircle className={open ? styles.navUserIconActive : styles.navUserIcon} />
+        <FaUserCircle
+          className={open ? styles.navUserIconActive : styles.navUserIcon}
+        />
       </button>
 
       {open && (
@@ -43,7 +51,10 @@ export const UserDropdown = () => {
               </NavLink>
             </li>
           </ul>
-          <button className={styles.logoutButton} onClick={() => logout()}>
+          <button
+            className={styles.logoutButton}
+            onClick={() => handleLogout()}
+          >
             Logout
           </button>
         </div>
