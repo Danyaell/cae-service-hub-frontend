@@ -24,7 +24,7 @@
 .inputContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   height: auto;
 }
@@ -149,6 +149,46 @@
 }
 
 .formInput:focus {
+  outline: none;
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 0 5px var(--color-secondary);
+}
+
+.iconContainerLongText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #555555;
+  background-color: #eeeeee;
+  border: solid 2px #ccc;
+  border-right: none 0px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.formInputLongText {
+  width: 50%;
+  height: 5rem;
+  padding-left: 10px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: #fff !important;
+  color: #000000 !important;
+  border: solid 2px #ccc;
+  border-radius: 0px 5px 5px 5px;
+}
+
+.formInputLongText::placeholder {
+  color: #555555;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.formInputLongText:focus {
   outline: none;
   border: 2px solid var(--color-secondary);
   box-shadow: 0 0 5px var(--color-secondary);

@@ -28,12 +28,21 @@
   width: auto;
   height: 100%;
 }
+
+.icon {
+  margin-top: 70px;
+  width: 90px;
+  height: auto;
+  color: #ffffff;
+  font-weight: 100;
+}
+
 .title {
   font-size: 2.4rem;
   font-weight: normal;
   color: #ffffff;
   text-align: center;
-  margin: 100px auto 10px;
+  margin: 15px auto 10px;
   text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.08);
 }
 

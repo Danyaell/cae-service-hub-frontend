@@ -9,8 +9,12 @@ export default function Navbar() {
   return (
     <div className={styles.logoContainer}>
       <div className={styles.logo}>
-        <img src="../../../public/logo-unam.png" className={styles.logoUnam} />
-        <img src="../../../public/logo-fes.png" className={styles.logoFes} />
+        <NavLink to="https://www.unam.mx/" target="_blank" className={styles.logoLink}>
+          <img src="../../../public/logo-unam.png" className={styles.logoUnam} />
+        </NavLink>
+        <NavLink to="https://www.aragon.unam.mx" target="_blank" className={styles.logoLink}>
+          <img src="../../../public/logo-fes.png" className={styles.logoFes} />
+        </NavLink>
       </div>
       <nav>
         <ul className={styles.nav}>
