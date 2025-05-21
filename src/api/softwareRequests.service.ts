@@ -17,8 +17,9 @@ export const createSoftwareRequestService = async (sendData: SoftwareRequestForm
         requestor_name: sendData.requestorName,
         room: sendData.room,
         software: sendData.software,
-        attendant: sendData.attendant,
-        commitment_date: sendData.commitmentDate
+        attendant_id: sendData.attendant,
+        commitment_date: sendData.commitmentDate,
+        status: 'pending'
     }
     const { data } = await api.post(`/api/software-requests`, body);	
     return data;

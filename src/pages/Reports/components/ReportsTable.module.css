@@ -1,0 +1,61 @@
+.table {
+  margin: auto;
+  width: 80%;
+    max-width: 1000px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  border-collapse: collapse;
+}
+
+.columnHeader {
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: left;
+  font-weight: 500;
+}
+
+.cellData {
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.rowData:hover {
+  background-color: #f9f9f9;
+}
+
+.cellDataStatus {
+    width: 90px;
+  height: min-content;
+  text-align: center !important;
+  font-size: 12px;
+  border-radius: 15px;
+  padding: 0.3rem;
+  text-align: left;
+}
+
+.cellDataStatus[data-status="pending"] {
+  background-color: rgb(238, 143, 0);
+  color: white;
+}
+
+.cellDataStatus[data-status="in_progress"] {
+  background-color: rgb(238, 182, 0);
+  color: white;
+}
+
+.cellDataStatus[data-status="needs_attention"] {
+  background-color: rgb(238, 143, 0);
+  color: white;
+}
+
+.cellDataStatus[data-status="completed"] {
+  background-color: rgb(59, 165, 59);
+  color: white;
+}
+
+.cellDataStatus[data-status="cancelled"] {
+  background-color: rgb(231, 41, 41);
+  color: white;
+}

@@ -1,6 +1,12 @@
 import { Report, ReportForm } from "../types/report.types";
 import api from "./config/axiosInstance";
 
+export const getAllReportsService = async (): Promise<Report[]> => {
+    const { data } = await api.get('/api/reports');
+    console.log(data);
+    return data;
+};
+
 export const createReportService = async (sendData: ReportForm): Promise<Report> => {
     const body = {
         report_date: sendData.reportDate,
@@ -10,7 +16,8 @@ export const createReportService = async (sendData: ReportForm): Promise<Report>
         pc: sendData.pc,
         description: sendData.description,
         attendant: sendData.attendant,
-        action_taken: sendData.actionTaken
+        action_taken: sendData.actionTaken,
+        status: 'pending'
     }
     const { data } = await api.post(`/api/reports`, body);	
     return data;

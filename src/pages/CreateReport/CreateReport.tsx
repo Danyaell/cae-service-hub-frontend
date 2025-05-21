@@ -9,6 +9,7 @@ import { GrAction } from "react-icons/gr";
 import { FaCalendar } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { createReportService } from "../../api/reports.service";
+import { Attendant } from "../../types/report.types";
 
 
 type FormData = {
@@ -18,8 +19,9 @@ type FormData = {
   room: string;
   pc: string;
   description: string;
-  attendant: string;
+  attendant: Attendant | null;
   actionTaken: string;
+  status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled";
 };
 
 const rooms = [
@@ -35,7 +37,7 @@ const roles = [
   { id: 3, name: "Encargado" },
 ];
 
-export default function Reports() {
+export default function CreateReport() {
   const { register, handleSubmit, control } = useForm<FormData>();
   const navigate = useNavigate();
 

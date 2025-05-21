@@ -10,7 +10,7 @@ footer {
     display: flex;
     padding: 12px;
     margin: auto;
-    background-color: #f86942;
+    background-color: var(--color-orange);
     border: none;
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.329);

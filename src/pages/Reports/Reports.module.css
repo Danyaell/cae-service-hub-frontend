@@ -1,0 +1,33 @@
+.reportsHeader {
+  display: flex;
+  width: 100%;
+  max-width: 1250px;
+  margin: auto;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title {
+    width: fit-content;
+  margin-bottom: 30px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 2em;
+  font-weight: 500;
+  color: #000;
+    justify-content: flex-start;
+}
+
+.createReportButton {
+  background-color: var(--color-orange);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
