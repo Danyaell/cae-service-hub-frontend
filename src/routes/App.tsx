@@ -8,6 +8,8 @@ import styles from "./App.module.css";
 import Footer from "../components/Footer/Footer";
 import Login from "../pages/Login/Login";
 import { useAuthStrore } from "../store/login.store";
+import Reports from "../pages/Reports/Reports";
+import Requests from "../pages/Requests/Requests";
 
 function App() {
   const user = useAuthStrore((state) => state.user);
@@ -21,10 +23,10 @@ function App() {
       <div className={styles.bodyConainer}>
         <Routes>
           <Route path="/" element={<Home />} />
-          {user && <Route path="/reports" element={<CreateReport />} />}
-          <Route path="/createReport" element={<CreateReport />} />
-          {user && <Route path="/requests" element={<CreateRequest />} />}
-          <Route path="/createRequest" element={<CreateRequest />} />
+          {user && <Route path="/reports" element={<Reports />} />}
+          <Route path="/create-report" element={<CreateReport />} />
+          {user && <Route path="/requests" element={<Requests />} />}
+          <Route path="/create-request" element={<CreateRequest />} />
           <Route path="/result" element={<Result />} />
           <Route path="/login" element={<Login />} />
         </Routes>

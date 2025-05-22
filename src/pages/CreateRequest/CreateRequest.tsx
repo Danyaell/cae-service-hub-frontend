@@ -8,14 +8,17 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { createSoftwareRequestService } from "../../api/softwareRequests.service";
+import { useAuthStrore } from "../../store/login.store";
+import { Attendant } from "../../types/softwareRequest.types";
 
 type FormData = {
   requestDate: Date | null;
   requestorName: string;
   room: string;
   software: string;
-  attendant: string;
+  attendant: Attendant | null;
   commitmentDate: Date | null;
+  status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled";
 };
 
 const rooms = [
@@ -24,8 +27,9 @@ const rooms = [
   { id: 2, name: 204 },
 ];
 
-export default function Requests() {
+export default function CreateRequest() {
   const { register, handleSubmit, control } = useForm<FormData>();
+  const user = useAuthStrore((state) => state.user);
   const navigate = useNavigate();
 
   const selectPlaceholder = (room: {
@@ -55,7 +59,7 @@ export default function Requests() {
   return (
     <>
       <div className={styles.backButtonContainer}>
-        <button className={styles.backButton} onClick={() => navigate("/")}>
+        <button className={styles.backButton} onClick={() => user ? navigate("/requests") : navigate("/")}>
           <FaArrowLeftLong />
           <p>Regresar</p>
         </button>

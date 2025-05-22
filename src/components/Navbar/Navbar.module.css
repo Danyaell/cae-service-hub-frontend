@@ -46,7 +46,7 @@
 }
 
 .navButtonLogin {
-  background-color: #f86942;
+  background-color: var(--color-orange);
   color: #ffffffb6;
   text-decoration: none;
   border: none;
