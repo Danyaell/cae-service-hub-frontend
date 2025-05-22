@@ -20,11 +20,13 @@ export default function Reports() {
   }, []);
   return (
     <div>
-      <div className={styles.reportsHeader}>
-        <h1 className={styles.title}>Reportes</h1>
-        <NavLink to="/create-report" className={styles.createReportButton}>
-          Crear Reporte
-        </NavLink>
+      <div className={styles.headerContainer}>
+        <div className={styles.reportsHeader}>
+          <h1 className={styles.title}>Reportes</h1>
+          <NavLink to="/create-report" className={styles.createReportButton}>
+            Crear Reporte
+          </NavLink>
+        </div>
       </div>
       <ReportsTable reports={reports} />
     </div>

@@ -1,9 +1,13 @@
+.headerContainer {
+  margin: 0 auto 20px;
+  width: 80%;
+  max-width: 1400px;
+}
+
 .requestsHeader {
   display: flex;
-  width: 100%;
-  max-width: 1250px;
-  margin: auto;
-  justify-content: space-around;
+  max-width: 1400px;
+  justify-content: space-between;
   align-items: center;
 }
 

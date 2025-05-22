@@ -10,6 +10,7 @@ import { FaCalendar } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { createReportService } from "../../api/reports.service";
 import { Attendant } from "../../types/report.types";
+import { useAuthStrore } from "../../store/login.store";
 
 
 type FormData = {
@@ -39,6 +40,7 @@ const roles = [
 
 export default function CreateReport() {
   const { register, handleSubmit, control } = useForm<FormData>();
+  const user = useAuthStrore((state) => state.user);
   const navigate = useNavigate();
 
   const selectPlaceholder = (room: {
@@ -68,7 +70,7 @@ export default function CreateReport() {
   return (
     <>
       <div className={styles.backButtonContainer}>
-        <button className={styles.backButton} onClick={() => navigate("/")}>
+        <button className={styles.backButton} onClick={() => user ? navigate("/reports") : navigate("/")}>
           <FaArrowLeftLong />
           <p>Regresar</p>
         </button>

@@ -23,11 +23,15 @@ export default function Requests() {
 
   return (
     <div>
-      <div className={styles.requestsHeader}>
-        <h1 className={styles.title}>Solicitudes de instalación de Software</h1>
-        <NavLink to="/create-request" className={styles.createRequestButton}>
-          Crear Solicitud
-        </NavLink>
+      <div className={styles.headerContainer}>
+        <div className={styles.requestsHeader}>
+          <h1 className={styles.title}>
+            Solicitudes de instalación de Software
+          </h1>
+          <NavLink to="/create-request" className={styles.createRequestButton}>
+            Crear Solicitud
+          </NavLink>
+        </div>
       </div>
       <RequestsTable softwareRequests={softwareRequests} />
     </div>

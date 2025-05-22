@@ -1,12 +1,35 @@
 import { HiDotsVertical } from "react-icons/hi";
 import { SoftwareRequest } from "../../../types/softwareRequest.types";
 import styles from "./RequestsTable.module.css";
+import { useEffect, useRef, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 interface RequestsTableProps {
   softwareRequests: SoftwareRequest[];
 }
 
 const RequestsTable: React.FC<RequestsTableProps> = ({ softwareRequests }) => {
+  const [dropdownClicked, setDropdownClicked] = useState<number | null>(null);
+  const ref = useRef<HTMLTableDataCellElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setDropdownClicked(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleDropdownClick = (id: number) => {
+    setDropdownClicked((dropdownClicked) =>
+      dropdownClicked === id ? null : id
+    );
+  };
+
   return (
     (softwareRequests.length > 0 && (
       <div>
@@ -55,8 +78,31 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ softwareRequests }) => {
                     {sr.status}
                   </div>
                 </td>
-                <td className={styles.cellData}>
-                  <HiDotsVertical />
+                <td className={styles.cellDataActionButton} ref={ref}>
+                  <button
+                    onClick={() => handleDropdownClick(sr.id)}
+                    className={styles.actionsButton}
+                  >
+                    <HiDotsVertical className={styles.actionsButtonIcon} />
+                  </button>
+                  {dropdownClicked === sr.id && (
+                    <div className={styles.dropdownContainer}>
+                      <ul className={styles.dropdownMenu}>
+                        <li className={styles.dropdownMenuItem}>
+                          <NavLink to="" className={styles.dropdownLink}>
+                            <MdEdit className={styles.dropdownIcon} />
+                            Editar
+                          </NavLink>
+                        </li>
+                        <li className={styles.dropdownMenuItem}>
+                          <NavLink to="" className={styles.dropdownLink}>
+                            <MdDelete className={styles.dropdownIcon} />
+                            Eliminar
+                          </NavLink>
+                        </li>
+                      </ul>
+                    </div>
+                  )}
                 </td>
               </tr>
             ))}

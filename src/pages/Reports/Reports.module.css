@@ -1,21 +1,24 @@
+.headerContainer {
+  margin: 0 auto 20px;
+  width: 80%;
+  max-width: 1400px;
+}
+
 .reportsHeader {
   display: flex;
-  width: 100%;
-  max-width: 1250px;
-  margin: auto;
-  justify-content: space-around;
+  max-width: 1400px;
+  justify-content: space-between;
   align-items: center;
 }
 
 .title {
-    width: fit-content;
   margin-bottom: 30px;
   font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
     sans-serif;
   font-size: 2em;
   font-weight: 500;
   color: #000;
-    justify-content: flex-start;
+  justify-content: flex-start;
 }
 
 .createReportButton {
