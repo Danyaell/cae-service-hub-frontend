@@ -1,122 +1,39 @@
-import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { CustomDatePicker } from "../../components/CustomDatePicker/CustomDatePicker";
+import { useEffect, useState } from "react";
+import { getAllSoftwareRequestsService } from "../../api/softwareRequests.service";
+import { SoftwareRequest } from "../../types/softwareRequest.types";
+import RequestsTable from "./components/RequestsTable";
 import styles from "./Requests.module.css";
-import { FaCalendar } from "react-icons/fa";
-import { BsPersonFill } from "react-icons/bs";
-import { SiGoogleclassroom } from "react-icons/si";
-import { MdOutlineHomeRepairService } from "react-icons/md";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { createSoftwareRequestService } from "../../api/softwareRequests.service";
-
-type FormData = {
-  requestDate: Date | null;
-  requestorName: string;
-  room: string;
-  software: string;
-  attendant: string;
-  commitmentDate: Date | null;
-};
-
-const rooms = [
-  { id: null, name: "Sala" },
-  { id: 1, name: 203 },
-  { id: 2, name: 204 },
-];
+import { NavLink } from "react-router-dom";
 
 export default function Requests() {
-  const { register, handleSubmit, control } = useForm<FormData>();
-  const navigate = useNavigate();
+  const [softwareRequests, setSoftwareRequests] = useState<SoftwareRequest[]>(
+    []
+  );
 
-  const selectPlaceholder = (room: {
-    id: number | null;
-    name: string | number;
-  }) => {
-    if (room.id === null) {
-      return (
-        <option key={room.id} value={room.name} disabled hidden>
-          {room.name}
-        </option>
-      );
-    } else {
-      return (
-        <option className={styles.roomOptions} key={room.id} value={room.name}>
-          {room.name}
-        </option>
-      );
-    }
-  };
-
-  const onSubmit = (data: FormData) => {
-    createSoftwareRequestService(data);
-    navigate("/result");
-  };
+  useEffect(() => {
+    const fetchSoftwareRequests = async () => {
+      try {
+        setSoftwareRequests(await getAllSoftwareRequestsService());
+      } catch (error) {
+        console.error("Error fetching software requests:", error);
+      }
+    };
+    fetchSoftwareRequests();
+  }, []);
 
   return (
-    <>
-      <div className={styles.backButtonContainer}>
-        <button className={styles.backButton} onClick={() => navigate("/")}>
-          <FaArrowLeftLong />
-          <p>Regresar</p>
-        </button>
+    <div>
+      <div className={styles.headerContainer}>
+        <div className={styles.requestsHeader}>
+          <h1 className={styles.title}>
+            Solicitudes de instalación de Software
+          </h1>
+          <NavLink to="/create-request" className={styles.createRequestButton}>
+            Crear Solicitud
+          </NavLink>
+        </div>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <h1 className={styles.formTitle}>
-          SOLICITUD DE INSTALACIÓN DE SOFTWARE
-        </h1>
-        <p>Para solicitar la instalación de software, llena el formulario:</p>
-
-        <div className={styles.twoInputsContainer}>
-          <div className={styles.inputSmallContainer}>
-            <div className={styles.iconContainer}>
-              <FaCalendar />
-            </div>
-            <div className={styles.dateContainer}>
-              <Controller
-                control={control}
-                name="requestDate"
-                render={({ field }) => (
-                  <CustomDatePicker
-                    selectedDate={field.value}
-                    onChange={field.onChange}
-                  />
-                )}
-              />
-            </div>
-          </div>
-          <div className={styles.inputSmallContainer}>
-            <div className={styles.iconContainer}>
-              <SiGoogleclassroom />
-            </div>
-            <select {...register("room")} className={styles.formSmallInput} defaultValue={"Sala"}>
-              {rooms.map((room) => selectPlaceholder(room))}
-            </select>
-          </div>
-        </div>
-        <div className={styles.inputContainer}>
-          <div className={styles.iconContainer}>
-            <BsPersonFill />
-          </div>
-          <input
-            {...register("requestorName")}
-            placeholder="Nombre de quien solicita"
-            className={styles.formInput}
-          />
-        </div>
-        <div className={styles.inputContainer}>
-          <div className={styles.iconContainerLongText}>
-            <MdOutlineHomeRepairService />
-          </div>
-          <textarea
-            {...register("software")}
-            placeholder="Servicio que solicita"
-            className={styles.formInputLongText}
-          />
-        </div>
-        <button type="submit" className={styles.formButton}>
-          Continuar
-        </button>
-      </form>
-    </>
+      <RequestsTable softwareRequests={softwareRequests} />
+    </div>
   );
 }

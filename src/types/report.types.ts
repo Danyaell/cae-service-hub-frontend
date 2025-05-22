@@ -6,8 +6,9 @@ export interface Report {
     room: string;
     pc: string;
     description: string;
-    attendant: string;
+    attendant: Attendant | null;
     action_taken: string;
+    status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled"
 };
 
 export interface ReportForm {
@@ -17,6 +18,13 @@ export interface ReportForm {
     room: string;
     pc: string;
     description: string;
-    attendant: string;
+    attendant: Attendant | null;
     actionTaken: string;
+    status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled"
+};
+
+export interface Attendant {
+    id: number;
+    name: string;
+    role: string;
 };

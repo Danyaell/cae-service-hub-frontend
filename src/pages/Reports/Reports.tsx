@@ -1,171 +1,34 @@
-import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import { CustomDatePicker } from "../../components/CustomDatePicker/CustomDatePicker";
+import { useEffect, useState } from "react";
+import { Report } from "../../types/report.types";
+import ReportsTable from "./components/ReportsTable";
 import styles from "./Reports.module.css";
-import { BsPcDisplay, BsPersonFill } from "react-icons/bs";
-import { SiGoogleclassroom } from "react-icons/si";
-import { MdOutlineDescription } from "react-icons/md";
-import { GrAction } from "react-icons/gr";
-import { FaCalendar } from "react-icons/fa";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { createReportService } from "../../api/reports.service";
-
-
-type FormData = {
-  reportDate: Date | null;
-  reporterName: string;
-  role: string;
-  room: string;
-  pc: string;
-  description: string;
-  attendant: string;
-  actionTaken: string;
-};
-
-const rooms = [
-  { id: null, name: "Sala" },
-  { id: 1, name: 203 },
-  { id: 2, name: 204 },
-];
-
-const roles = [
-  { id: null, name: "Rol" },
-  { id: 1, name: "Estudiante" },
-  { id: 2, name: "Docente" },
-  { id: 3, name: "Encargado" },
-];
+import { getAllReportsService } from "../../api/reports.service";
+import { NavLink } from "react-router-dom";
 
 export default function Reports() {
-  const { register, handleSubmit, control } = useForm<FormData>();
-  const navigate = useNavigate();
+  const [reports, setReports] = useState<Report[]>([]);
 
-  const selectPlaceholder = (room: {
-    id: number | null;
-    name: string | number;
-  }) => {
-    if (room.id === null) {
-      return (
-        <option key={room.id} value={room.name} disabled hidden>
-          {room.name}
-        </option>
-      );
-    } else {
-      return (
-        <option className={styles.roomOptions} key={room.id} value={room.name}>
-          {room.name}
-        </option>
-      );
-    }
-  };
-
-  const onSubmit = (data: FormData) => {
-    createReportService(data);
-    navigate("/result");
-  };
-
+  useEffect(() => {
+    const fetchReports = async () => {
+      try {
+        setReports(await getAllReportsService());
+      } catch (error) {
+        console.error("Error fetching reports:", error);
+      }
+    };
+    fetchReports();
+  }, []);
   return (
-    <>
-      <div className={styles.backButtonContainer}>
-        <button className={styles.backButton} onClick={() => navigate("/")}>
-          <FaArrowLeftLong />
-          <p>Regresar</p>
-        </button>
+    <div>
+      <div className={styles.headerContainer}>
+        <div className={styles.reportsHeader}>
+          <h1 className={styles.title}>Reportes</h1>
+          <NavLink to="/create-report" className={styles.createReportButton}>
+            Crear Reporte
+          </NavLink>
+        </div>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <h1 className={styles.formTitle}>REPORTE DE FALLA DE MÁQUINA</h1>
-        <p>Para reportar la falla, llena el formulario:</p>
-
-        <div className={styles.twoInputsContainer}>
-          <div className={styles.inputSmallContainer}>
-            <div className={styles.iconContainer}>
-              <FaCalendar />
-            </div>
-            <div className={styles.dateContainer}>
-              <Controller
-                control={control}
-                name="reportDate"
-                render={({ field }) => (
-                  <CustomDatePicker
-                    selectedDate={field.value}
-                    onChange={field.onChange}
-                  />
-                )}
-              />
-            </div>
-          </div>
-          <div className={styles.inputSmallContainer}>
-            <div className={styles.iconContainer}>
-              <SiGoogleclassroom />
-            </div>
-            <select {...register("room")} className={styles.formSmallInput} defaultValue={"Sala"}>
-              {rooms.map((room) => selectPlaceholder(room))}
-            </select>
-          </div>
-        </div>
-        <div className={styles.inputContainer}>
-          <div className={styles.iconContainer}>
-            <BsPersonFill />
-          </div>
-          <input
-            {...register("reporterName")}
-            placeholder="Nombre de quien reporta"
-            className={styles.formInput}
-          />
-        </div>
-        <div className={styles.inputContainer}>
-          <div className={styles.iconContainer}>
-            <BsPersonFill />
-          </div>
-          <select {...register("role")} className={styles.formSelectInput} defaultValue={"Rol"}>
-            {roles.map((role) => selectPlaceholder(role))}
-          </select>
-        </div>
-        <div className={styles.inputContainer}>
-          <div className={styles.iconContainer}>
-            <BsPcDisplay />
-          </div>
-          <input
-            {...register("pc")}
-            type="number"
-            placeholder="PC"
-            className={styles.formInput}
-          />
-        </div>
-        <div className={styles.inputContainer}>
-          <div className={styles.iconContainer}>
-            <MdOutlineDescription />
-          </div>
-          <input
-            {...register("description")}
-            placeholder="Descripción de la falla"
-            className={styles.formInput}
-          />
-        </div>
-        <div className={styles.inputContainer}>
-          <div className={styles.iconContainer}>
-            <BsPersonFill />
-          </div>
-          <input
-            {...register("attendant")}
-            placeholder="Nombre de quien atiende"
-            className={styles.formInput}
-          />
-        </div>
-        <div className={styles.inputContainer}>
-          <div className={styles.iconContainerLongText}>
-            <GrAction />
-          </div>
-          <textarea
-            {...register("actionTaken")}
-            placeholder="Acción tomada"
-            className={styles.formInputLongText}
-          />
-        </div>
-
-        <button type="submit" className={styles.formButton}>
-          Continuar
-        </button>
-      </form>
-    </>
+      <ReportsTable reports={reports} />
+    </div>
   );
 }

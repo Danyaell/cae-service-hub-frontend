@@ -4,8 +4,9 @@ export interface SoftwareRequest {
         requestor_name: string,
         room: "A203" | "A204",
         software: string,
-        attendant: string,
-        commitment_date: null
+        attendant: Attendant | null,
+        commitment_date: null,
+        status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled",
 };
 
 export interface SoftwareRequestForm {
@@ -13,6 +14,13 @@ export interface SoftwareRequestForm {
     requestorName: string;
     room: string;
     software: string;
-    attendant: string;
+    attendant: Attendant | null;
     commitmentDate: Date | null;
+    status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled",
+};
+
+export interface Attendant {
+    id: number;
+    name: string;
+    role: string;
 };

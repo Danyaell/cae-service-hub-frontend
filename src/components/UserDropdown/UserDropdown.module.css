@@ -24,7 +24,7 @@
 .navUserIconActive {
   color: #ffffff;
   font-size: 25px;
-  box-shadow: #f86942 0px 0px 20px 2px;
+  box-shadow: var(--color-orange) 0px 0px 20px 2px;
   border-radius: 50%; 
   transition: all 0.2s ease;
 }
@@ -83,7 +83,7 @@
     cursor: pointer;
     font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;
-    background-color: #f86942;
+    background-color: var(--color-orange);
     color: #fff;
     border: none;
     border-radius: 0 0 15px 15px;
