@@ -1,52 +1,80 @@
-import { useForm } from "react-hook-form";
 import styles from "./Login.module.css";
 import { useAuthStrore } from "../../store/login.store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { BsPersonFill } from "react-icons/bs";
+import { TbPassword } from "react-icons/tb";
 
-type LoginFormInputs = {
+/* type LoginFormInputs = {
   username: string;
   password: string;
-};
+}; */
 
 export default function Login() {
-  const { register, handleSubmit } = useForm<LoginFormInputs>();
+  //const { register, handleSubmit } = useForm<LoginFormInputs>();
   const navigate = useNavigate();
-  const user = useAuthStrore(state => state.user);
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+
   const login = useAuthStrore(state => state.login);
-
-  const [error, setError] = useState(false);
-
-  const onSubmit = (data: {username: string, password: string}) => {
-    if (data.username === "admin" && data.password === "admin") {
-      login({ id: 1, name: "Danyaell", role: "admin" });
-      setError(false);
-      navigate("/");
-    } else {
-      setError(true);
-    }
+  const error = useAuthStrore(state => state.error);
+  const loading = useAuthStrore(state => state.loading);
+  const user = useAuthStrore(state => state.user);
+  
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    await login(name, password);
   };
 
-  console.log("Login", user);
+  useEffect(() => {
+    if (user) {
+      navigate('/')
+    }
+  }, [user])
+  
 
   return (
     <div className={styles.loginContainer}>
-      <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
-        <h1>Iniciar Sesión</h1>
-        <input
-          type="text"
-          placeholder="Usuario"
-          {...register("username", { required: true })}
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          {...register("password", { required: true })}
-        />
+      <div className={styles.backButtonContainer}>
+        <button
+          className={styles.backButton}
+          onClick={() => (user ? navigate("/requests") : navigate("/"))}
+        >
+          <FaArrowLeftLong />
+          <p>Regresar</p>
+        </button>
+      </div>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
+        <h1 className={styles.formTitle}>INICIAR SESIÓN</h1>
+        <div className={styles.inputContainer}>
+          <div className={styles.iconContainer}>
+            <BsPersonFill />
+          </div>
+          <input
+            type="text"
+            placeholder="Usuario"
+            className={styles.formInput}
+            onChange={e => setName(e.target.value)}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <div className={styles.iconContainer}>
+            <TbPassword />
+          </div>
+          <input
+            type="password"
+            placeholder="Contraseña"
+            className={styles.formInput}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
         {error && (
           <p className={styles.errorMessage}>Credenciales incorrectas</p>
         )}
-        <button type="submit">Iniciar Sesión</button>
+        <button type="submit" className={styles.formButton}>
+          {loading ? 'Cargando' : 'Iniciar Sesión'}
+        </button>
       </form>
     </div>
   );

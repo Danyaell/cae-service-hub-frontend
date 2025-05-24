@@ -7,7 +7,7 @@ type Props = {
   onChange?: (date: Date | null) => void;
 };
 
-export const CustomDatePicker = ({ selectedDate, onChange }: Props) => {
+export const CustomDatePicker = ({ selectedDate = new Date(), onChange }: Props) => {
   return (
     <DatePicker
       selected={selectedDate}
