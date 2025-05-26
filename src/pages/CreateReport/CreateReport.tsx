@@ -20,7 +20,7 @@ type FormData = {
   room: string;
   pc: string;
   description: string;
-  attendant: Attendant | null;
+  attendant: number | null;
   actionTaken: string;
   status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled";
 };
@@ -38,6 +38,12 @@ const roles = [
   { id: 3, name: "Encargado" },
 ];
 
+const attendants = [
+  { id: 1, name: "Juan Perez", role: "Encargado" },
+  { id: 2, name: "Maria Lopez", role: "Encargado" },
+  { id: 3, name: "Carlos Sanchez", role: "Encargado" },
+];
+
 export default function CreateReport() {
   const user = useAuthStrore((state) => state.user);
   const { register, handleSubmit, control } = useForm<FormData>({
@@ -48,7 +54,7 @@ export default function CreateReport() {
       room: "Sala",
       pc: "",
       description: "",
-      attendant: user ? user : null,
+      attendant: user ? user.id : null,
       actionTaken: "",
       status: "pending",
     },
@@ -56,23 +62,32 @@ export default function CreateReport() {
   
   const navigate = useNavigate();
 
-  const selectPlaceholder = (room: {
+  const selectPlaceholder = (item: {
     id: number | null;
     name: string | number;
   }) => {
-    if (room.id === null) {
+    if (item.id === null) {
       return (
-        <option key={room.id} value={room.name} disabled hidden>
-          {room.name}
+        <option key={item.id} value={item.name} disabled hidden>
+          {item.name}
         </option>
       );
     } else {
       return (
-        <option className={styles.roomOptions} key={room.id} value={room.name}>
-          {room.name}
+        <option className={styles.itemOptions} key={item.id} value={item.name}>
+          {item.name}
         </option>
       );
     }
+  };
+
+  const selectAttendantPlaceholder = (user: Attendant ) => {
+    
+      return (
+        <option className={styles.itemOptions} key={user.name} value={user.id}>
+          {user.name}
+        </option>
+      );
   };
 
   const onSubmit = (data: FormData) => {
@@ -162,11 +177,14 @@ export default function CreateReport() {
           <div className={styles.iconContainer}>
             <BsPersonFill />
           </div>
-          <input
+          <select {...register("attendant")} className={styles.formSelectInput}>
+              {attendants.map((attend) => selectAttendantPlaceholder(attend))}
+            </select>
+          {/* <input
             {...register("attendant")}
             placeholder="Nombre de quien atiende"
             className={styles.formInput}
-          />
+          /> */}
         </div>
         <div className={styles.inputContainer}>
           <div className={styles.iconContainerLongText}>

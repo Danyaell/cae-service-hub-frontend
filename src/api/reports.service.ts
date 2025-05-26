@@ -3,7 +3,6 @@ import api from "./config/axiosInstance";
 
 export const getAllReportsService = async (): Promise<Report[]> => {
     const { data } = await api.get('/api/reports');
-    console.log(data);
     return data;
 };
 
@@ -15,7 +14,7 @@ export const createReportService = async (sendData: ReportForm): Promise<Report>
         room: sendData.room,
         pc: sendData.pc,
         description: sendData.description,
-        attendant: sendData.attendant?.id,
+        attendant: sendData.attendant,
         action_taken: sendData.actionTaken,
         status: 'pending'
     }
