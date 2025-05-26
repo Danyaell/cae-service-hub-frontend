@@ -9,7 +9,7 @@ interface User {
 
 interface AuthStore {
   user: User | null;
-  //token:
+  token: string | null;
   loading: boolean;
   error: string | null;
 
@@ -19,7 +19,7 @@ interface AuthStore {
 
 export const useAuthStrore = create<AuthStore>((set) => ({
   user: null,
-  //token: null,
+  token: null,
   loading: false,
   error: null,
 
@@ -27,8 +27,8 @@ export const useAuthStrore = create<AuthStore>((set) => ({
     set({ loading: true, error: null});
     try {
       const { data } = await loginService(name, password);
-      //localStorage.setItem('token', token);
-      set({ user: data.user, loading: false });
+      localStorage.setItem('token', data.token);
+      set({ user: data.user, token: data.token, loading: false });
     } catch (err: any) {
       if (err.status == 404) {
         set({ error: 'Credenciales Inválidas', loading: false })
@@ -38,7 +38,7 @@ export const useAuthStrore = create<AuthStore>((set) => ({
   },
 
   logout: () => {
-    //localStorage.removeItem('token');
-    set({ user: null });
+    localStorage.removeItem('token');
+    set({ user: null, token: null });
   }
 }));
