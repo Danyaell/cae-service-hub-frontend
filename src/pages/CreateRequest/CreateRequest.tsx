@@ -9,7 +9,7 @@ import { MdOutlineHomeRepairService } from "react-icons/md";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { createSoftwareRequestService } from "../../api/softwareRequests.service";
 import { useAuthStrore } from "../../store/login.store";
-import { Attendant } from "../../types/softwareRequest.types";
+import { Attendant } from "../../types/user.types";
 
 type FormData = {
   requestDate: Date | null;
@@ -28,8 +28,18 @@ const rooms = [
 ];
 
 export default function CreateRequest() {
-  const { register, handleSubmit, control } = useForm<FormData>();
   const user = useAuthStrore((state) => state.user);
+  const { register, handleSubmit, control } = useForm<FormData>({
+    defaultValues: {
+      requestDate: new Date(),
+      requestorName: "",
+      room: "Sala",
+      software: "",
+      attendant: user ? user : null,
+      commitmentDate: null,
+      status: "pending",
+    },
+  });
   const navigate = useNavigate();
 
   const selectPlaceholder = (room: {
