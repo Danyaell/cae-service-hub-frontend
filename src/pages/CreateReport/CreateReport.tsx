@@ -9,8 +9,8 @@ import { GrAction } from "react-icons/gr";
 import { FaCalendar } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { createReportService } from "../../api/reports.service";
-import { Attendant } from "../../types/report.types";
 import { useAuthStrore } from "../../store/login.store";
+import { Attendant } from "../../types/user.types";
 
 
 type FormData = {
@@ -39,8 +39,21 @@ const roles = [
 ];
 
 export default function CreateReport() {
-  const { register, handleSubmit, control } = useForm<FormData>();
   const user = useAuthStrore((state) => state.user);
+  const { register, handleSubmit, control } = useForm<FormData>({
+    defaultValues: {
+      reportDate: new Date(),
+      reporterName: "",
+      role: "Rol",
+      room: "Sala",
+      pc: "",
+      description: "",
+      attendant: user ? user : null,
+      actionTaken: "",
+      status: "pending",
+    },
+  });
+  
   const navigate = useNavigate();
 
   const selectPlaceholder = (room: {

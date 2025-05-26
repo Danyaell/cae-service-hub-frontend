@@ -1,3 +1,5 @@
+import { Attendant } from "./user.types";
+
 export interface Report {
     id: number;
     report_date: Date;
@@ -21,10 +23,4 @@ export interface ReportForm {
     attendant: Attendant | null;
     actionTaken: string;
     status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled"
-};
-
-export interface Attendant {
-    id: number;
-    name: string;
-    role: string;
 };

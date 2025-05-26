@@ -1,3 +1,5 @@
+import { Attendant } from "./user.types";
+
 export interface SoftwareRequest {
         id: number,
         request_date: Date,
@@ -17,10 +19,4 @@ export interface SoftwareRequestForm {
     attendant: Attendant | null;
     commitmentDate: Date | null;
     status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled",
-};
-
-export interface Attendant {
-    id: number;
-    name: string;
-    role: string;
 };

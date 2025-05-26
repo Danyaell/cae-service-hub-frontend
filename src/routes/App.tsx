@@ -10,9 +10,15 @@ import Login from "../pages/Login/Login";
 import { useAuthStrore } from "../store/login.store";
 import Reports from "../pages/Reports/Reports";
 import Requests from "../pages/Requests/Requests";
+import { useEffect } from "react";
 
 function App() {
+  const initialize = useAuthStrore((state) => state.initialize);
   const user = useAuthStrore((state) => state.user);
+
+  useEffect(() => {
+    initialize();
+  }, []);
 
   return (
     <div className={styles.documentContainer}>
