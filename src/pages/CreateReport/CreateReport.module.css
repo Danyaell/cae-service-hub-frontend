@@ -134,6 +134,12 @@
   color: #555555e0;
 }
 
+.formSelectInput:has(option[value="Nombre de quien atiende"]:checked) {
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  color: #555555e0;
+}
+
 .formSelectInput {
   width: 51.5%;
   height: 1.9rem;

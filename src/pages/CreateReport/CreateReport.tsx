@@ -38,6 +38,12 @@ const roles = [
   { id: 3, name: "Encargado" },
 ];
 
+const users = [
+  {id: -1, name: "Nombre de quien atiende", role: "Encargado"},
+  {id: 1, name: "Danoos", role: "Encargado"},
+  {id: 2, name: "Juybry", role: "Encargado"},
+];
+
 export default function CreateReport() {
   const user = useAuthStrore((state) => state.user);
   const { register, handleSubmit, control } = useForm<FormData>({
@@ -75,7 +81,25 @@ export default function CreateReport() {
     }
   };
 
+  const selectUserPlaceholder = (user: Attendant) => {
+    if (user.id < 0) {
+      console.log(user)
+      return (
+        <option key={user.id} value={user.name} disabled hidden selected>
+          {user.name}
+        </option>
+      );
+    } else {
+      return (
+        <option className={styles.roomOptions} key={user.id} value={user.id}>
+          {user.name}
+        </option>
+      );
+    }
+  };
+
   const onSubmit = (data: FormData) => {
+    console.log(data)
     createReportService(data);
     navigate("/result");
   };
@@ -162,11 +186,10 @@ export default function CreateReport() {
           <div className={styles.iconContainer}>
             <BsPersonFill />
           </div>
-          <input
-            {...register("attendant")}
-            placeholder="Nombre de quien atiende"
-            className={styles.formInput}
-          />
+
+          <select {...register("attendant")} className={styles.formSelectInput} defaultValue={-1}>
+            {users.map((user) => selectUserPlaceholder(user))}
+          </select>
         </div>
         <div className={styles.inputContainer}>
           <div className={styles.iconContainerLongText}>
