@@ -11,7 +11,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { createReportService } from "../../api/reports.service";
 import { useAuthStrore } from "../../store/login.store";
 import { Attendant } from "../../types/user.types";
-
+import { getUsersService } from "../../api/users.service";
 
 type FormData = {
   reportDate: Date | null;
@@ -20,9 +20,14 @@ type FormData = {
   room: string;
   pc: string;
   description: string;
-  attendant: Attendant | null;
+  attendantId: number | string;
   actionTaken: string;
-  status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled";
+  status:
+    | "pending"
+    | "in_progres"
+    | "needs_attention"
+    | "completed"
+    | "cancelled";
 };
 
 const rooms = [
@@ -38,11 +43,7 @@ const roles = [
   { id: 3, name: "Encargado" },
 ];
 
-const users = [
-  {id: -1, name: "Nombre de quien atiende", role: "Encargado"},
-  {id: 1, name: "Danoos", role: "Encargado"},
-  {id: 2, name: "Juybry", role: "Encargado"},
-];
+const users = await getUsersService();
 
 export default function CreateReport() {
   const user = useAuthStrore((state) => state.user);
@@ -54,12 +55,12 @@ export default function CreateReport() {
       room: "Sala",
       pc: "",
       description: "",
-      attendant: user ? user : null,
+      attendantId: user ? user.id : "Attendant",
       actionTaken: "",
       status: "pending",
     },
   });
-  
+
   const navigate = useNavigate();
 
   const selectPlaceholder = (room: {
@@ -82,24 +83,15 @@ export default function CreateReport() {
   };
 
   const selectUserPlaceholder = (user: Attendant) => {
-    if (user.id < 0) {
-      console.log(user)
-      return (
-        <option key={user.id} value={user.name} disabled hidden selected>
-          {user.name}
-        </option>
-      );
-    } else {
-      return (
-        <option className={styles.roomOptions} key={user.id} value={user.id}>
-          {user.name}
-        </option>
-      );
-    }
+    return (
+      <option className={styles.roomOptions} key={user.id} value={user.id}>
+        {user.name}
+      </option>
+    );
   };
 
   const onSubmit = (data: FormData) => {
-    console.log(data)
+    console.log(data);
     createReportService(data);
     navigate("/result");
   };
@@ -107,7 +99,10 @@ export default function CreateReport() {
   return (
     <>
       <div className={styles.backButtonContainer}>
-        <button className={styles.backButton} onClick={() => user ? navigate("/reports") : navigate("/")}>
+        <button
+          className={styles.backButton}
+          onClick={() => (user ? navigate("/reports") : navigate("/"))}
+        >
           <FaArrowLeftLong />
           <p>Regresar</p>
         </button>
@@ -138,7 +133,11 @@ export default function CreateReport() {
             <div className={styles.iconContainer}>
               <SiGoogleclassroom />
             </div>
-            <select {...register("room")} className={styles.formSmallInput} defaultValue={"Sala"}>
+            <select
+              {...register("room")}
+              className={styles.formSmallInput}
+              defaultValue={"Sala"}
+            >
               {rooms.map((room) => selectPlaceholder(room))}
             </select>
           </div>
@@ -157,7 +156,11 @@ export default function CreateReport() {
           <div className={styles.iconContainer}>
             <BsPersonFill />
           </div>
-          <select {...register("role")} className={styles.formSelectInput} defaultValue={"Rol"}>
+          <select
+            {...register("role")}
+            className={styles.formSelectInput}
+            defaultValue={"Rol"}
+          >
             {roles.map((role) => selectPlaceholder(role))}
           </select>
         </div>
@@ -187,7 +190,14 @@ export default function CreateReport() {
             <BsPersonFill />
           </div>
 
-          <select {...register("attendant")} className={styles.formSelectInput} defaultValue={-1}>
+          <select
+            {...register("attendantId")}
+            className={styles.formSelectInput}
+            defaultValue={"Attendant"}
+          >
+            <option key={null} value={"Attendant"} disabled hidden>
+              Nombre de quien atiende
+            </option>
             {users.map((user) => selectUserPlaceholder(user))}
           </select>
         </div>
