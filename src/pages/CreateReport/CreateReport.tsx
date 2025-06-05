@@ -12,6 +12,7 @@ import { createReportService } from "../../api/reports.service";
 import { useAuthStrore } from "../../store/login.store";
 import { Attendant } from "../../types/user.types";
 import { getUsersService } from "../../api/users.service";
+import { useEffect, useState } from "react";
 
 type FormData = {
   reportDate: Date | null;
@@ -43,10 +44,10 @@ const roles = [
   { id: 3, name: "Encargado" },
 ];
 
-const users = await getUsersService();
-
 export default function CreateReport() {
   const user = useAuthStrore((state) => state.user);
+  const [attendants, setAttendants] = useState<Attendant[]>([]);
+  const navigate = useNavigate();
   const { register, handleSubmit, control } = useForm<FormData>({
     defaultValues: {
       reportDate: new Date(),
@@ -61,7 +62,9 @@ export default function CreateReport() {
     },
   });
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    getUsersService().then(setAttendants).catch(error => console.log(error));
+  }, []);
 
   const selectPlaceholder = (room: {
     id: number | null;
@@ -91,7 +94,6 @@ export default function CreateReport() {
   };
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
     createReportService(data);
     navigate("/result");
   };
@@ -193,12 +195,12 @@ export default function CreateReport() {
           <select
             {...register("attendantId")}
             className={styles.formSelectInput}
-            defaultValue={"Attendant"}
+            defaultValue={user ? user.id : "Attendant"}
           >
             <option key={null} value={"Attendant"} disabled hidden>
               Nombre de quien atiende
             </option>
-            {users.map((user) => selectUserPlaceholder(user))}
+            {attendants.map((attendant) => selectUserPlaceholder(attendant))}
           </select>
         </div>
         <div className={styles.inputContainer}>
