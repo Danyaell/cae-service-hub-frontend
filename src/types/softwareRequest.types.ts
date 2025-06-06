@@ -16,7 +16,7 @@ export interface SoftwareRequestForm {
     requestorName: string;
     room: string;
     software: string;
-    attendant: Attendant | null;
+    attendantId: number;
     commitmentDate: Date | null;
     status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled",
 };

@@ -17,7 +17,7 @@ export const createSoftwareRequestService = async (sendData: SoftwareRequestForm
         requestor_name: sendData.requestorName,
         room: sendData.room,
         software: sendData.software,
-        attendant_id: sendData.attendant,
+        attendant_id: sendData.attendantId,
         commitment_date: sendData.commitmentDate,
         status: 'pending'
     }

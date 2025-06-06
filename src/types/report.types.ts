@@ -20,7 +20,7 @@ export interface ReportForm {
     room: string;
     pc: string;
     description: string;
-    attendantId: number | string | null;
+    attendantId: number;
     actionTaken: string;
     status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled"
 };

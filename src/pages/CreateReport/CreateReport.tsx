@@ -21,7 +21,7 @@ type FormData = {
   room: string;
   pc: string;
   description: string;
-  attendantId: number | string;
+  attendantId: number;
   actionTaken: string;
   status:
     | "pending"
@@ -48,7 +48,7 @@ export default function CreateReport() {
   const user = useAuthStrore((state) => state.user);
   const [attendants, setAttendants] = useState<Attendant[]>([]);
   const navigate = useNavigate();
-  const { register, handleSubmit, control } = useForm<FormData>({
+  const { register, handleSubmit, control, setValue } = useForm<FormData>({
     defaultValues: {
       reportDate: new Date(),
       reporterName: "",
@@ -56,14 +56,22 @@ export default function CreateReport() {
       room: "Sala",
       pc: "",
       description: "",
-      attendantId: user ? user.id : "Attendant",
+      attendantId: -1,
       actionTaken: "",
       status: "pending",
     },
   });
 
   useEffect(() => {
-    getUsersService().then(setAttendants).catch(error => console.log(error));
+    if (user && attendants.length > 0) {
+      setValue("attendantId", user.id);
+    }
+  }, [user, attendants, setValue]);
+
+  useEffect(() => {
+    getUsersService()
+      .then(setAttendants)
+      .catch((error) => console.log(error));
   }, []);
 
   const selectPlaceholder = (room: {
@@ -95,7 +103,7 @@ export default function CreateReport() {
 
   const onSubmit = (data: FormData) => {
     createReportService(data);
-    navigate("/result");
+    navigate(user ? "/reports" : "/result");
   };
 
   return (
@@ -103,7 +111,7 @@ export default function CreateReport() {
       <div className={styles.backButtonContainer}>
         <button
           className={styles.backButton}
-          onClick={() => (user ? navigate("/reports") : navigate("/"))}
+          onClick={() => navigate(user ? "/reports" : "/")}
         >
           <FaArrowLeftLong />
           <p>Regresar</p>
@@ -191,13 +199,12 @@ export default function CreateReport() {
           <div className={styles.iconContainer}>
             <BsPersonFill />
           </div>
-
           <select
             {...register("attendantId")}
             className={styles.formSelectInput}
-            defaultValue={user ? user.id : "Attendant"}
+            defaultValue={-1}
           >
-            <option key={null} value={"Attendant"} disabled hidden>
+            <option key={null} value={-1} disabled hidden>
               Nombre de quien atiende
             </option>
             {attendants.map((attendant) => selectUserPlaceholder(attendant))}
@@ -213,7 +220,6 @@ export default function CreateReport() {
             className={styles.formInputLongText}
           />
         </div>
-
         <button type="submit" className={styles.formButton}>
           Continuar
         </button>

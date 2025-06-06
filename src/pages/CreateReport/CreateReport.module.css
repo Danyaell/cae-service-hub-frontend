@@ -134,7 +134,7 @@
   color: #555555e0;
 }
 
-.formSelectInput:has(option[value="Attendant"]:checked) {
+.formSelectInput:has(option[value="-1"]:checked) {
   font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
     sans-serif;
   color: #555555e0;

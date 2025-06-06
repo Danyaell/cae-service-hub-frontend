@@ -15,7 +15,7 @@ export const createReportService = async (sendData: ReportForm): Promise<Report>
         room: sendData.room,
         pc: sendData.pc,
         description: sendData.description,
-        attendant: sendData.attendantId,
+        attendant: sendData.attendantId === null || sendData.attendantId < 0 ? null : sendData.attendantId,
         action_taken: sendData.actionTaken,
         status: 'pending'
     }
