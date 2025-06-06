@@ -21,6 +21,31 @@
   color: #000000;
 }
 
+.formSelectInput:has(option[value="-1"]:checked) {
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  color: #555555e0;
+}
+
+.formSelectInput {
+  width: 51.5%;
+  height: 1.9rem;
+  padding-left: 5px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: #fff;
+  color: #000000;
+  border: solid 2px #ccc;
+  border-left: none 0px;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.formSelectInput:focus {
+  outline: none;
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 0 5px var(--color-secondary);
+}
+
 .inputContainer {
   display: flex;
   justify-content: center;

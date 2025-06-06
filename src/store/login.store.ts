@@ -46,7 +46,10 @@ export const useAuthStrore = create<AuthStore>((set) => ({
     if (!token) return;
     try {
       const decoded: any = jwtDecode(token);
-      set({ token, user: { id: decoded.id, name: decoded.name, role: decoded.role }, error: null });
+      const now = Date.now() / 1000;
+      if (decoded.exp > now) {
+        set({ token, user: { id: decoded.id, name: decoded.name, role: decoded.role }, error: null });
+      }
     } catch (error) {
       console.error('Error initializing auth store:', error);
       set({ user: null, token: null, error: 'Error initializing auth store' });

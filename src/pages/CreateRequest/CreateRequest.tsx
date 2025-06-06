@@ -10,13 +10,15 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { createSoftwareRequestService } from "../../api/softwareRequests.service";
 import { useAuthStrore } from "../../store/login.store";
 import { Attendant } from "../../types/user.types";
+import { useEffect, useState } from "react";
+import { getUsersService } from "../../api/users.service";
 
 type FormData = {
   requestDate: Date | null;
   requestorName: string;
   room: string;
   software: string;
-  attendant: Attendant | null;
+  attendantId: number;
   commitmentDate: Date | null;
   status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled";
 };
@@ -29,18 +31,31 @@ const rooms = [
 
 export default function CreateRequest() {
   const user = useAuthStrore((state) => state.user);
-  const { register, handleSubmit, control } = useForm<FormData>({
+  const [attendants, setAttendants] = useState<Attendant[]>([]);
+  const { register, handleSubmit, control, setValue } = useForm<FormData>({
     defaultValues: {
       requestDate: new Date(),
       requestorName: "",
       room: "Sala",
       software: "",
-      attendant: user ? user : null,
+      attendantId: user ? user.id : -1,
       commitmentDate: null,
       status: "pending",
     },
   });
   const navigate = useNavigate();
+
+  useEffect(() => {
+      if (user && attendants.length > 0) {
+        setValue("attendantId", user.id);
+      }
+    }, [user, attendants, setValue]);
+  
+    useEffect(() => {
+      getUsersService()
+        .then(setAttendants)
+        .catch((error) => console.log(error));
+    }, []);
 
   const selectPlaceholder = (room: {
     id: number | null;
@@ -59,6 +74,14 @@ export default function CreateRequest() {
         </option>
       );
     }
+  };
+
+  const selectUserPlaceholder = (user: Attendant) => {
+    return (
+      <option className={styles.roomOptions} key={user.id} value={user.id}>
+        {user.name}
+      </option>
+    );
   };
 
   const onSubmit = (data: FormData) => {
@@ -116,6 +139,21 @@ export default function CreateRequest() {
             placeholder="Nombre de quien solicita"
             className={styles.formInput}
           />
+        </div>
+        <div className={styles.inputContainer}>
+          <div className={styles.iconContainer}>
+            <BsPersonFill />
+          </div>
+          <select
+            {...register("attendantId")}
+            className={styles.formSelectInput}
+            defaultValue={-1}
+          >
+            <option key={null} value={-1} disabled hidden>
+              Nombre de quien atiende
+            </option>
+            {attendants.map((attendant) => selectUserPlaceholder(attendant))}
+          </select>
         </div>
         <div className={styles.inputContainer}>
           <div className={styles.iconContainerLongText}>
