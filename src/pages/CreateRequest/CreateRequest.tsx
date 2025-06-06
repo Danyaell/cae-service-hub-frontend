@@ -20,7 +20,12 @@ type FormData = {
   software: string;
   attendantId: number;
   commitmentDate: Date | null;
-  status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled";
+  status:
+    | "pending"
+    | "in_progres"
+    | "needs_attention"
+    | "completed"
+    | "cancelled";
 };
 
 const rooms = [
@@ -46,16 +51,16 @@ export default function CreateRequest() {
   const navigate = useNavigate();
 
   useEffect(() => {
-      if (user && attendants.length > 0) {
-        setValue("attendantId", user.id);
-      }
-    }, [user, attendants, setValue]);
-  
-    useEffect(() => {
-      getUsersService()
-        .then(setAttendants)
-        .catch((error) => console.log(error));
-    }, []);
+    if (user && attendants.length > 0) {
+      setValue("attendantId", user.id);
+    }
+  }, [user, attendants, setValue]);
+
+  useEffect(() => {
+    getUsersService()
+      .then(setAttendants)
+      .catch((error) => console.log(error));
+  }, []);
 
   const selectPlaceholder = (room: {
     id: number | null;
@@ -86,13 +91,16 @@ export default function CreateRequest() {
 
   const onSubmit = (data: FormData) => {
     createSoftwareRequestService(data);
-    navigate("/result");
+    navigate(user ? "/requests" : "/result");
   };
 
   return (
     <>
       <div className={styles.backButtonContainer}>
-        <button className={styles.backButton} onClick={() => user ? navigate("/requests") : navigate("/")}>
+        <button
+          className={styles.backButton}
+          onClick={() => (navigate(user ? "/requests" : "/"))}
+        >
           <FaArrowLeftLong />
           <p>Regresar</p>
         </button>
@@ -125,7 +133,11 @@ export default function CreateRequest() {
             <div className={styles.iconContainer}>
               <SiGoogleclassroom />
             </div>
-            <select {...register("room")} className={styles.formSmallInput} defaultValue={"Sala"}>
+            <select
+              {...register("room")}
+              className={styles.formSmallInput}
+              defaultValue={"Sala"}
+            >
               {rooms.map((room) => selectPlaceholder(room))}
             </select>
           </div>
