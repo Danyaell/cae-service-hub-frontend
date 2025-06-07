@@ -11,6 +11,7 @@ import { useAuthStrore } from "../store/login.store";
 import Reports from "../pages/Reports/Reports";
 import Requests from "../pages/Requests/Requests";
 import { useEffect } from "react";
+import EditReport from "../pages/Reports/EditReport/EditReport";
 
 function App() {
   const initialize = useAuthStrore((state) => state.initialize);
@@ -30,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {user && <Route path="/reports" element={<Reports />} />}
+          {user && <Route path="/edit-report/:id" element={<EditReport />} />}
           <Route path="/create-report" element={<CreateReport />} />
           {user && <Route path="/requests" element={<Requests />} />}
           <Route path="/create-request" element={<CreateRequest />} />

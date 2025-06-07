@@ -11,11 +11,14 @@ interface ReportsTableProps {
 
 const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
   const [dropdownClicked, setDropdownClicked] = useState<number | null>(null);
-  const ref = useRef<HTMLTableDataCellElement>(null);
+  const dropdownRefs = useRef<Record<number, HTMLTableDataCellElement | null>>({});
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
+      const isOutside = Object.values(dropdownRefs.current).every(
+        (ref) => ref && !ref.contains(e.target as Node)
+      );
+      if (isOutside) {
         setDropdownClicked(null);
       }
     };
@@ -25,9 +28,7 @@ const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
   }, []);
 
   const handleDropdownClick = (id: number) => {
-    setDropdownClicked((dropdownClicked) =>
-      dropdownClicked === id ? null : id
-    );
+    setDropdownClicked(current => (current === id ? null : id));
   };
 
   return (
@@ -72,7 +73,7 @@ const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
                     {r.status}
                   </div>
                 </td>
-                <td className={styles.cellDataActionButton} ref={ref}>
+                <td className={styles.cellDataActionButton} ref={(el) => { dropdownRefs.current[r.id] = el; }}>
                   <button
                     onClick={() => handleDropdownClick(r.id)}
                     className={styles.actionsButton}
@@ -83,13 +84,13 @@ const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
                     <div className={styles.dropdownContainer}>
                       <ul className={styles.dropdownMenu}>
                         <li className={styles.dropdownMenuItem}>
-                          <NavLink to="" className={styles.dropdownLink}>
+                          <NavLink to={`/edit-report/${r.id}`} onClick={() => setDropdownClicked(null)} className={styles.dropdownLink}>
                             <MdEdit className={styles.dropdownIcon} />
                             Editar
                           </NavLink>
                         </li>
                         <li className={styles.dropdownMenuItem}>
-                          <NavLink to="" className={styles.dropdownLink}>
+                          <NavLink to="/" className={styles.dropdownLink}>
                             <MdDelete className={styles.dropdownIcon} />
                             Eliminar
                           </NavLink>
