@@ -89,9 +89,27 @@ export default function CreateRequest() {
     );
   };
 
-  const onSubmit = (data: FormData) => {
-    createSoftwareRequestService(data);
-    navigate(user ? "/requests" : "/result");
+  const onSubmit = async (data: FormData) => {
+    try {
+      await createSoftwareRequestService(data);
+      navigate(user ? "/requests" : "/result", {
+        state: {
+          success: true,
+          message1: "Realizado",
+          message2: "Solicitud creada exitosamente.",
+          textButton: "Volver al inicio."
+        },
+      });
+    } catch (error) {
+      navigate(user ? "/requests" : "/result", {
+        state: {
+          success: false,
+          message1: "ERROR 500",
+          message2: "Hubo un error en el servidor.",
+          textButton: "Intenta nuevamente.",
+        },
+      });
+    }
   };
 
   return (
@@ -99,7 +117,7 @@ export default function CreateRequest() {
       <div className={styles.backButtonContainer}>
         <button
           className={styles.backButton}
-          onClick={() => (navigate(user ? "/requests" : "/"))}
+          onClick={() => navigate(user ? "/requests" : "/")}
         >
           <FaArrowLeftLong />
           <p>Regresar</p>

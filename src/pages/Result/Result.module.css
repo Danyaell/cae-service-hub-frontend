@@ -1,0 +1,21 @@
+.title {
+  margin-bottom: 30px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 5em;
+  font-weight: 500;
+  color: #000;
+  justify-content: flex-start;
+}
+
+.iconContainer {
+    padding: 30px;
+}
+
+.icon {
+    font-size: 15rem;
+}
+
+.message {
+    font-size: 20px;
+}

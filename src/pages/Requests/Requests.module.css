@@ -1,3 +1,25 @@
+.successBanner {
+  margin: 0 auto auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 1400px;
+  background-color: #ceecce;
+  color: rgb(0, 99, 0);
+  border: 1px solid rgb(0, 99, 0);
+  border-radius: 10px;
+}
+
+.errorBanner {
+  margin: 0 auto auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 1400px;
+  background-color: rgb(255, 234, 234);
+  color: rgb(200, 0, 0);
+  border: 1px solid rgb(200, 0, 0);
+  border-radius: 10px;
+}
+
 .headerContainer {
   margin: 0 auto 20px;
   width: 80%;
