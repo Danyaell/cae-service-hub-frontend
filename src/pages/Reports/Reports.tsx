@@ -3,9 +3,16 @@ import { Report } from "../../types/report.types";
 import ReportsTable from "./components/ReportsTable";
 import styles from "./Reports.module.css";
 import { getAllReportsService } from "../../api/reports.service";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function Reports() {
+  const location = useLocation();
+  const result = location.state as {
+    success: boolean;
+    message1: string;
+    message2: string;
+    textButton: string;
+  } | null;
   const [reports, setReports] = useState<Report[]>([]);
 
   useEffect(() => {
@@ -20,6 +27,13 @@ export default function Reports() {
   }, []);
   return (
     <div>
+      {result && (
+        <div
+          className={result.success ? styles.successBanner : styles.errorBanner}
+        >
+          {result.message2}
+        </div>
+      )}
       <div className={styles.headerContainer}>
         <div className={styles.reportsHeader}>
           <h1 className={styles.title}>Reportes</h1>

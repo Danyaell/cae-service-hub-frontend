@@ -3,9 +3,16 @@ import { getAllSoftwareRequestsService } from "../../api/softwareRequests.servic
 import { SoftwareRequest } from "../../types/softwareRequest.types";
 import RequestsTable from "./components/RequestsTable";
 import styles from "./Requests.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function Requests() {
+  const location = useLocation();
+  const result = location.state as {
+    success: boolean;
+    message1: string;
+    message2: string;
+    textButton: string;
+  } | null;
   const [softwareRequests, setSoftwareRequests] = useState<SoftwareRequest[]>(
     []
   );
@@ -23,6 +30,13 @@ export default function Requests() {
 
   return (
     <div>
+      {result && (
+        <div
+          className={result.success ? styles.successBanner : styles.errorBanner}
+        >
+          {result.message2}
+        </div>
+      )}
       <div className={styles.headerContainer}>
         <div className={styles.requestsHeader}>
           <h1 className={styles.title}>

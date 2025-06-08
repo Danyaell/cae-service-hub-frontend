@@ -101,9 +101,27 @@ export default function CreateReport() {
     );
   };
 
-  const onSubmit = (data: FormData) => {
-    createReportService(data);
-    navigate(user ? "/reports" : "/result");
+  const onSubmit = async (data: FormData) => {
+    try {
+      await createReportService(data);
+      navigate(user ? "/reports" : "/result", {
+        state: {
+          success: true,
+          message1: "Realizado",
+          message2: "Reporte creado exitosamente.",
+          textButton: "Volver al inicio."
+        },
+      });
+    } catch (error) {
+      navigate(user ? "/reports" : "/result", {
+        state: {
+          success: false,
+          message1: "ERROR 500",
+          message2: "Hubo un error en el servidor.",
+          textButton: "Intenta nuevamente.",
+        },
+      });
+    }
   };
 
   return (
