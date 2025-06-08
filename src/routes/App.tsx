@@ -1,7 +1,7 @@
 import Header from "../components/Header/Header";
 import Home from "../pages/Home/Home";
-import CreateReport from "../pages/CreateReport/CreateReport";
-import CreateRequest from "../pages/CreateRequest/CreateRequest";
+import CreateReport from "../pages/Reports/CreateReport/CreateReport";
+import CreateRequest from "../pages/Requests/CreateRequest/CreateRequest";
 import Result from "../pages/Result/Result";
 import { Route, Routes } from "react-router-dom";
 import styles from "./App.module.css";

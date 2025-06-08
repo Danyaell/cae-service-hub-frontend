@@ -1,25 +1,28 @@
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { CustomDatePicker } from "../../components/CustomDatePicker/CustomDatePicker";
-import styles from "./CreateRequest.module.css";
-import { FaCalendar } from "react-icons/fa";
-import { BsPersonFill } from "react-icons/bs";
+import { CustomDatePicker } from "../../../components/CustomDatePicker/CustomDatePicker";
+import styles from "./CreateReport.module.css";
+import { BsPcDisplay, BsPersonFill } from "react-icons/bs";
 import { SiGoogleclassroom } from "react-icons/si";
-import { MdOutlineHomeRepairService } from "react-icons/md";
+import { MdOutlineDescription } from "react-icons/md";
+import { GrAction } from "react-icons/gr";
+import { FaCalendar } from "react-icons/fa";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { createSoftwareRequestService } from "../../api/softwareRequests.service";
-import { useAuthStrore } from "../../store/login.store";
-import { Attendant } from "../../types/user.types";
+import { createReportService } from "../../../api/reports.service";
+import { useAuthStrore } from "../../../store/login.store";
+import { Attendant } from "../../../types/user.types";
+import { getUsersService } from "../../../api/users.service";
 import { useEffect, useState } from "react";
-import { getUsersService } from "../../api/users.service";
 
 type FormData = {
-  requestDate: Date | null;
-  requestorName: string;
+  reportDate: Date | null;
+  reporterName: string;
+  role: string;
   room: string;
-  software: string;
+  pc: string;
+  description: string;
   attendantId: number;
-  commitmentDate: Date | null;
+  actionTaken: string;
   status:
     | "pending"
     | "in_progres"
@@ -34,21 +37,30 @@ const rooms = [
   { id: 2, name: 204 },
 ];
 
-export default function CreateRequest() {
+const roles = [
+  { id: null, name: "Rol" },
+  { id: 1, name: "Estudiante" },
+  { id: 2, name: "Docente" },
+  { id: 3, name: "Encargado" },
+];
+
+export default function CreateReport() {
   const user = useAuthStrore((state) => state.user);
   const [attendants, setAttendants] = useState<Attendant[]>([]);
+  const navigate = useNavigate();
   const { register, handleSubmit, control, setValue } = useForm<FormData>({
     defaultValues: {
-      requestDate: new Date(),
-      requestorName: "",
+      reportDate: new Date(),
+      reporterName: "",
+      role: "Rol",
       room: "Sala",
-      software: "",
-      attendantId: user ? user.id : -1,
-      commitmentDate: null,
+      pc: "",
+      description: "",
+      attendantId: -1,
+      actionTaken: "",
       status: "pending",
     },
   });
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (user && attendants.length > 0) {
@@ -91,17 +103,17 @@ export default function CreateRequest() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await createSoftwareRequestService(data);
-      navigate(user ? "/requests" : "/result", {
+      await createReportService(data);
+      navigate(user ? "/reports" : "/result", {
         state: {
           success: true,
           message1: "Realizado",
-          message2: "Solicitud creada exitosamente.",
+          message2: "Reporte creado exitosamente.",
           textButton: "Volver al inicio."
         },
       });
     } catch (error) {
-      navigate(user ? "/requests" : "/result", {
+      navigate(user ? "/reports" : "/result", {
         state: {
           success: false,
           message1: "ERROR 500",
@@ -117,17 +129,15 @@ export default function CreateRequest() {
       <div className={styles.backButtonContainer}>
         <button
           className={styles.backButton}
-          onClick={() => navigate(user ? "/requests" : "/")}
+          onClick={() => navigate(user ? "/reports" : "/")}
         >
           <FaArrowLeftLong />
           <p>Regresar</p>
         </button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <h1 className={styles.formTitle}>
-          SOLICITUD DE INSTALACIÓN DE SOFTWARE
-        </h1>
-        <p>Para solicitar la instalación de software, llena el formulario:</p>
+        <h1 className={styles.formTitle}>REPORTE DE FALLA DE MÁQUINA</h1>
+        <p>Para reportar la falla, llena el formulario:</p>
 
         <div className={styles.twoInputsContainer}>
           <div className={styles.inputSmallContainer}>
@@ -137,7 +147,7 @@ export default function CreateRequest() {
             <div className={styles.dateContainer}>
               <Controller
                 control={control}
-                name="requestDate"
+                name="reportDate"
                 render={({ field }) => (
                   <CustomDatePicker
                     selectedDate={field.value}
@@ -165,8 +175,41 @@ export default function CreateRequest() {
             <BsPersonFill />
           </div>
           <input
-            {...register("requestorName")}
-            placeholder="Nombre de quien solicita"
+            {...register("reporterName")}
+            placeholder="Nombre de quien reporta"
+            className={styles.formInput}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <div className={styles.iconContainer}>
+            <BsPersonFill />
+          </div>
+          <select
+            {...register("role")}
+            className={styles.formSelectInput}
+            defaultValue={"Rol"}
+          >
+            {roles.map((role) => selectPlaceholder(role))}
+          </select>
+        </div>
+        <div className={styles.inputContainer}>
+          <div className={styles.iconContainer}>
+            <BsPcDisplay />
+          </div>
+          <input
+            {...register("pc")}
+            type="number"
+            placeholder="PC"
+            className={styles.formInput}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <div className={styles.iconContainer}>
+            <MdOutlineDescription />
+          </div>
+          <input
+            {...register("description")}
+            placeholder="Descripción de la falla"
             className={styles.formInput}
           />
         </div>
@@ -187,11 +230,11 @@ export default function CreateRequest() {
         </div>
         <div className={styles.inputContainer}>
           <div className={styles.iconContainerLongText}>
-            <MdOutlineHomeRepairService />
+            <GrAction />
           </div>
           <textarea
-            {...register("software")}
-            placeholder="Servicio que solicita"
+            {...register("actionTaken")}
+            placeholder="Acción tomada"
             className={styles.formInputLongText}
           />
         </div>
