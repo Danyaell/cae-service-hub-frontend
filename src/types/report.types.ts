@@ -8,7 +8,8 @@ export interface Report {
     room: string;
     pc: string;
     description: string;
-    attendant: Attendant | null;
+    attendant?: Attendant | null;
+    attendant_id: number | undefined;
     action_taken: string;
     status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled"
 };

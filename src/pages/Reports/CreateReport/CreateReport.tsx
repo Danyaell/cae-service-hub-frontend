@@ -13,23 +13,7 @@ import { useAuthStrore } from "../../../store/login.store";
 import { Attendant } from "../../../types/user.types";
 import { getUsersService } from "../../../api/users.service";
 import { useEffect, useState } from "react";
-
-type FormData = {
-  reportDate: Date | null;
-  reporterName: string;
-  role: string;
-  room: string;
-  pc: string;
-  description: string;
-  attendantId: number;
-  actionTaken: string;
-  status:
-    | "pending"
-    | "in_progres"
-    | "needs_attention"
-    | "completed"
-    | "cancelled";
-};
+import { ReportForm } from "../../../types/report.types";
 
 const rooms = [
   { id: null, name: "Sala" },
@@ -48,7 +32,7 @@ export default function CreateReport() {
   const user = useAuthStrore((state) => state.user);
   const [attendants, setAttendants] = useState<Attendant[]>([]);
   const navigate = useNavigate();
-  const { register, handleSubmit, control, setValue } = useForm<FormData>({
+  const { register, handleSubmit, control, setValue } = useForm<ReportForm>({
     defaultValues: {
       reportDate: new Date(),
       reporterName: "",
@@ -101,7 +85,7 @@ export default function CreateReport() {
     );
   };
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: ReportForm) => {
     try {
       await createReportService(data);
       navigate(user ? "/reports" : "/result", {

@@ -1,0 +1,297 @@
+.editContainer {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1400px;
+  border-collapse: collapse;
+}
+
+.backButtonContainer {
+  display: flex;
+  margin: auto 100px;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+}
+
+.backButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  color: #000000;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-weight: 600;
+  border: none;
+  font-size: 16px;
+  width: auto;
+  height: 2rem;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  border-radius: 5px;
+  cursor: pointer;
+  color: var(--color-blue-dark)
+}
+
+.backButton:focus {
+  color: var(--color-blue-dark);
+}
+
+.backButton p {
+  margin: 0 5px;
+}
+
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto;
+}
+
+.title {
+  margin: 0px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 2em;
+  font-weight: 500;
+  color: #000;
+}
+
+.subtitle {
+  margin-bottom: 30px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #000;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+}
+
+.infoContainer {
+  display: flex;
+  width: 100%;
+  min-width: fit-content;
+  padding: 30px 50px 40px;
+  background-color: rgba(240, 240, 240, 0.507);
+  border-radius: 20px;
+}
+
+.table {
+  width: auto;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  border-collapse: collapse;
+}
+
+.rowData:hover {
+  background-color: #f9f9f9;
+}
+
+.cellData {
+  align-content: center;
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px 10px 10px;
+  text-align: left;
+}
+
+.formContainer {
+  min-width: fit-content;
+  padding: 30px 50px 40px;
+}
+
+.form {
+  width: 100%;
+  min-width: 300px;
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 80%;
+  height: auto;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #555555;
+  background-color: #eeeeee;
+  border: solid 2px #ccc;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.formSelectInput:has(option[value="-1"]:checked) {
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  color: #555555e0;
+}
+
+.formSelectInput {
+  width: 91%;
+  height: 1.9rem;
+  padding-left: 5px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: #fff;
+  color: #000000;
+  border: solid 2px #ccc;
+  border-left: none 0px;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.formSelectInput:focus {
+  outline: none;
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 0 5px var(--color-secondary);
+}
+
+.formStatusSelectInput {
+  width: 91%;
+  height: 1.9rem;
+  padding-left: 5px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: #fff;
+  color: #000000;
+  border: solid 2px #ccc;
+  border-radius: 15px;
+}
+
+.formStatusSelectInput:focus {
+  outline: none;
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 0 5px var(--color-secondary);
+}
+
+
+.formSelectInput:has(option[value="pending"]:checked) {
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: rgb(238, 143, 0);
+  color: white;
+}
+
+.cellDataStatus[data-status="in_progress"] {
+  background-color: rgb(238, 182, 0);
+  color: white;
+}
+
+.cellDataStatus[data-status="needs_attention"] {
+  background-color: rgb(238, 87, 0);
+  color: white;
+}
+
+.cellDataStatus[data-status="completed"] {
+  background-color: rgb(59, 165, 59);
+  color: white;
+}
+
+.cellDataStatus[data-status="cancelled"] {
+  background-color: rgb(231, 41, 41);
+  color: white;
+}
+
+.formInput {
+  width: 90%;
+  height: 1.5rem;
+  padding-left: 10px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: #fff !important;
+  color: #000000 !important;
+  border: solid 2px #ccc;
+  border-left: none 0px;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.formInput::placeholder {
+  color: #555555;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.formInput:focus {
+  outline: none;
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 0 5px var(--color-secondary);
+}
+
+.iconContainerLongText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1px;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #555555;
+  background-color: #eeeeee;
+  border: solid 2px #ccc;
+  border-right: none 0px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.formInputLongText {
+  width: 88%;
+  height: 5rem;
+  padding-left: 10px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  background-color: #fff !important;
+  color: #000000 !important;
+  border: solid 2px #ccc;
+  border-radius: 0px 5px 5px 5px;
+}
+
+.formInputLongText::placeholder {
+  color: #555555;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.formInputLongText:focus {
+  outline: none;
+  border: 2px solid var(--color-secondary);
+  box-shadow: 0 0 5px var(--color-secondary);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.formButton {
+  background-color: var(--color-secondary);
+  color: #ffffffb6;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 50%;
+  min-width: fit-content;
+  height: 2rem;
+  transition: all 0.2s ease;
+}
