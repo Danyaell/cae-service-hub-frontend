@@ -27,6 +27,17 @@ const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const getStatusName = (status: string) => {
+    const statusMap: Record<string, string> = {
+      pending: "PENDIENTE",
+      in_progress: "EN PROGRESO",
+      needs_attention: "ATENCIÓN",
+      completed: "COMPLETADO",
+      cancelled: "CANCELADO",
+    };
+    return statusMap[status] || "Desconocido";
+  };
+
   const handleDropdownClick = (id: number) => {
     setDropdownClicked(current => (current === id ? null : id));
   };
@@ -39,11 +50,9 @@ const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
             <tr>
               <th className={styles.columnHeader}>Fecha de solicitud</th>
               <th className={styles.columnHeader}>Reporta</th>
-              <th className={styles.columnHeader}>Rol</th>
               <th className={styles.columnHeader}>Sala</th>
               <th className={styles.columnHeader}>PC</th>
               <th className={styles.columnHeader}>Descripción</th>
-              <th className={styles.columnHeader}>Solución</th>
               <th className={styles.columnHeader}>Atiende</th>
               <th className={styles.columnHeader}>Estado</th>
               <th className={styles.columnHeader}></th>
@@ -62,15 +71,13 @@ const ReportsTable: React.FC<ReportsTableProps> = ({ reports }) => {
                     .toUpperCase()}
                 </td>
                 <td className={styles.cellData}>{r.reporter_name}</td>
-                <td className={styles.cellData}>{r.role}</td>
                 <td className={styles.cellData}>{r.room}</td>
                 <td className={styles.cellData}>{r.pc}</td>
                 <td className={styles.cellData}>{r.description}</td>
-                <td className={styles.cellData}>{r.action_taken}</td>
                 <td className={styles.cellData}>{r.attendant?.name}</td>
                 <td className={styles.cellData}>
                   <div className={styles.cellDataStatus} data-status={r.status}>
-                    {r.status}
+                    {getStatusName(r.status)}
                   </div>
                 </td>
                 <td className={styles.cellDataActionButton} ref={(el) => { dropdownRefs.current[r.id] = el; }}>

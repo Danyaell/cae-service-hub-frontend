@@ -25,11 +25,11 @@ export default function EditRequest() {
   const [selectedStatus, setSelectedStatus] =
     useState<keyof typeof statusClassMap>("pending");
   const statusTypes = [
-    { id: "pending", name: "Pendiente" },
-    { id: "in_progress", name: "En Progreso" },
-    { id: "needs_attention", name: "Necesita Atención" },
-    { id: "completed", name: "Completado" },
-    { id: "cancelled", name: "Cancelado" },
+    { id: "pending", name: "PENDIENTE" },
+    { id: "in_progress", name: "EN PROGRESO" },
+    { id: "needs_attention", name: "ATENCIÓN" },
+    { id: "completed", name: "COMPLETADO" },
+    { id: "cancelled", name: "CANCELADO" },
   ];
   const [request, setRequest] = useState<SoftwareRequest>();
   const { id } = useParams<{ id: string }>();
