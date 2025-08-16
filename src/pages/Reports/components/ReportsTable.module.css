@@ -47,7 +47,7 @@
 }
 
 .cellDataStatus[data-status="needs_attention"] {
-  background-color: rgb(238, 143, 0);
+  background-color: rgb(238, 87, 0);
   color: white;
 }
 

@@ -1,17 +1,17 @@
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { CustomDatePicker } from "../../components/CustomDatePicker/CustomDatePicker";
+import { CustomDatePicker } from "../../../components/CustomDatePicker/CustomDatePicker";
 import styles from "./CreateRequest.module.css";
 import { FaCalendar } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
 import { SiGoogleclassroom } from "react-icons/si";
 import { MdOutlineHomeRepairService } from "react-icons/md";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { createSoftwareRequestService } from "../../api/softwareRequests.service";
-import { useAuthStrore } from "../../store/login.store";
-import { Attendant } from "../../types/user.types";
+import { createSoftwareRequestService } from "../../../api/softwareRequests.service";
+import { useAuthStrore } from "../../../store/login.store";
+import { Attendant } from "../../../types/user.types";
 import { useEffect, useState } from "react";
-import { getUsersService } from "../../api/users.service";
+import { getUsersService } from "../../../api/users.service";
 
 type FormData = {
   requestDate: Date | null;
@@ -22,7 +22,7 @@ type FormData = {
   commitmentDate: Date | null;
   status:
     | "pending"
-    | "in_progres"
+    | "in_progress"
     | "needs_attention"
     | "completed"
     | "cancelled";

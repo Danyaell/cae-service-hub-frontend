@@ -1,18 +1,25 @@
 import { useEffect, useState } from "react";
-import { Report, ReportForm } from "../../../types/report.types";
-import { editReportService, getReportById } from "../../../api/reports.service";
+import styles from "./EditRequest.module.css";
+import { Attendant } from "../../../types/user.types";
+import { useAuthStrore } from "../../../store/login.store";
 import { useNavigate, useParams } from "react-router-dom";
-import styles from "./EditReport.module.css";
+import {
+  SoftwareRequest,
+  SoftwareRequestForm,
+} from "../../../types/softwareRequest.types";
+import { Controller, useForm } from "react-hook-form";
+import { getUsersService } from "../../../api/users.service";
+import {
+  editSoftwareRequestService,
+  getSoftwareRequestByIdService,
+} from "../../../api/softwareRequests.service";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import { BsPersonFill } from "react-icons/bs";
 import { GrAction } from "react-icons/gr";
-import { useForm } from "react-hook-form";
-import { useAuthStrore } from "../../../store/login.store";
-import { Attendant } from "../../../types/user.types";
-import { getUsersService } from "../../../api/users.service";
-import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaRegCircle } from "react-icons/fa";
+import { CustomDatePicker } from "../../../components/CustomDatePicker/CustomDatePicker";
 
-export default function EditReport() {
+export default function EditRequest() {
   const user = useAuthStrore((state) => state.user);
   const [attendants, setAttendants] = useState<Attendant[]>([]);
   const [selectedStatus, setSelectedStatus] =
@@ -24,22 +31,21 @@ export default function EditReport() {
     { id: "completed", name: "Completado" },
     { id: "cancelled", name: "Cancelado" },
   ];
-  const [report, setReport] = useState<Report>();
+  const [request, setRequest] = useState<SoftwareRequest>();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { register, handleSubmit, setValue } = useForm<ReportForm>({
-    defaultValues: {
-      reportDate: report?.report_date,
-      reporterName: report?.reporter_name,
-      role: report?.role,
-      room: report?.room,
-      pc: report?.pc,
-      description: report?.description,
-      attendantId: report?.attendant_id,
-      actionTaken: report?.action_taken,
-      status: report?.status,
-    },
-  });
+  const { register, handleSubmit, control, setValue } =
+    useForm<SoftwareRequestForm>({
+      defaultValues: {
+        requestDate: request?.request_date,
+        requestorName: request?.requestor_name,
+        room: request?.room,
+        software: request?.software,
+        //attendantId: request?.attendant_id,
+        commitmentDate: request?.commitment_date,
+        status: request?.status,
+      },
+    });
 
   const statusClassMap = {
     pending: styles.pending,
@@ -50,21 +56,19 @@ export default function EditReport() {
   };
 
   useEffect(() => {
-    if (user && attendants.length > 0 && !report?.attendant_id) {
+    if (user && attendants.length > 0 && !request?.attendant_id) {
       setValue("attendantId", user.id);
     }
-    if (report) {
-      setValue("reportDate", new Date(report.report_date));
-      setValue("reporterName", report.reporter_name);
-      setValue("role", report.role);
-      setValue("room", report.room);
-      setValue("pc", report.pc);
-      setValue("description", report.description);
-      setValue("attendantId", report.attendant_id ?? user?.id ?? -1);
-      setValue("actionTaken", report.action_taken);
-      setValue("status", report.status);
+    if (request) {
+      setValue("requestDate", new Date(request.request_date));
+      setValue("requestorName", request.requestor_name);
+      setValue("room", request.room);
+      setValue("software", request.software);
+      setValue("attendantId", request.attendant_id ?? user?.id ?? -1);
+      setValue("commitmentDate", request.commitment_date);
+      setValue("status", request.status);
     }
-  }, [report, user, attendants, setValue]);
+  }, [request, user, attendants, setValue]);
 
   useEffect(() => {
     getUsersService()
@@ -74,9 +78,9 @@ export default function EditReport() {
 
   useEffect(() => {
     if (id) {
-      getReportById(parseInt(id))
+      getSoftwareRequestByIdService(parseInt(id))
         .then((data) => {
-          setReport(data);
+          setRequest(data);
         })
         .catch((error) => {
           console.error(error);
@@ -85,10 +89,10 @@ export default function EditReport() {
   }, [id]);
 
   useEffect(() => {
-    if (report?.status) {
-      setSelectedStatus(report.status);
+    if (request?.status) {
+      setSelectedStatus(request.status);
     }
-  }, [report]);
+  }, [request]);
 
   const selectUserPlaceholder = (user: Attendant) => {
     return (
@@ -110,19 +114,19 @@ export default function EditReport() {
     );
   };
 
-  const onSubmit = async (data: ReportForm) => {
+  const onSubmit = async (data: SoftwareRequestForm) => {
     try {
-      await editReportService(data, parseInt(id!));
-      navigate(user ? "/reports" : "/result", {
+      await editSoftwareRequestService(data, parseInt(id!));
+      navigate(user ? "/requests" : "/result", {
         state: {
           success: true,
           message1: "Realizado",
-          message2: "Reporte editado exitosamente.",
+          message2: "Solicitud editada exitosamente.",
           textButton: "Volver al inicio.",
         },
       });
     } catch (error) {
-      navigate(user ? "/reports" : "/result", {
+      navigate(user ? "/requests" : "/result", {
         state: {
           success: false,
           message1: "ERROR 500",
@@ -138,7 +142,7 @@ export default function EditReport() {
       <div className={styles.backButtonContainer}>
         <button
           className={styles.backButton}
-          onClick={() => navigate(user ? "/reports" : "/")}
+          onClick={() => navigate(user ? "/requests" : "/")}
         >
           <FaArrowLeftLong />
           <p>Regresar</p>
@@ -146,18 +150,17 @@ export default function EditReport() {
       </div>
       <div className={styles.editContainer}>
         <div className={styles.titleContainer}>
-          <h1 className={styles.title}>Reporte #{report?.id}</h1>
-          <h2 className={styles.subtitle}>Computadora {report?.pc}</h2>
+          <h1 className={styles.title}>Solicitud #{request?.id}</h1>
         </div>
         <div className={styles.container}>
           <div className={styles.infoContainer}>
             <table className={styles.table}>
               <tbody>
                 <tr className={styles.rowData}>
-                  <td className={styles.cellData}>Fecha del Reporte</td>
+                  <td className={styles.cellData}>Fecha de la Solicitud</td>
                   <td className={styles.cellData}>
-                    {report?.report_date
-                      ? new Date(report?.report_date).toLocaleDateString(
+                    {request?.request_date
+                      ? new Date(request?.request_date).toLocaleDateString(
                           "es-MX",
                           {
                             year: "numeric",
@@ -169,20 +172,16 @@ export default function EditReport() {
                   </td>
                 </tr>
                 <tr>
-                  <td className={styles.cellData}>Reportado por</td>
-                  <td className={styles.cellData}>{report?.reporter_name}</td>
+                  <td className={styles.cellData}>Solicitado por</td>
+                  <td className={styles.cellData}>{request?.requestor_name}</td>
                 </tr>
                 <tr>
                   <td className={styles.cellData}>Aula</td>
-                  <td className={styles.cellData}>{report?.room}</td>
+                  <td className={styles.cellData}>{request?.room}</td>
                 </tr>
                 <tr>
-                  <td className={styles.cellData}>PC</td>
-                  <td className={styles.cellData}>{report?.pc}</td>
-                </tr>
-                <tr>
-                  <td className={styles.cellData}>Descrpición</td>
-                  <td className={styles.cellData}>{report?.description}</td>
+                  <td className={styles.cellData}>Software</td>
+                  <td className={styles.cellData}>{request?.software}</td>
                 </tr>
               </tbody>
             </table>
@@ -206,15 +205,22 @@ export default function EditReport() {
                     )}
                   </select>
                 </div>
-                <div className={styles.inputContainer}>
-                  <div className={styles.iconContainerLongText}>
+                <div className={styles.inputDateContainer}>
+                  <div className={styles.iconContainerDate}>
                     <GrAction />
                   </div>
-                  <textarea
-                    {...register("actionTaken")}
-                    placeholder="Acción tomada"
-                    className={styles.formInputLongText}
-                  />
+                  <div className={styles.dateContainer}>
+                    <Controller
+                      control={control}
+                      name="commitmentDate"
+                      render={({ field }) => (
+                        <CustomDatePicker
+                          selectedDate={field.value}
+                          onChange={field.onChange}
+                        />
+                      )}
+                    />
+                  </div>
                 </div>
                 <div className={styles.inputContainer}>
                   <div

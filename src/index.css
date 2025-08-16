@@ -33,9 +33,9 @@ body {
 }
 
 #root {
-  max-width: 100%;
+  width: 100%;
   min-height: auto;
-  margin: 0 auto 0px;
+  margin: 0 -10px;
   padding: 0;
   text-align: center;
 }

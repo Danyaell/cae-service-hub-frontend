@@ -11,11 +11,14 @@ interface RequestsTableProps {
 
 const RequestsTable: React.FC<RequestsTableProps> = ({ softwareRequests }) => {
   const [dropdownClicked, setDropdownClicked] = useState<number | null>(null);
-  const ref = useRef<HTMLTableDataCellElement>(null);
+  const dropdownRefs = useRef<Record<number, HTMLTableDataCellElement | null>>({});
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
+      const isOutside = Object.values(dropdownRefs.current).every(
+        (ref) => ref && !ref.contains(e.target as Node)
+      );
+      if (isOutside) {
         setDropdownClicked(null);
       }
     };
@@ -25,9 +28,7 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ softwareRequests }) => {
   }, []);
 
   const handleDropdownClick = (id: number) => {
-    setDropdownClicked((dropdownClicked) =>
-      dropdownClicked === id ? null : id
-    );
+    setDropdownClicked(current => (current === id ? null : id));
   };
 
   return (
@@ -78,7 +79,7 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ softwareRequests }) => {
                     {sr.status}
                   </div>
                 </td>
-                <td className={styles.cellDataActionButton} ref={ref}>
+                <td className={styles.cellDataActionButton} ref={(el) => { dropdownRefs.current[sr.id] = el; }}>
                   <button
                     onClick={() => handleDropdownClick(sr.id)}
                     className={styles.actionsButton}
@@ -89,7 +90,7 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ softwareRequests }) => {
                     <div className={styles.dropdownContainer}>
                       <ul className={styles.dropdownMenu}>
                         <li className={styles.dropdownMenuItem}>
-                          <NavLink to="" className={styles.dropdownLink}>
+                          <NavLink to={`/edit-request/${sr.id}`} onClick={() => setDropdownClicked(null)} className={styles.dropdownLink}>
                             <MdEdit className={styles.dropdownIcon} />
                             Editar
                           </NavLink>

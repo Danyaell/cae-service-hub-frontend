@@ -17,10 +17,24 @@ export const createSoftwareRequestService = async (sendData: SoftwareRequestForm
         requestor_name: sendData.requestorName,
         room: sendData.room,
         software: sendData.software,
-        attendant_id: sendData.attendantId,
+        attendant: sendData.attendantId === null || sendData.attendantId < 0 ? null : parseInt(sendData.attendantId.toString()),
         commitment_date: sendData.commitmentDate,
         status: 'pending'
     }
     const { data } = await api.post(`/api/software-requests`, body);	
+    return data;
+};
+
+export const editSoftwareRequestService = async (sendData: SoftwareRequestForm, id: number): Promise<Report> => {
+    const body = {
+        request_date: sendData.requestDate,
+        requestor_name: sendData.requestorName,
+        room: sendData.room,
+        software: sendData.software,
+        attendant: sendData.attendantId === null || sendData.attendantId < 0 ? null : sendData.attendantId,
+        commitment_date: sendData.commitmentDate,
+        status: sendData.status
+    }
+    const { data } = await api.put(`/api/software-requests/${id}`, body);	
     return data;
 };
