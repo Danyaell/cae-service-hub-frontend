@@ -4,16 +4,19 @@ import { editReportService, getReportById } from "../../../api/reports.service";
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./EditReport.module.css";
 import { BsPersonFill } from "react-icons/bs";
-import { GrAction, GrStatusGoodSmall } from "react-icons/gr";
+import { GrAction } from "react-icons/gr";
 import { useForm } from "react-hook-form";
 import { useAuthStrore } from "../../../store/login.store";
 import { Attendant } from "../../../types/user.types";
 import { getUsersService } from "../../../api/users.service";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { FaRegCircle } from "react-icons/fa";
 
 export default function EditReport() {
   const user = useAuthStrore((state) => state.user);
   const [attendants, setAttendants] = useState<Attendant[]>([]);
+  const [selectedStatus, setSelectedStatus] =
+    useState<keyof typeof statusClassMap>("pending");
   const statusTypes = [
     { id: "pending", name: "Pendiente" },
     { id: "in_progress", name: "En Progreso" },
@@ -37,6 +40,14 @@ export default function EditReport() {
       status: report?.status,
     },
   });
+
+  const statusClassMap = {
+    pending: styles.pending,
+    in_progress: styles.inProgress,
+    needs_attention: styles.needsAttention,
+    completed: styles.completed,
+    cancelled: styles.cancelled,
+  };
 
   useEffect(() => {
     if (user && attendants.length > 0 && !report?.attendant_id) {
@@ -73,6 +84,12 @@ export default function EditReport() {
     }
   }, [id]);
 
+  useEffect(() => {
+    if (report?.status) {
+      setSelectedStatus(report.status);
+    }
+  }, [report]);
+
   const selectUserPlaceholder = (user: Attendant) => {
     return (
       <option className={styles.roomOptions} key={user.id} value={user.id}>
@@ -83,14 +100,17 @@ export default function EditReport() {
 
   const selectStatusPlaceholder = (status: { id: string; name: string }) => {
     return (
-      <option className={styles.roomOptions} key={status.id} value={status.id}>
+      <option
+        className={styles.statusOptions}
+        key={status.id}
+        value={status.id}
+      >
         {status.name}
       </option>
     );
   };
 
   const onSubmit = async (data: ReportForm) => {
-    console.log("Data to submit:", data);
     try {
       await editReportService(data, parseInt(id!));
       navigate(user ? "/reports" : "/result", {
@@ -197,13 +217,22 @@ export default function EditReport() {
                   />
                 </div>
                 <div className={styles.inputContainer}>
-                  <div className={styles.iconContainer}>
-                    <GrStatusGoodSmall />
+                  <div
+                    className={`${styles.statusIconContainer} ${
+                      selectedStatus ? statusClassMap[selectedStatus] : ""
+                    }`}
+                  >
+                    <FaRegCircle className={styles.statusIcon} />
                   </div>
                   <select
                     {...register("status")}
                     className={styles.formStatusSelectInput}
-                    defaultValue={report?.status || "pending"}
+                    value={selectedStatus}
+                    onChange={(e) =>
+                      setSelectedStatus(
+                        e.target.value as keyof typeof statusClassMap
+                      )
+                    }
                   >
                     <option key={null} value={"pending"} disabled hidden>
                       Pendiente

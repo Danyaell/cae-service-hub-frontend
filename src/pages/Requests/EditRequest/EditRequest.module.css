@@ -32,7 +32,7 @@
 .backButton:hover {
   border-radius: 5px;
   cursor: pointer;
-  color: var(--color-blue-dark)
+  color: var(--color-blue-dark);
 }
 
 .backButton:focus {
@@ -43,7 +43,6 @@
   margin: 0 5px;
 }
 
-
 .titleContainer {
   display: flex;
   flex-direction: column;
@@ -52,19 +51,10 @@
 }
 
 .title {
-  margin: 0px;
-  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
-    sans-serif;
-  font-size: 2em;
-  font-weight: 500;
-  color: #000;
-}
-
-.subtitle {
   margin-bottom: 30px;
   font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
     sans-serif;
-  font-size: 1.2em;
+  font-size: 2em;
   font-weight: 500;
   color: #000;
 }
@@ -163,6 +153,20 @@
   outline: none;
   border: 2px solid var(--color-secondary);
   box-shadow: 0 0 5px var(--color-secondary);
+}
+
+.inputDateContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 80%;
+  height: auto;
+}
+
+.dateContainer {
+  right: 10px;
+  width: 83%;
+  height: auto;
 }
 
 .statusIconContainer {
@@ -315,7 +319,7 @@
   box-shadow: 0 0 5px var(--color-secondary);
 }
 
-.iconContainerLongText {
+.iconContainerDate {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -325,7 +329,6 @@
   color: #555555;
   background-color: #eeeeee;
   border: solid 2px #ccc;
-  border-right: none 0px;
   border-radius: 5px 0px 0px 5px;
 }
 

@@ -22,7 +22,7 @@ type FormData = {
   commitmentDate: Date | null;
   status:
     | "pending"
-    | "in_progres"
+    | "in_progress"
     | "needs_attention"
     | "completed"
     | "cancelled";

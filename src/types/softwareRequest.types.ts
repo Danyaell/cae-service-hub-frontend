@@ -7,8 +7,9 @@ export interface SoftwareRequest {
         room: "A203" | "A204",
         software: string,
         attendant: Attendant | null,
+        attendant_id: number | undefined;
         commitment_date: null,
-        status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled",
+        status: "pending" | "in_progress" | "needs_attention" | "completed" | "cancelled",
 };
 
 export interface SoftwareRequestForm {
@@ -18,5 +19,5 @@ export interface SoftwareRequestForm {
     software: string;
     attendantId: number;
     commitmentDate: Date | null;
-    status: "pending" | "in_progres" | "needs_attention" | "completed" | "cancelled",
+    status: "pending" | "in_progress" | "needs_attention" | "completed" | "cancelled",
 };
