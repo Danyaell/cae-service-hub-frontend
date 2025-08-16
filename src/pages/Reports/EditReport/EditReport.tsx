@@ -18,11 +18,11 @@ export default function EditReport() {
   const [selectedStatus, setSelectedStatus] =
     useState<keyof typeof statusClassMap>("pending");
   const statusTypes = [
-    { id: "pending", name: "Pendiente" },
-    { id: "in_progress", name: "En Progreso" },
-    { id: "needs_attention", name: "Necesita Atención" },
-    { id: "completed", name: "Completado" },
-    { id: "cancelled", name: "Cancelado" },
+    { id: "pending", name: "PENDIENTE" },
+    { id: "in_progress", name: "EN PROGRESO" },
+    { id: "needs_attention", name: "ATENCIÓN" },
+    { id: "completed", name: "COMPLETADO" },
+    { id: "cancelled", name: "CANCELADO" },
   ];
   const [report, setReport] = useState<Report>();
   const { id } = useParams<{ id: string }>();
@@ -154,7 +154,7 @@ export default function EditReport() {
             <table className={styles.table}>
               <tbody>
                 <tr className={styles.rowData}>
-                  <td className={styles.cellData}>Fecha del Reporte</td>
+                  <td className={styles.cellDataLabel}>Fecha del Reporte</td>
                   <td className={styles.cellData}>
                     {report?.report_date
                       ? new Date(report?.report_date).toLocaleDateString(
@@ -169,19 +169,19 @@ export default function EditReport() {
                   </td>
                 </tr>
                 <tr>
-                  <td className={styles.cellData}>Reportado por</td>
+                  <td className={styles.cellDataLabel}>Reportado por</td>
                   <td className={styles.cellData}>{report?.reporter_name}</td>
                 </tr>
                 <tr>
-                  <td className={styles.cellData}>Aula</td>
+                  <td className={styles.cellDataLabel}>Aula</td>
                   <td className={styles.cellData}>{report?.room}</td>
                 </tr>
                 <tr>
-                  <td className={styles.cellData}>PC</td>
+                  <td className={styles.cellDataLabel}>PC</td>
                   <td className={styles.cellData}>{report?.pc}</td>
                 </tr>
                 <tr>
-                  <td className={styles.cellData}>Descrpición</td>
+                  <td className={styles.cellDataLabel}>Descrpición</td>
                   <td className={styles.cellData}>{report?.description}</td>
                 </tr>
               </tbody>

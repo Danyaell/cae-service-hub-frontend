@@ -27,6 +27,17 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ softwareRequests }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const getStatusName = (status: string) => {
+    const statusMap: Record<string, string> = {
+      pending: "PENDIENTE",
+      in_progress: "EN PROGRESO",
+      needs_attention: "ATENCIÓN",
+      completed: "COMPLETADO",
+      cancelled: "CANCELADO",
+    };
+    return statusMap[status] || "Desconocido";
+  };
+
   const handleDropdownClick = (id: number) => {
     setDropdownClicked(current => (current === id ? null : id));
   };
@@ -42,7 +53,6 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ softwareRequests }) => {
               <th className={styles.columnHeader}>Sala</th>
               <th className={styles.columnHeader}>Software</th>
               <th className={styles.columnHeader}>Atiende</th>
-              <th className={styles.columnHeader}>Fecha de instalación</th>
               <th className={styles.columnHeader}>Estado</th>
               <th className={styles.columnHeader}></th>
             </tr>
@@ -64,19 +74,8 @@ const RequestsTable: React.FC<RequestsTableProps> = ({ softwareRequests }) => {
                 <td className={styles.cellData}>{sr.software}</td>
                 <td className={styles.cellData}>{sr.attendant?.name}</td>
                 <td className={styles.cellData}>
-                  {sr.commitment_date
-                    ? new Date(sr.commitment_date)
-                        .toLocaleDateString("es-MX", {
-                          year: "numeric",
-                          month: "short",
-                          day: "2-digit",
-                        })
-                        .toUpperCase()
-                    : ""}
-                </td>
-                <td className={styles.cellData}>
                   <div className={styles.cellDataStatus} data-status={sr.status}>
-                    {sr.status}
+                    {getStatusName(sr.status)}
                   </div>
                 </td>
                 <td className={styles.cellDataActionButton} ref={(el) => { dropdownRefs.current[sr.id] = el; }}>

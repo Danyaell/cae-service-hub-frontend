@@ -3,7 +3,7 @@ import styles from "./Home.module.css";
 import { TbMessageReport } from "react-icons/tb";
 import { MdSupervisedUserCircle } from "react-icons/md";
 import { SiOpenaccess } from "react-icons/si";
-import { FaComputer } from "react-icons/fa6";
+import { FaBagShopping, FaComputer } from "react-icons/fa6";
 
 export default function Home() {
   return (
@@ -25,7 +25,7 @@ export default function Home() {
         <div className={styles.servicesGridContainer}>
           <div>
             <FaComputer className={styles.serviceIcon}/>
-            <p className={styles.serviceName}>Mantenimiento y reparación de los equipos</p>
+            <p className={styles.serviceName}>Mantenimiento y reparación</p>
             <p className={styles.sorviceDescription}>Revisión y corrección de fallas en hardware y periféricos.</p>
           </div>
           <div>
@@ -36,17 +36,22 @@ export default function Home() {
           <div>
             <TbMessageReport className={styles.serviceIcon}/>
             <p className={styles.serviceName}>Atención a reportes y solicitudes</p>
-            <p className={styles.sorviceDescription}>Gestión de llaves y apertura oportuna de laboratorios según los horarios establecidos.</p>
+            <p className={styles.sorviceDescription}>Canales formales para docentes y alumnos que requieran intervención técnica.</p>
           </div>
           <div>
             <MdSupervisedUserCircle className={styles.serviceIcon}/>
             <p className={styles.serviceName}>Supervisión de equipos e instalaciones</p>
-            <p className={styles.sorviceDescription}>Monitoreo del estado físico y operativo del mobiliario y la infraestructura tecnológica.</p>
+            <p className={styles.sorviceDescription}>Monitoreo del estado físico y operativo del mobiliario e infraestructura tecnológica.</p>
           </div>
           <div>
             <SiOpenaccess className={styles.serviceIcon}/>
             <p className={styles.serviceName}>Control de acceso y apertura de aulas</p>
-            <p className={styles.sorviceDescription}>Canales formales para docentes y alumnos que requieran intervención técnica o administrativa.</p>
+            <p className={styles.sorviceDescription}>Gestión de llaves y apertura oportuna de laboratorios según los horarios establecidos.</p>
+          </div>
+          <div>
+            <FaBagShopping className={styles.serviceIcon}/>
+            <p className={styles.serviceName}>Objetos perdidos</p>
+            <p className={styles.sorviceDescription}>Entrega de objetos olvidados en las aulas de cómputo</p>
           </div>
         </div>
       </div>
