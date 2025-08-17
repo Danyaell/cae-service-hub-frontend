@@ -104,7 +104,7 @@
   height: auto;
 }
 
-.formSmallInput:has(option[value="Sala"]:checked) {
+.formSmallInput:has(option:checked:nth-child(1)) {
   color: #555555e0;
 }
 
@@ -241,4 +241,9 @@ input::-webkit-inner-spin-button {
   width: 30%;
   height: 2rem;
   transition: all 0.2s ease;
+}
+
+.inputError {
+  border: 2px solid rgba(255, 0, 0, 0.671);
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.671);
 }

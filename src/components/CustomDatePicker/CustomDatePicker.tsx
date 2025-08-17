@@ -12,7 +12,7 @@ export const CustomDatePicker = ({ selectedDate = new Date(), onChange }: Props)
     <DatePicker
       selected={selectedDate}
       onChange={onChange}
-      className={styles.customDatePicker}
+      className={`${styles.customDatePicker} ${!selectedDate ? styles.showError : ""}`}
       dateFormat="dd/MM/yyyy"
       placeholderText="Fecha (dd/MM/yyyy)"
       showPopperArrow={false}

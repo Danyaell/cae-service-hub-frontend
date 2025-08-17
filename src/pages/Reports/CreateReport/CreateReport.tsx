@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import { ReportForm } from "../../../types/report.types";
 
 const rooms = [
-  { id: null, name: "Sala" },
+  { id: null, name: "" },
   { id: 1, name: 203 },
   { id: 2, name: 204 },
 ];
@@ -32,12 +32,19 @@ export default function CreateReport() {
   const user = useAuthStrore((state) => state.user);
   const [attendants, setAttendants] = useState<Attendant[]>([]);
   const navigate = useNavigate();
-  const { register, handleSubmit, control, setValue } = useForm<ReportForm>({
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm<ReportForm>({
     defaultValues: {
       reportDate: new Date(),
       reporterName: "",
       role: "Rol",
-      room: "Sala",
+      room: "",
       pc: "",
       description: "",
       attendantId: -1,
@@ -58,7 +65,26 @@ export default function CreateReport() {
       .catch((error) => console.log(error));
   }, []);
 
-  const selectPlaceholder = (room: {
+  const selectRoomPlaceholder = (room: {
+    id: number | null;
+    name: string | number;
+  }) => {
+    if (room.id === null) {
+      return (
+        <option key={room.id} value={room.name} disabled hidden>
+          Sala
+        </option>
+      );
+    } else {
+      return (
+        <option className={styles.roomOptions} key={room.id} value={room.name}>
+          {room.name}
+        </option>
+      );
+    }
+  };
+
+  const selectRolPlaceholder = (room: {
     id: number | null;
     name: string | number;
   }) => {
@@ -93,7 +119,7 @@ export default function CreateReport() {
           success: true,
           message1: "Realizado",
           message2: "Reporte creado exitosamente.",
-          textButton: "Volver al inicio."
+          textButton: "Volver al inicio.",
         },
       });
     } catch (error) {
@@ -131,6 +157,7 @@ export default function CreateReport() {
             <div className={styles.dateContainer}>
               <Controller
                 control={control}
+                rules={{ required: "La fecha es obligatoria" }}
                 name="reportDate"
                 render={({ field }) => (
                   <CustomDatePicker
@@ -146,11 +173,12 @@ export default function CreateReport() {
               <SiGoogleclassroom />
             </div>
             <select
-              {...register("room")}
-              className={styles.formSmallInput}
-              defaultValue={"Sala"}
+              {...register("room", { required: "La sala es obligatoria" })}
+              className={`${styles.formSmallInput} ${
+                errors.room ? styles.inputError : ""
+              }`}
             >
-              {rooms.map((room) => selectPlaceholder(room))}
+              {rooms.map((room) => selectRoomPlaceholder(room))}
             </select>
           </div>
         </div>
@@ -173,7 +201,7 @@ export default function CreateReport() {
             className={styles.formSelectInput}
             defaultValue={"Rol"}
           >
-            {roles.map((role) => selectPlaceholder(role))}
+            {roles.map((role) => selectRolPlaceholder(role))}
           </select>
         </div>
         <div className={styles.inputContainer}>
@@ -181,10 +209,12 @@ export default function CreateReport() {
             <BsPcDisplay />
           </div>
           <input
-            {...register("pc")}
+            {...register("pc", { required: "El número de PC es obligatorio" })}
             type="number"
             placeholder="PC"
-            className={styles.formInput}
+            className={`${styles.formInput} ${
+              errors.pc ? styles.inputError : ""
+            }`}
           />
         </div>
         <div className={styles.inputContainer}>
@@ -192,9 +222,13 @@ export default function CreateReport() {
             <MdOutlineDescription />
           </div>
           <input
-            {...register("description")}
+            {...register("description", {
+              required: "La descripción es obligatoria",
+            })}
             placeholder="Descripción de la falla"
-            className={styles.formInput}
+            className={`${styles.formInput} ${
+              errors.description ? styles.inputError : ""
+            }`}
           />
         </div>
         <div className={styles.inputContainer}>

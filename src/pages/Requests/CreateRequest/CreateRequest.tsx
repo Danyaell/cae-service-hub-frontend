@@ -29,7 +29,7 @@ type FormData = {
 };
 
 const rooms = [
-  { id: null, name: "Sala" },
+  { id: null, name: "" },
   { id: 1, name: 203 },
   { id: 2, name: 204 },
 ];
@@ -37,11 +37,17 @@ const rooms = [
 export default function CreateRequest() {
   const user = useAuthStrore((state) => state.user);
   const [attendants, setAttendants] = useState<Attendant[]>([]);
-  const { register, handleSubmit, control, setValue } = useForm<FormData>({
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>({
     defaultValues: {
       requestDate: new Date(),
       requestorName: "",
-      room: "Sala",
+      room: "",
       software: "",
       attendantId: user ? user.id : -1,
       commitmentDate: null,
@@ -62,14 +68,14 @@ export default function CreateRequest() {
       .catch((error) => console.log(error));
   }, []);
 
-  const selectPlaceholder = (room: {
+  const selectRoomPlaceholder = (room: {
     id: number | null;
     name: string | number;
   }) => {
     if (room.id === null) {
       return (
         <option key={room.id} value={room.name} disabled hidden>
-          {room.name}
+          Sala
         </option>
       );
     } else {
@@ -97,7 +103,7 @@ export default function CreateRequest() {
           success: true,
           message1: "Realizado",
           message2: "Solicitud creada exitosamente.",
-          textButton: "Volver al inicio."
+          textButton: "Volver al inicio.",
         },
       });
     } catch (error) {
@@ -137,6 +143,7 @@ export default function CreateRequest() {
             <div className={styles.dateContainer}>
               <Controller
                 control={control}
+                rules={{ required: "La fecha es obligatoria" }}
                 name="requestDate"
                 render={({ field }) => (
                   <CustomDatePicker
@@ -152,11 +159,12 @@ export default function CreateRequest() {
               <SiGoogleclassroom />
             </div>
             <select
-              {...register("room")}
-              className={styles.formSmallInput}
-              defaultValue={"Sala"}
+              {...register("room", { required: "La sala es obligatoria" })}
+              className={`${styles.formSmallInput} ${
+                errors.room ? styles.inputError : ""
+              }`}
             >
-              {rooms.map((room) => selectPlaceholder(room))}
+              {rooms.map((room) => selectRoomPlaceholder(room))}
             </select>
           </div>
         </div>
@@ -165,9 +173,11 @@ export default function CreateRequest() {
             <BsPersonFill />
           </div>
           <input
-            {...register("requestorName")}
+            {...register("requestorName", { required: "El solicitante es obligatorio" })}
             placeholder="Nombre de quien solicita"
-            className={styles.formInput}
+            className={`${styles.formInput} ${
+              errors.requestorName ? styles.inputError : ""
+            }`}
           />
         </div>
         <div className={styles.inputContainer}>
@@ -190,9 +200,11 @@ export default function CreateRequest() {
             <MdOutlineHomeRepairService />
           </div>
           <textarea
-            {...register("software")}
+            {...register("software", { required: "El software es obligatorio" })}
             placeholder="Servicio que solicita"
-            className={styles.formInputLongText}
+            className={`${styles.formInput} ${
+              errors.software ? styles.inputError : ""
+            }`}
           />
         </div>
         <button type="submit" className={styles.formButton}>
