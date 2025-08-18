@@ -43,9 +43,9 @@
 }
 
 .createRequestButton {
-  background-color: var(--color-orange);
-  color: white;
-  border: none;
+  background-color: white;
+  color: var(--color-primary);
+  border: solid 2px var(--color-primary);
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;

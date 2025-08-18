@@ -17,14 +17,15 @@ export default function Requests() {
     []
   );
 
+  const fetchSoftwareRequests = async () => {
+    try {
+      setSoftwareRequests(await getAllSoftwareRequestsService());
+    } catch (error) {
+      console.error("Error fetching software requests:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchSoftwareRequests = async () => {
-      try {
-        setSoftwareRequests(await getAllSoftwareRequestsService());
-      } catch (error) {
-        console.error("Error fetching software requests:", error);
-      }
-    };
     fetchSoftwareRequests();
   }, []);
 
@@ -47,7 +48,10 @@ export default function Requests() {
           </NavLink>
         </div>
       </div>
-      <RequestsTable softwareRequests={softwareRequests} />
+      <RequestsTable
+        softwareRequests={softwareRequests}
+        onRefresh={fetchSoftwareRequests}
+      />
     </div>
   );
 }
