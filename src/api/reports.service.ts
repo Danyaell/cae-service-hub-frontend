@@ -23,7 +23,7 @@ export const createReportService = async (sendData: ReportForm): Promise<Report>
         action_taken: sendData.actionTaken,
         status: sendData.status
     }
-    const { data } = await api.post(`/api/reports`, body);	
+    const { data } = await api.post(`/api/reports`, body);
     return data;
 };
 
@@ -39,6 +39,11 @@ export const editReportService = async (sendData: ReportForm, id: number): Promi
         action_taken: sendData.actionTaken,
         status: sendData.status
     }
-    const { data } = await api.put(`/api/reports/${id}`, body);	
+    const { data } = await api.put(`/api/reports/${id}`, body);
+    return data;
+};
+
+export const deleteReportById = async (id: number): Promise<Report> => {
+    const { data } = await api.delete(`api/reports/${id}`);
     return data;
 };

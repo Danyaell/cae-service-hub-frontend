@@ -123,6 +123,7 @@
 }
 
 .dropdownMenuItem:hover {
+  cursor: pointer;
   background-color: #ecececa6;
   transition: all 0.3s ease;
 }

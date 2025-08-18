@@ -15,14 +15,15 @@ export default function Reports() {
   } | null;
   const [reports, setReports] = useState<Report[]>([]);
 
+  const fetchReports = async () => {
+    try {
+      setReports(await getAllReportsService());
+    } catch (error) {
+      console.error("Error fetching reports:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchReports = async () => {
-      try {
-        setReports(await getAllReportsService());
-      } catch (error) {
-        console.error("Error fetching reports:", error);
-      }
-    };
     fetchReports();
   }, []);
   return (
@@ -42,7 +43,7 @@ export default function Reports() {
           </NavLink>
         </div>
       </div>
-      <ReportsTable reports={reports} />
+      <ReportsTable reports={reports} onRefresh={fetchReports} />
     </div>
   );
 }

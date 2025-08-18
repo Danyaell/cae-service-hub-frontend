@@ -7,7 +7,7 @@ export const getAllSoftwareRequestsService = async (): Promise<SoftwareRequest[]
 };
 
 export const getSoftwareRequestByIdService = async (id: number): Promise<SoftwareRequest> => {
-    const { data } = await api.get(`/api/software-requests/${id}`);	
+    const { data } = await api.get(`/api/software-requests/${id}`);
     return data;
 };
 
@@ -21,7 +21,7 @@ export const createSoftwareRequestService = async (sendData: SoftwareRequestForm
         commitment_date: sendData.commitmentDate,
         status: 'pending'
     }
-    const { data } = await api.post(`/api/software-requests`, body);	
+    const { data } = await api.post(`/api/software-requests`, body);
     return data;
 };
 
@@ -35,6 +35,11 @@ export const editSoftwareRequestService = async (sendData: SoftwareRequestForm, 
         commitment_date: sendData.commitmentDate,
         status: sendData.status
     }
-    const { data } = await api.put(`/api/software-requests/${id}`, body);	
+    const { data } = await api.put(`/api/software-requests/${id}`, body);
+    return data;
+};
+
+export const deleteSoftwareRequestByIdService = async (id: number): Promise<SoftwareRequest> => {
+    const { data } = await api.delete(`/api/software-requests/${id}`);
     return data;
 };
