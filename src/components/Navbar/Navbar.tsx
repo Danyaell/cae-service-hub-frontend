@@ -49,6 +49,16 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li>
+            <NavLink
+              to={user ? "/lost-items" : "report-lost-item"}
+              className={({ isActive }) =>
+                isActive ? styles.navButtonActive : styles.navButton
+              }
+            >
+              OBJETOS PERDIDOS
+            </NavLink>
+          </li>
+          <li>
             {!user && (
               <NavLink to="/login" className={styles.navButtonLogin}>
               LOGIN

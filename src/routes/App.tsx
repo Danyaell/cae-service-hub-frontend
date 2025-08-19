@@ -13,6 +13,9 @@ import Requests from "../pages/Requests/Requests";
 import { useEffect } from "react";
 import EditReport from "../pages/Reports/EditReport/EditReport";
 import EditRequest from "../pages/Requests/EditRequest/EditRequest";
+import LostItems from "../pages/LostItems/LostItems";
+import CreateLostItem from "../pages/LostItems/CreateLostItem/CreateLostItem";
+import EditLostItem from "../pages/LostItems/EditLostItem/EditLostItem";
 
 function App() {
   const initialize = useAuthStrore((state) => state.initialize);
@@ -31,12 +34,19 @@ function App() {
       <div className={styles.bodyConainer}>
         <Routes>
           <Route path="/" element={<Home />} />
+
           {user && <Route path="/reports" element={<Reports />} />}
           {user && <Route path="/edit-report/:id" element={<EditReport />} />}
           <Route path="/create-report" element={<CreateReport />} />
+
           {user && <Route path="/requests" element={<Requests />} />}
           {user && <Route path="/edit-request/:id" element={<EditRequest />} />}
           <Route path="/create-request" element={<CreateRequest />} />
+
+          {user && <Route path="/lost-items" element={<LostItems />} />}
+          {user && <Route path="/edit-lost-item/:id" element={<EditLostItem />} />}
+          <Route path="/create-lost-item" element={<CreateLostItem />} />
+
           <Route path="/result" element={<Result />} />
           <Route path="/login" element={<Login />} />
         </Routes>
