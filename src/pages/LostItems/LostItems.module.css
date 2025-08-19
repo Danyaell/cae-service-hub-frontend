@@ -1,0 +1,58 @@
+.successBanner {
+  margin: 0 auto auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 1400px;
+  background-color: #ceecce;
+  color: rgb(0, 99, 0);
+  border: 1px solid rgb(0, 99, 0);
+  border-radius: 10px;
+}
+
+.errorBanner {
+  margin: 0 auto auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 1400px;
+  background-color: rgb(255, 234, 234);
+  color: rgb(200, 0, 0);
+  border: 1px solid rgb(200, 0, 0);
+  border-radius: 10px;
+}
+
+.headerContainer {
+  margin: 0 auto 20px;
+  width: 80%;
+  max-width: 1400px;
+}
+
+.lostObjectsHeader {
+  display: flex;
+  max-width: 1400px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 2em;
+  font-weight: 500;
+  color: #000;
+  justify-content: flex-start;
+}
+
+.createLostObjectButton {
+  background-color: white;
+  color: var(--color-primary);
+  border: solid 2px var(--color-primary);
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
