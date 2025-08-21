@@ -8,7 +8,7 @@
   margin: 10px;
   border-radius: 0px;
   font-size: 16px;
-  width: 100%;
+  width: auto;
   transition: all 0.1s ease;
 }
 
@@ -28,7 +28,7 @@
   margin: 10px;
   border-radius: 0px;
   font-size: 16px;
-  width: 100%;
+  width: auto;
   transition: all 0.1s ease;
 }
 
@@ -139,4 +139,10 @@ li {
 .logoLink {
   text-decoration: none;
   color: #ffffffb6;
+}
+
+@media (max-width: 1050px) {
+  .logo {
+    display: none;
+  }
 }
