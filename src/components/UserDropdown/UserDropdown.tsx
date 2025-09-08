@@ -40,14 +40,14 @@ export const UserDropdown = () => {
         <div className={styles.dropdownContainer}>
           <div className={styles.dropdownHeader}>¡Hola, {user?.name}!</div>
           <ul className={styles.dropdownMenu}>
-            <li className={styles.dropdownMenuItem}>
+            {/* <li className={styles.dropdownMenuItem}>
               <NavLink to="/" className={styles.dropdownLink}>
                 Perfil
               </NavLink>
-            </li>
+            </li> */}
             <li className={styles.dropdownMenuItem}>
-              <NavLink to="/" className={styles.dropdownLink}>
-                Configuración
+              <NavLink to={`/user/${user?.id}`} className={styles.dropdownLink}>
+                Perfil
               </NavLink>
             </li>
           </ul>
