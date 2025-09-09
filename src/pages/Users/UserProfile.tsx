@@ -11,6 +11,7 @@ import {
 import { User, UserForm } from "../../types/user.types";
 import { useForm } from "react-hook-form";
 import { ConfirmModal } from "../../components/ConfirmationModal/ConfirmationModal";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 export default function UserProfile() {
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ export default function UserProfile() {
       role: userInfo?.role ? userInfo.role : "Rol",
     },
   });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const roles = [
     { id: null, name: "Rol" },
@@ -38,12 +41,21 @@ export default function UserProfile() {
   const onSubmit = async (data: UserForm) => {
     try {
       if (id) {
-        console.log(data);
-        await updateUserService(parseInt(id), data).then((data) => {
-          setUserInfo(data);
-        });
+        if (data.name && data.password && data.role) {
+          await updateUserService(parseInt(id), data).then((data) => {
+            setUserInfo(data);
+            setError('')
+            setSuccess("Edición de usuario exitosa.");
+          });
+        } else {
+          setSuccess('')
+          setError("Por favor, revisa que todos los campos estén llenos.");
+        }
       }
-    } catch (error) {}
+    } catch {
+      setSuccess('')
+      setError("Ha habido un error en el servidor, intente más tarde.");
+    }
   };
 
   const toggleIsEditing = () => {
@@ -89,7 +101,7 @@ export default function UserProfile() {
         .then((data) => {
           setUserInfo(data);
         })
-        .catch((error) => {});
+        .catch(() => {});
     }
   }, [id]);
 
@@ -99,12 +111,6 @@ export default function UserProfile() {
       setValue("role", userInfo.role);
     }
   }, [userInfo, setValue]);
-
-  /*   useEffect(() => {
-    if (user) {
-      navigate('/')
-    }
-  }, [user]) */
 
   return (
     <>
@@ -124,10 +130,16 @@ export default function UserProfile() {
             </div>
             <div className={styles.buttonContainer}>
               <button className={styles.button} onClick={toggleIsEditing}>
+                <MdEdit className={styles.icon} />
                 Editar
               </button>
             </div>
           </div>
+          {(error || success) && (
+            <div className={error ? styles.errorBanner : styles.successBanner}>
+              {error || success}
+            </div>
+          )}
           <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.infoContainer}>
               <div className={styles.rowContainer}>
@@ -171,7 +183,7 @@ export default function UserProfile() {
                   <div className={styles.inputValueContainer}>
                     <select
                       {...register("role")}
-                      className={styles.inputValue}
+                      className={styles.inputSelectValue}
                       defaultValue={"Rol"}
                     >
                       {roles.map((role) => selectRolPlaceholder(role))}
@@ -185,10 +197,13 @@ export default function UserProfile() {
                   <p className={styles.value}>
                     {userInfo?.created_at
                       ? new Date(userInfo.created_at)
-                          .toLocaleDateString("es-MX", {
+                          .toLocaleString("es-MX", {
                             year: "numeric",
                             month: "short",
                             day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit",
                           })
                           .toUpperCase()
                       : ""}
@@ -201,10 +216,13 @@ export default function UserProfile() {
                   <p className={styles.value}>
                     {userInfo?.updated_at
                       ? new Date(userInfo.updated_at)
-                          .toLocaleDateString("es-MX", {
+                          .toLocaleString("es-MX", {
                             year: "numeric",
                             month: "short",
                             day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit",
                           })
                           .toUpperCase()
                       : "N/A"}
@@ -214,7 +232,11 @@ export default function UserProfile() {
             </div>
             {isEditing && (
               <div className={styles.arrayButtons}>
-                <button onClick={() => setIsModalOpen(true)} className={styles.deleteUserButton}>
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className={styles.deleteUserButton}
+                >
+                  <MdDelete className={styles.icon} />
                   {loading ? "Cargando" : "Eliminar usuario"}
                 </button>
                 <button type="submit" className={styles.formButton}>
@@ -229,7 +251,7 @@ export default function UserProfile() {
         isOpen={isModalOpen}
         onConfirm={confirmDelete}
         onCancel={() => setIsModalOpen(false)}
-        message="¿Seguro que quieres eliminar este objeto?"
+        message="¿Seguro que quieres eliminar este usuario?"
       />
     </>
   );

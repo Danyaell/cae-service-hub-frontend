@@ -83,11 +83,42 @@
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
+  align-items: center;
+  justify-content: center;
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
+  transition: all 0.1s ease;
+}
+
+.button:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.successBanner {
+  margin: 0 auto 50px;
+  padding: 20px;
+  width: 80%;
+  max-width: 1400px;
+  background-color: #ceecce;
+  color: rgb(0, 99, 0);
+  border: 1px solid rgb(0, 99, 0);
+  border-radius: 10px;
+}
+
+.errorBanner {
+  margin: 0 auto 50px;
+  padding: 20px;
+  width: 80%;
+  max-width: 1400px;
+  background-color: rgb(255, 234, 234);
+  color: rgb(200, 0, 0);
+  border: 1px solid rgb(200, 0, 0);
+  border-radius: 10px;
 }
 
 .infoContainer {
@@ -132,7 +163,6 @@
 }
 
 .inputValue {
-	
   margin: 0;
   padding: 0;
   width: 100%;
@@ -140,12 +170,25 @@
   border: none;
   font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
     sans-serif;
-	font-size: small;
-  color: black
+  font-size: small;
+  color: black;
 }
 
 .inputValue:focus {
-	  outline: none;
+  outline: none;
+}
+
+.inputSelectValue {
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: white;
+  border: none;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: small;
+  color: black;
 }
 
 .arrayButtons {
@@ -153,6 +196,38 @@
   width: 50%;
   margin: auto;
   justify-content: flex-end;
+}
+
+.icon {
+  padding-right: 10px;
+}
+
+.deleteUserButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 10px;
+  background-color: white;
+  color: rgb(231, 41, 41);
+  border: solid 2px rgb(231, 41, 41);
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 30%;
+  height: 2.5rem;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.deleteUserButton:hover {
+  background-color: rgb(231, 41, 41);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.deleteUserButton :hover {
+  box-shadow: red;
 }
 
 .formButton {
@@ -166,19 +241,5 @@
   font-weight: 500;
   width: 30%;
   height: 2.5rem;
-  transition: all 0.2s ease;
-}
-
-.deleteUserButton {
-  margin-top: 20px;
-  margin-left: 10px;
-  background-color: rgb(231, 41, 41);
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 500;
-  width: 30%;
-  height: 2.5rem;
-  transition: all 0.2s ease;
+  cursor: pointer;
 }
