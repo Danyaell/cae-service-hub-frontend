@@ -6,13 +6,7 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { BsPersonFill } from "react-icons/bs";
 import { TbPassword } from "react-icons/tb";
 
-/* type LoginFormInputs = {
-  username: string;
-  password: string;
-}; */
-
 export default function Login() {
-  //const { register, handleSubmit } = useForm<LoginFormInputs>();
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -77,7 +71,7 @@ export default function Login() {
       </form>
       <div className={styles.createMessageContainer}>
         <p>O puedes </p>
-        <button className={styles.createUserButton}>crear un usuario</button>
+        <button onClick={() => navigate('/signin')} className={styles.createUserButton}>crear un usuario</button>
       </div>
     </div>
   );
