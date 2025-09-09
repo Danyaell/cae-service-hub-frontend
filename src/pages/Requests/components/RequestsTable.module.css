@@ -20,7 +20,7 @@
   border-bottom: 1px solid #ccc;
   padding: 10px 20px 10px 10px;
   text-align: left;
-  max-width: 300px;
+  max-width: 180px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -52,7 +52,7 @@
 }
 
 .cellDataStatus[data-status="needs_attention"] {
-  background-color: rgb(238, 143, 0);
+  background-color: rgb(238, 87, 0);
   color: white;
 }
 

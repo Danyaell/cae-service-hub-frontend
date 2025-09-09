@@ -6,22 +6,16 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { BsPersonFill } from "react-icons/bs";
 import { TbPassword } from "react-icons/tb";
 
-/* type LoginFormInputs = {
-  username: string;
-  password: string;
-}; */
-
 export default function Login() {
-  //const { register, handleSubmit } = useForm<LoginFormInputs>();
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
 
-  const login = useAuthStrore(state => state.login);
-  const error = useAuthStrore(state => state.error);
-  const loading = useAuthStrore(state => state.loading);
-  const user = useAuthStrore(state => state.user);
-  
+  const login = useAuthStrore((state) => state.login);
+  const error = useAuthStrore((state) => state.error);
+  const loading = useAuthStrore((state) => state.loading);
+  const user = useAuthStrore((state) => state.user);
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     await login(name, password);
@@ -29,10 +23,9 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
-      navigate('/')
+      navigate("/");
     }
-  }, [user])
-  
+  }, [user]);
 
   return (
     <div className={styles.loginContainer}>
@@ -47,6 +40,9 @@ export default function Login() {
       </div>
       <form className={styles.loginForm} onSubmit={handleSubmit}>
         <h1 className={styles.formTitle}>INICIAR SESIÓN</h1>
+        {error && (
+          <div className={styles.errorBanner}>Credenciales incorrectas</div>
+        )}
         <div className={styles.inputContainer}>
           <div className={styles.iconContainer}>
             <BsPersonFill />
@@ -55,7 +51,7 @@ export default function Login() {
             type="text"
             placeholder="Usuario"
             className={styles.formInput}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className={styles.inputContainer}>
@@ -66,16 +62,17 @@ export default function Login() {
             type="password"
             placeholder="Contraseña"
             className={styles.formInput}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {error && (
-          <p className={styles.errorMessage}>Credenciales incorrectas</p>
-        )}
         <button type="submit" className={styles.formButton}>
-          {loading ? 'Cargando' : 'Iniciar Sesión'}
+          {loading ? "Cargando" : "Iniciar Sesión"}
         </button>
       </form>
+      <div className={styles.createMessageContainer}>
+        <p>O puedes </p>
+        <button onClick={() => navigate('/signin')} className={styles.createUserButton}>crear un usuario</button>
+      </div>
     </div>
   );
 }

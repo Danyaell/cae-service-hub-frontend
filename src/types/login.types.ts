@@ -12,3 +12,16 @@ export interface LoginForm {
     name: string,
     password: string,
 };
+
+export interface SigninResponse {
+    message: string;
+    data: {
+        user: Attendant;
+    }
+}
+
+export interface SigninForm {
+    name: string,
+    password: string,
+    role: string
+}

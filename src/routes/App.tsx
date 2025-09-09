@@ -16,6 +16,8 @@ import EditRequest from "../pages/Requests/EditRequest/EditRequest";
 import LostItems from "../pages/LostItems/LostItems";
 import CreateLostItem from "../pages/LostItems/CreateLostItem/CreateLostItem";
 import EditLostItem from "../pages/LostItems/EditLostItem/EditLostItem";
+import UserProfile from "../pages/Users/UserProfile";
+import Signin from "../pages/Signin/Signin";
 
 function App() {
   const initialize = useAuthStrore((state) => state.initialize);
@@ -48,7 +50,11 @@ function App() {
           <Route path="/create-lost-item" element={<CreateLostItem />} />
 
           <Route path="/result" element={<Result />} />
+
           <Route path="/login" element={<Login />} />
+          <Route path="/signin" element={<Signin />} />
+
+          <Route path="/user/:id" element={<UserProfile />} />
         </Routes>
       </div>
       <div className={styles.footContainer}>
