@@ -54,4 +54,11 @@
   margin: 4px 2px;
   cursor: pointer;
   border-radius: 5px;
+  transition: all ease .1s;
+}
+
+.createRequestButton:hover {
+  background-color: var(--color-primary);
+  color: white;
+  transition: all ease .3s;
 }

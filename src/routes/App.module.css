@@ -27,6 +27,7 @@
     z-index: 1;
     width: 100%;
     height: max-content;
+    min-height: 35vh;
 }
 
 .footContainer {
