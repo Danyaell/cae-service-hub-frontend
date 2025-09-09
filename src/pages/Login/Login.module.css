@@ -121,3 +121,37 @@ input::-webkit-inner-spin-button {
   height: 2rem;
   transition: all 0.2s ease;
 }
+
+.errorBanner {
+  margin: 0 auto auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 1400px;
+  background-color: rgb(255, 234, 234);
+  color: rgb(200, 0, 0);
+  border: 1px solid rgb(200, 0, 0);
+  border-radius: 10px;
+}
+
+.createMessageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  width: fit-content;
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+  font-size: 13.5px;
+}
+
+.createUserButton {
+  background: none;
+  border: none;
+  color: rgb(56, 121, 241);
+  font-family: "Poppins", "Josefin Sans", system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
+}
+
+.createUserButton:hover {
+  cursor: pointer;
+}

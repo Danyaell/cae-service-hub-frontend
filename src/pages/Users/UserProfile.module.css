@@ -147,3 +147,38 @@
 .inputValue:focus {
 	  outline: none;
 }
+
+.arrayButtons {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  justify-content: flex-end;
+}
+
+.formButton {
+  margin-top: 20px;
+  margin-left: 10px;
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 30%;
+  height: 2.5rem;
+  transition: all 0.2s ease;
+}
+
+.deleteUserButton {
+  margin-top: 20px;
+  margin-left: 10px;
+  background-color: rgb(231, 41, 41);
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 30%;
+  height: 2.5rem;
+  transition: all 0.2s ease;
+}
